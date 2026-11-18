@@ -25,7 +25,6 @@ html.is-loading{overflow:hidden}
 html.lenis,html.lenis body{height:auto}
 .lenis.lenis-smooth{scroll-behavior:auto!important}
 body{background:var(--bg);color:var(--fg);font-family:'Manrope',system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-@media (pointer:fine){body,a,button{cursor:none}}
 a{color:inherit;text-decoration:none}
 ::selection{background:var(--a1);color:#fff}
 
@@ -38,34 +37,19 @@ a{color:inherit;text-decoration:none}
 @keyframes d1{to{transform:translate(18vw,22vh) scale(1.15)}}
 @keyframes d2{to{transform:translate(-14vw,30vh) scale(.9)}}
 @keyframes d3{to{transform:translate(-20vw,-12vh) scale(1.2)}}
-#webgl{position:fixed;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}
-.grain{position:fixed;inset:-50%;z-index:70;pointer-events:none;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain .9s steps(5) infinite}
+#webgl{position:fixed;inset:0;width:100%;height:100%;z-index:2;pointer-events:none;transition:opacity .45s}
+.grain{position:fixed;inset:-50%;z-index:70;pointer-events:none;opacity:.045;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 @keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-4%,3%)}40%{transform:translate(3%,-5%)}60%{transform:translate(-6%,-2%)}80%{transform:translate(5%,4%)}100%{transform:translate(0,0)}}
 .progress{position:fixed;left:0;top:0;width:100%;height:3px;background:var(--grad);transform-origin:left;transform:scaleX(0);z-index:60}
 
-/* ---------- cursor ---------- */
-.cursor{position:fixed;left:0;top:0;z-index:100;pointer-events:none}
-.c-dot,.c-ring{position:fixed;left:0;top:0;border-radius:50%;will-change:transform}
-.c-dot{width:7px;height:7px;margin:-3.5px 0 0 -3.5px;background:var(--a1)}
-.c-ring{width:40px;height:40px;margin:-20px 0 0 -20px;border:1px solid rgba(22,25,44,.35);display:grid;place-items:center;transition:width .45s var(--ease),height .45s var(--ease),margin .45s var(--ease),background .4s,border-color .4s}
-.c-label{font:500 10px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#fff;opacity:0;transition:opacity .3s;white-space:nowrap}
-.cursor.is-hover .c-ring{width:66px;height:66px;margin:-33px 0 0 -33px;border-color:transparent;background:rgba(255,122,26,.16)}
-.cursor.is-label .c-ring{width:92px;height:92px;margin:-46px 0 0 -46px;border-color:transparent;background:var(--fg)}
-.cursor.is-label .c-label{opacity:1}
-.cursor.is-poke .c-ring{background:var(--grad);box-shadow:0 12px 30px -8px rgba(255,106,16,.6)}
-@media (pointer:coarse){.cursor{display:none}}
-
 /* ---------- loader ---------- */
-.loader{position:fixed;inset:0;z-index:90;background:var(--bg);display:flex;flex-direction:column;justify-content:space-between;padding:var(--pad);clip-path:inset(0 0 0 0)}
-.loader-top{display:flex;justify-content:space-between;font:500 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--mut)}
-.loader-face{align-self:center;width:clamp(150px,17vw,210px);aspect-ratio:1.1;border-radius:50% 50% 47% 47%;border:clamp(12px,1.4vw,16px) solid var(--a1);background:radial-gradient(ellipse at 40% 30%,#fff,#efe9e2 80%);box-shadow:0 34px 60px -24px rgba(255,106,16,.55),inset 0 -10px 22px rgba(22,25,44,.06);display:grid;place-items:center;will-change:transform}
-.loader-eyes{display:flex;gap:clamp(18px,2vw,26px);will-change:transform}
-.loader-eyes i{display:block;width:clamp(24px,2.6vw,32px);aspect-ratio:.76;border-radius:50%;background:radial-gradient(circle at 34% 28%,#fff 0 15%,transparent 17%),radial-gradient(ellipse at 50% 90%,#5a86ff 0,#1a2372 62%);animation:lblink 2.6s infinite}
-@keyframes lblink{0%,90%,100%{transform:scaleY(1)}94%{transform:scaleY(.08)}}
-.loader-bottom{display:flex;align-items:flex-end;gap:clamp(16px,3vw,40px)}
-.loader-bar{flex:1;height:2px;background:var(--line);position:relative;margin-bottom:1.2em}
-.loader-bar i{position:absolute;inset:0;background:var(--grad);transform-origin:left;transform:scaleX(0)}
-.loader-count{font:800 clamp(64px,13vw,210px)/.78 var(--display);letter-spacing:-.05em;font-variant-numeric:tabular-nums}
+.loader{position:fixed;inset:0;z-index:90;background:var(--bg);clip-path:inset(0 0 0 0)}
+.loader-mark{position:absolute;left:50%;top:50%;translate:-50% -50%;width:clamp(72px,7.5vw,104px);height:auto;overflow:visible;will-change:transform,opacity}
+.loader-mark path{fill:var(--a1);fill-opacity:0;stroke:var(--a1);stroke-width:1.1;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1}
+.loader-meta{position:absolute;left:50%;bottom:clamp(28px,7vh,64px);translate:-50% 0;display:flex;align-items:center;gap:14px;font:500 10.5px/1 var(--mono);letter-spacing:.32em;text-transform:uppercase;color:var(--mut);white-space:nowrap}
+.loader-line{position:relative;width:96px;height:1px;background:var(--line);overflow:hidden}
+.loader-line i{position:absolute;inset:0;background:var(--a1);transform-origin:left;transform:scaleX(0)}
+.loader-count{min-width:3ch;text-align:right;font-variant-numeric:tabular-nums;color:var(--fg)}
 
 /* ---------- nav ---------- */
 .nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:20px var(--pad)}
@@ -110,13 +94,6 @@ a{color:inherit;text-decoration:none}
 .space-nebula{position:absolute;inset:0;opacity:.7;
   background:radial-gradient(40% 30% at 18% 28%,rgba(70,90,200,.16),transparent 70%),
              radial-gradient(35% 28% at 82% 22%,rgba(110,80,190,.12),transparent 70%)}
-.planet{position:absolute;border-radius:50%;will-change:transform}
-.planet-a{width:78vmax;aspect-ratio:1;right:-34vmax;top:-62vmax;
-  background:radial-gradient(circle at 35% 80%,#1a2246 0%,#0a0f26 45%,#05081a 70%);
-  box-shadow:inset 0 -2px 0 rgba(150,175,255,.35),inset 0 -26px 60px -20px rgba(120,150,255,.28),0 10px 80px -10px rgba(90,120,255,.18)}
-.planet-b{width:30vmax;aspect-ratio:1;left:-17vmax;top:-12vmax;opacity:.55;
-  background:radial-gradient(circle at 70% 75%,#151c3c,#070a1c 65%);
-  box-shadow:inset -1px -1px 0 rgba(150,175,255,.25),inset -14px -14px 40px -16px rgba(120,150,255,.22)}
 .horizon{position:absolute;left:-10%;right:-10%;bottom:14vh;height:46vh;
   background:radial-gradient(50% 60% at 50% 100%,rgba(255,138,51,.55) 0%,rgba(255,90,31,.22) 38%,rgba(255,90,31,.06) 62%,transparent 78%)}
 .horizon::after{content:'';position:absolute;left:12%;right:12%;bottom:0;height:1px;
@@ -137,13 +114,14 @@ a{color:inherit;text-decoration:none}
 html.on-space .nav{--fg:#eef1fb;--line:rgba(255,255,255,.18);color:var(--fg)}
 html.on-space .logo{color:#fff}
 html.on-space .nav .btn:not(:hover){background:rgba(255,255,255,.06)}
-html.on-space .c-ring{border-color:rgba(255,255,255,.45)}
 .hero-kicker{position:relative;z-index:3;display:flex;flex-wrap:wrap;justify-content:center;gap:10px 22px;font:500 11px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin-bottom:clamp(14px,2vw,28px)}
 .hero-kicker span{display:inline-flex;align-items:center;gap:22px}
 .hero-kicker span+span::before{content:'';width:22px;height:1px;background:var(--a1)}
 .hero-title{position:relative;z-index:1;font:800 clamp(44px,8.4vw,230px)/.82 var(--display);letter-spacing:-.055em;white-space:nowrap;user-select:none;text-align:center}
 .hero-title .line{display:inline-block;padding:.08em .02em .03em}
 .hero-title.masked .line{overflow:hidden}
+.hero-title.masked .ci{transition:none}
+.hero-title .ci{will-change:transform}
 .hero-title .l1{margin-right:1.5em}
 .char{display:inline-block;will-change:transform}
 .ci{display:inline-block;transition:transform .7s var(--ease),color .35s,-webkit-text-stroke-color .35s}
@@ -214,50 +192,45 @@ html.on-space .c-ring{border-color:rgba(255,255,255,.45)}
 .about{position:relative;z-index:3;height:100vh;height:100svh}
 .about-inner{position:relative;height:100%;display:grid;grid-template-columns:1fr 1fr;padding:96px var(--pad) var(--pad)}
 .about-left{position:relative}
-.about-index{display:flex;align-items:baseline;gap:10px;font:500 12px/1 var(--mono);letter-spacing:.12em;color:var(--mut)}
-.about-index b{font:800 clamp(48px,6vw,96px)/.8 var(--display);letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1.2px var(--a1)}
-.about-caption{position:absolute;left:0;bottom:0;max-width:280px}
-.about-caption p{font-size:14px;line-height:1.55;color:var(--mut)}
-.about-caption p b{color:var(--fg);font-weight:600}
 .about-right{position:relative}
 .stage{position:relative;height:100%}
-.statement{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center}
-.eyebrow{display:inline-flex;align-items:center;gap:10px;font:500 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--mut);margin-bottom:26px}
-.eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--a1);box-shadow:0 0 0 4px rgba(255,122,26,.18)}
-.statement-text{position:relative;font:600 clamp(24px,2.45vw,44px)/1.14 var(--display);letter-spacing:-.025em;max-width:15.5em}
-.manifesto{position:relative;max-width:760px;padding:30px 36px 26px 44px;border-radius:26px;background:linear-gradient(160deg,rgba(255,255,255,.78),rgba(255,255,255,.38));border:1px solid rgba(22,25,44,.07);box-shadow:0 40px 80px -48px rgba(120,60,10,.45),inset 0 1px 0 rgba(255,255,255,.9);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
-.mf-corner{position:absolute;width:18px;height:18px;border:0 solid var(--a1);pointer-events:none}
-.mf-corner.tl{top:12px;left:12px;border-width:1.5px 0 0 1.5px;border-top-left-radius:6px}
-.mf-corner.tr{top:12px;right:12px;border-width:1.5px 1.5px 0 0;border-top-right-radius:6px}
-.mf-corner.bl{bottom:12px;left:12px;border-width:0 0 1.5px 1.5px;border-bottom-left-radius:6px}
-.mf-corner.br{bottom:12px;right:12px;border-width:0 1.5px 1.5px 0;border-bottom-right-radius:6px}
-.mf-rail{position:absolute;left:24px;top:64px;bottom:84px;width:3px;border-radius:3px;background:linear-gradient(var(--a3),var(--a1) 50%,var(--sky));transform-origin:top}
-.mf-quote{position:absolute;right:30px;top:-.18em;font:800 clamp(120px,12vw,210px)/1 var(--display);color:transparent;-webkit-text-stroke:1.2px var(--a1);opacity:.35;pointer-events:none;user-select:none}
-.mf-head{display:flex;align-items:center;gap:14px;font:500 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--mut);margin-bottom:22px}
-.mf-head .rec{display:inline-flex;align-items:center}
-.mf-rule{flex:1;height:1px;background:repeating-linear-gradient(90deg,var(--line) 0 6px,transparent 6px 10px);max-width:160px}
-.mf-foot{display:flex;align-items:flex-end;gap:clamp(18px,2.6vw,40px);margin-top:26px;padding-top:18px;border-top:1px solid var(--line)}
-.mf-stat{display:flex;flex-direction:column;gap:6px}
-.mf-stat b{font:800 clamp(24px,2.1vw,34px)/.9 var(--display);letter-spacing:-.03em;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-variant-numeric:tabular-nums}
-.mf-stat b em{font-style:normal}
-.mf-stat b small{font-size:.45em;letter-spacing:0;margin-left:2px}
-.mf-stat span{font:500 10.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
-.mf-sign{margin-left:auto;font:italic 500 14px/1 'Manrope',sans-serif;color:var(--fg);opacity:.75;white-space:nowrap}
-.word{display:inline-block;opacity:.12}
-.word:not(.hl):not(.pill){transition:color .3s}
-.word:not(.hl):not(.pill):hover{color:var(--a1)}
-.word.hl{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-.pill{display:inline-flex;vertical-align:middle;align-items:center;justify-content:center;width:1.75em;height:.95em;border-radius:999px;background:linear-gradient(110deg,var(--c1),var(--c2),var(--c1));background-size:200% 100%;animation:pill 4s linear infinite;margin:0 .06em;transform:translateY(-.07em);transition:transform .6s var(--ease);box-shadow:0 8px 18px -8px var(--c1)}
-.pill svg{width:.52em;height:.52em;fill:none;stroke:#fff;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
-.pill:hover{transform:translateY(-.07em) scale(1.18) rotate(-8deg)}
-@keyframes pill{to{background-position:-200% 0}}
+.statement{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding-left:clamp(0px,3vw,56px)}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font:500 11px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--mut);margin-bottom:22px}
+.eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--a1);box-shadow:0 0 0 4px rgba(253,109,14,.16)}
+.ab-eyebrow{display:flex;align-items:center;gap:12px;font:600 11px/1 'Manrope',sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--fg);margin-bottom:22px}
+.ab-eyebrow .dot{flex:none;width:7px;height:7px;border-radius:50%;background:var(--a1)}
+.ab-eyebrow .rule{flex:none;width:clamp(60px,10vw,160px);height:1px;background:linear-gradient(90deg,var(--line),transparent);transform-origin:left}
+.ab-title{font:700 clamp(28px,2.7vw,44px)/1.08 'Manrope',sans-serif;letter-spacing:-.035em;color:var(--fg);margin-bottom:22px}
+.ab-title .ln{display:block;overflow:hidden;padding-bottom:.06em}
+.ab-title .ln > span{display:block}
+.ab-title .acc{color:var(--a1)}
+.ab-copy{max-width:400px;font-size:15px;line-height:1.7;color:var(--mut);margin-bottom:30px}
+.ab-meta{display:flex;gap:clamp(22px,3vw,44px);margin-bottom:32px}
+.ab-meta div{display:flex;flex-direction:column;gap:7px}
+.ab-meta b{font:700 22px/1 'Manrope',sans-serif;letter-spacing:-.02em;color:var(--fg);font-variant-numeric:tabular-nums}
+.ab-meta b small{font-size:.6em;color:var(--a1);margin-left:1px}
+.ab-meta span{font:500 10px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--mut)}
+.btn-line{align-self:flex-start;display:inline-flex;align-items:center;gap:14px;padding:14px 24px;border-radius:999px;border:1.5px solid var(--a1);color:var(--fg);font:600 14px/1 'Manrope',sans-serif;transition:background .45s var(--ease),color .45s var(--ease),box-shadow .45s}
+.btn-line svg{width:16px;height:16px;color:var(--a1);transition:transform .45s var(--ease),color .45s}
+.btn-line:hover{background:var(--a1);color:#fff;box-shadow:0 16px 30px -14px rgba(253,109,14,.7)}
+.btn-line:hover svg{color:#fff;transform:translateX(4px)}
+
+/* glass tiles orbiting DAW (DAW itself is the 3D model, centred on this column) */
+.ab-orbit{position:absolute;left:0;top:0;width:50%;height:100%;pointer-events:none;z-index:1}
+.ab-tile{position:absolute;left:var(--x);top:var(--y);translate:-50% -50%;width:clamp(68px,6.4vw,96px);aspect-ratio:1;border-radius:26%;display:grid;place-items:center;
+  background:linear-gradient(150deg,rgba(255,255,255,.92),rgba(255,250,244,.62));border:1px solid rgba(255,255,255,.9);
+  box-shadow:0 24px 40px -22px rgba(160,70,10,.45),inset 0 1px 0 #fff,inset 0 -8px 18px rgba(253,109,14,.06)}
+.ab-tile > span{display:grid;place-items:center;width:100%;height:100%;animation:tileFloat var(--d,6s) ease-in-out var(--dl,0s) infinite}
+.ab-tile svg{width:38%;height:38%;fill:none;stroke:var(--fg);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+@keyframes tileFloat{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-10px) rotate(2deg)}}
+
 
 @property --ang{syntax:'<angle>';inherits:false;initial-value:0deg}
 @keyframes ang{to{--ang:360deg}}
 
 /* ---------- crew: the boy, DAW, and the five crafts ---------- */
 @property --sc{syntax:'<color>';inherits:true;initial-value:#ff7a1a}
-.crew{position:absolute;inset:96px var(--pad) var(--pad);visibility:hidden;--sc:#ff7a1a;transition:--sc .6s var(--ease)}
+.crew{position:absolute;inset:96px var(--pad) var(--pad);visibility:hidden;--sc:#ff7a1a}
 .crew-stage{position:absolute;inset:0}
 .crew-head{position:absolute;left:0;bottom:0;max-width:290px;z-index:4}
 .crew-head .eyebrow{margin-bottom:16px}
@@ -282,8 +255,8 @@ html.on-space .c-ring{border-color:rgba(255,255,255,.45)}
 .aura-glow{inset:16%;background:radial-gradient(closest-side,color-mix(in srgb,var(--sc) 34%,transparent),transparent);animation:breathe 5s ease-in-out infinite}
 .aura-ring{inset:13%;border:1px dashed rgba(12,29,79,.2);animation:spin 70s linear infinite}
 .aura-ticks{inset:4%;background:repeating-conic-gradient(rgba(12,29,79,.4) 0 .6deg,transparent .6deg 6deg);-webkit-mask:radial-gradient(closest-side,transparent 93%,#000 93.5% 97%,transparent 97.5%);mask:radial-gradient(closest-side,transparent 93%,#000 93.5% 97%,transparent 97.5%);animation:spin 120s linear infinite reverse;opacity:.7}
-.aura-sweep{inset:7%;background:conic-gradient(from 0deg,transparent 0 62%,var(--sc));-webkit-mask:radial-gradient(closest-side,transparent 95%,#000 96% 99%,transparent 100%);mask:radial-gradient(closest-side,transparent 95%,#000 96% 99%,transparent 100%);animation:spin 6s linear infinite}
-.boy:hover .aura-sweep,.crew.is-focus .aura-sweep{animation-duration:2.2s}
+.aura-sweep{inset:7%;background:conic-gradient(from 0deg,transparent 0 62%,var(--sc));-webkit-mask:radial-gradient(closest-side,transparent 95%,#000 96% 99%,transparent 100%);mask:radial-gradient(closest-side,transparent 95%,#000 96% 99%,transparent 100%);will-change:transform}
+/* the sweep's spin speed and the --sc colour are eased in JS, so hover in/out never jumps */
 .aura-glow{transition:inset .8s var(--ease)}
 .boy:hover .aura-glow,.crew.is-focus .aura-glow{inset:8%}
 @keyframes breathe{50%{transform:scale(1.08);opacity:.8}}
@@ -304,7 +277,7 @@ html.on-space .c-ring{border-color:rgba(255,255,255,.45)}
 .svc-float{display:block;position:relative;animation:svcFloat var(--d,6s) ease-in-out var(--dl,0s) infinite}
 @keyframes svcFloat{0%,100%{transform:translate(0,0)}33%{transform:translate(5px,-10px)}66%{transform:translate(-4px,6px)}}
 .svc:hover .svc-float,.svc:focus-visible .svc-float{animation-play-state:paused}
-.svc-card{position:relative;display:flex;align-items:center;gap:12px;padding:9px 20px 9px 9px;border-radius:999px;background:linear-gradient(160deg,rgba(255,255,255,.94),rgba(255,255,255,.66));border:1px solid rgba(12,29,79,.08);box-shadow:0 18px 40px -22px rgba(120,60,10,.45),inset 0 1px 0 #fff;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);transition:transform .6s var(--ease),box-shadow .4s,border-color .4s}
+.svc-card{position:relative;display:flex;align-items:center;gap:12px;padding:9px 20px 9px 9px;border-radius:999px;background:linear-gradient(160deg,rgba(255,255,255,.94),rgba(255,255,255,.66));border:1px solid rgba(12,29,79,.08);box-shadow:0 18px 40px -22px rgba(120,60,10,.45),inset 0 1px 0 #fff;transition:transform .6s var(--ease),box-shadow .4s,border-color .4s}
 .svc-card::before{content:'';position:absolute;inset:-1px;border-radius:inherit;padding:1.5px;background:conic-gradient(from var(--ang),transparent 0 55%,var(--c) 85%,transparent);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .4s;pointer-events:none}
 .svc:hover .svc-card,.svc:focus-visible .svc-card{transform:scale(1.06);border-color:transparent;box-shadow:0 26px 50px -20px color-mix(in srgb,var(--c) 60%,transparent),inset 0 1px 0 #fff}
 .svc:hover .svc-card::before,.svc:focus-visible .svc-card::before{opacity:1;animation:ang 2.4s linear infinite}
@@ -436,15 +409,12 @@ html.on-space .c-ring{border-color:rgba(255,255,255,.45)}
 @media (max-width:900px){
   .about-inner{grid-template-columns:1fr;padding-top:84px}
   .about-left{position:absolute;inset:84px var(--pad) var(--pad);pointer-events:none}
-  .about-caption{display:none}
-  .about-right{padding-top:36vh}
-  .statement-text{font-size:clamp(19px,5vw,28px)}
-  .manifesto{padding:20px 18px 18px 30px;border-radius:20px}
-  .mf-rail{left:15px;top:52px;bottom:70px}
-  .mf-quote{right:16px;font-size:110px}
-  .mf-head{margin-bottom:14px;font-size:10px}
-  .mf-foot{gap:18px;margin-top:16px;padding-top:14px}
-  .mf-sign{display:none}
+  .about-right{padding-top:38vh}
+  .statement{padding-left:0}
+  .ab-orbit{width:100%;height:46%}
+  .ab-tile{width:58px}
+  .ab-copy{font-size:14px;margin-bottom:22px}
+  .ab-meta{margin-bottom:24px}
   .eyebrow{margin-bottom:16px}
 
   .crew{inset:84px var(--pad) var(--pad)}
@@ -462,9 +432,79 @@ html.on-space .c-ring{border-color:rgba(255,255,255,.45)}
   .svc-txt small{display:none}
 }
 
+/* ---------- work: a horizontal drawing board ---------- */
+.work{position:relative;z-index:4;height:100vh;height:100svh;overflow:hidden}
+.work-top{position:absolute;left:var(--pad);right:var(--pad);top:clamp(92px,13vh,124px);display:flex;justify-content:space-between;align-items:center;z-index:2;font:500 10.5px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--mut);pointer-events:none}
+.work-count{font-variant-numeric:tabular-nums}
+.work-count b{color:var(--fg);font-weight:500}
+.work-track{--gap:clamp(64px,8vw,140px);--art:clamp(170px,30vh,260px);position:absolute;left:0;top:0;bottom:0;display:flex;align-items:center;gap:var(--gap);padding:0 var(--pad);will-change:transform}
+.work:not(.live) *{animation-play-state:paused!important}
+
+.wi{flex:none;width:calc(100vw - var(--pad) * 2 - var(--gap));display:grid;grid-template-columns:auto minmax(0,520px);justify-content:center;align-items:center;gap:clamp(36px,6vw,110px)}
+.wi-logo{width:clamp(120px,14vw,210px);height:auto;overflow:visible}
+.wi-logo path{fill:var(--a1);fill-opacity:0;stroke:var(--a1);stroke-width:.7;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1}
+.wi-txt h2{font:700 clamp(30px,3.2vw,52px)/1.06 'Manrope',sans-serif;letter-spacing:-.04em}
+.wi-txt h2 span{color:var(--a1)}
+.wi-txt p{max-width:420px;margin-top:18px;font-size:15px;line-height:1.7;color:var(--mut)}
+.wi-hint{display:inline-flex;align-items:center;gap:12px;margin-top:30px;font:500 10.5px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--fg)}
+.wi-hint svg{width:22px;height:10px;color:var(--a1);animation:nudge 1.6s ease-in-out infinite}
+@keyframes nudge{50%{transform:translateX(6px)}}
+
+.cr{flex:none;width:clamp(260px,24vw,380px);height:calc(var(--art) + 240px);display:flex;flex-direction:column}
+.cr-art{height:var(--art);margin-bottom:clamp(22px,4vh,40px)}
+.cr-art svg{display:block;width:100%;height:100%;overflow:visible}
+.cr-meta{position:relative;height:11px;margin-bottom:22px}
+.cr-node{position:absolute;left:0;top:0;z-index:1;width:11px;height:11px;border-radius:50%;border:1.5px solid rgba(12,29,79,.28);background:var(--bg)}
+.cr-line{position:absolute;left:11px;top:5px;width:calc(100% + var(--gap) - 11px);height:1px;background:var(--line)}
+.cr-line i{position:absolute;inset:0;background:var(--a1);transform-origin:left;transform:scaleX(0)}
+article.cr:last-of-type .cr-line{display:none}
+.cr-txt small{display:block;font:500 10.5px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--mut)}
+.cr-txt small b{color:var(--a1);font-weight:500}
+.cr-txt h3{margin:12px 0 10px;font:700 clamp(18px,1.45vw,22px)/1.2 'Manrope',sans-serif;letter-spacing:-.025em}
+.cr-txt p{max-width:34ch;font-size:13.5px;line-height:1.65;color:var(--mut)}
+.wk-end{flex:none;width:clamp(240px,24vw,360px);display:flex;flex-direction:column;align-items:flex-start;gap:24px}
+.wk-end b{font:700 clamp(24px,2.3vw,36px)/1.1 'Manrope',sans-serif;letter-spacing:-.035em}
+.wk-end b span{color:var(--a1)}
+
+/* line art */
+.art .dr{fill:none;stroke:var(--fg);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1}
+.art .faint{stroke:rgba(12,29,79,.2)}
+.art .acs{stroke:var(--a1)}
+.art .k1{fill:var(--a1)}.art .k2{fill:var(--fg)}.art .k3{fill:rgba(12,29,79,.16)}
+.art .wave{fill:none;stroke:rgba(253,109,14,.7);stroke-width:1.6;stroke-linecap:round}
+.art .ar-play{fill:var(--a1)}
+.art .ar-head path:first-child{stroke:var(--a1);stroke-width:2}
+.art .ar-head path:last-child{fill:var(--a1)}
+.art .ar-top{fill:var(--a1);opacity:0}
+.art .ar-dot{fill:var(--fg)}
+.art .mk{fill:var(--a1)}
+.art .ar-base{fill:#fff;fill-opacity:0}
+.art .cur{fill:var(--fg);stroke:#fff;stroke-width:1.2}
+.art .ib{stroke:var(--fg);stroke-width:1.4;stroke-linecap:round}
+.art .iris-open{fill:rgba(253,109,14,.12);stroke:var(--a1);stroke-width:1.4;stroke-linejoin:round}
+.art .lens{fill:rgba(12,29,79,.05)}
+.art .rec-dot{fill:#ff3d3d;animation:rec 1.1s steps(1) infinite}
+.art .rec-t{font:500 9px var(--mono);letter-spacing:.14em;fill:var(--fg)}
+.art .fp{fill:none;stroke:var(--a1);stroke-width:1.8;stroke-linecap:round}
+.art .fp-end{fill:var(--a1)}
+.art .ar-drone .bd{fill:var(--fg)}
+.art .ar-drone .arm{stroke:var(--fg);stroke-width:2.2;stroke-linecap:round}
+.art .ar-drone .ring{fill:rgba(255,255,255,.75);stroke:rgba(12,29,79,.35);stroke-width:1}
+.art .ar-drone .blade{stroke:var(--a1);stroke-width:2;stroke-linecap:round;transform-box:fill-box;transform-origin:center;animation:spin .28s linear infinite}
+
+@media (max-width:760px){
+  .work-top{top:84px}
+  .work-track{--art:clamp(150px,26vh,220px)}
+  .wi{grid-template-columns:1fr;justify-items:start;gap:24px}
+  .wi-logo{width:96px}
+  .wi-txt p{font-size:14px}
+  .cr{width:74vw}
+}
+
 /* ---------- cinema ---------- */
 .cine{position:relative;z-index:4;height:100vh;height:100svh}
-.cine-frame{position:absolute;inset:0;overflow:hidden;background:radial-gradient(120% 90% at 50% 46%,#142a7a 0%,#0a1650 42%,#050b2a 100%);clip-path:inset(8% 6% 0% 6% round 40px)}
+.cine-frame{position:absolute;inset:0;overflow:hidden;background:radial-gradient(120% 90% at 50% 46%,#142a7a 0%,#0a1650 42%,#050b2a 100%);clip-path:inset(10% 16% 0% 16% round 48px)}
+@media (max-width:760px){.cine-frame{clip-path:inset(8% 7% 0% 7% round 28px)}}
 #cine-gl{position:absolute;inset:0;width:100%;height:100%;display:block}
 .cine-vignette{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 42%,rgba(3,6,26,.7) 100%)}
 .cine-fill{position:absolute;inset:0;pointer-events:none;opacity:0;background:radial-gradient(circle at 50% 50%,#fff 0%,#fff3e6 30%,var(--bg) 75%)}
@@ -484,7 +524,6 @@ html.on-space .c-ring{border-color:rgba(255,255,255,.45)}
 .cw > span{display:inline-block}
 .cw .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 html.on-dark .nav,html.on-dark .logo{color:#fff}
-html.on-dark .c-ring{border-color:rgba(255,255,255,.5)}
 .nav,.logo{transition:color .5s}
 @media (max-width:760px){
   .cine-bar{height:8vh;font-size:9.5px;letter-spacing:.14em}
@@ -517,24 +556,41 @@ html.on-dark .c-ring{border-color:rgba(255,255,255,.5)}
   "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
 } }
 </script>
+<link rel="modulepreload" href="https://unpkg.com/three@0.160.0/build/three.module.js" crossorigin>
+<link rel="modulepreload" href="https://unpkg.com/three@0.160.0/examples/jsm/environments/RoomEnvironment.js" crossorigin>
+<link rel="modulepreload" href="https://unpkg.com/three@0.160.0/examples/jsm/geometries/RoundedBoxGeometry.js" crossorigin>
 </head>
 <body>
 
 <!-- loader -->
 <div class="loader" id="loader" aria-hidden="true">
-  <div class="loader-top"><span>DAW Media Lab®</span><span>Waking up DAW</span></div>
-  <div class="loader-face"><div class="loader-eyes"><i></i><i></i></div></div>
-  <div class="loader-bottom">
-    <div class="loader-bar"><i></i></div>
-    <div class="loader-count">000</div>
-  </div>
+  <svg class="loader-mark" viewBox="0 0 100 100">
+    <path pathLength="1" d="M0 0H33C22 7 11 16 0 26.3Z"/><path pathLength="1" d="M0 100H30.5C20 93 10 85 0 75.3Z"/>
+    <path pathLength="1" fill-rule="evenodd" d="M0 40.4C18 24 38 4 54.7.5 82 3 100 22 100 50S82 97 52.8 99.8C38 95 18 76 0 60.3ZM9.9 50.8C25 66 45 85 60 84.6 76 84 88 72 88 50S76 16 60.7 15.2C45 15 25 36 9.9 50.8Z"/>
+    <path pathLength="1" d="M27.5 50.6C40 38 50 28 59.4 28 68 28 76.6 35 76.6 50S68 71 59.4 71C50 71 40 62 27.5 50.6Z"/>
+  </svg>
+  <div class="loader-meta"><span>DAW Media</span><span class="loader-line"><i></i></span><span class="loader-count">0</span></div>
 </div>
+<script>
+/* the loader plays immediately (gsap is already parsed); it does not wait for three.js to download */
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const counter = { v: 0 }, countEl = document.querySelector('.loader-count'), barEl = document.querySelector('.loader-line i');
+  window.__loaderDone = new Promise((done) => {
+    gsap.timeline({ onComplete: done })
+      .to('.loader-mark path', { strokeDashoffset: 0, duration: reduce ? 0.2 : 1, stagger: 0.07, ease: 'power2.inOut' }, 0)
+      .to(counter, { v: 100, duration: reduce ? 0.3 : 1.25, ease: 'power2.inOut',
+        onUpdate: () => { countEl.textContent = Math.round(counter.v); barEl.style.transform = 'scaleX(' + counter.v / 100 + ')'; } }, 0)
+      .to('.loader-mark path', { fillOpacity: 1, strokeOpacity: 0, duration: 0.45, ease: 'power2.out' }, 0.85)
+      .fromTo('.loader-mark', { scale: 0.9 }, { scale: 1, duration: 1.4, ease: 'power3.out' }, 0);
+  });
+})();
+</script>
 
 <div class="bg" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
 <canvas id="webgl" aria-hidden="true"></canvas>
 <div class="grain" aria-hidden="true"></div>
 <div class="progress" aria-hidden="true"></div>
-<div class="cursor" aria-hidden="true"><div class="c-ring"><span class="c-label"></span></div><div class="c-dot"></div></div>
 
 <header class="nav">
   <a class="logo" href="#hero" data-hover aria-label="DAW Media Lab">
@@ -549,7 +605,7 @@ html.on-dark .c-ring{border-color:rgba(255,255,255,.5)}
   <nav class="nav-links">
     <a href="#about" class="roll" data-hover><span data-text="Studio">Studio</span></a>
     <a href="#about" class="roll" data-hover><span data-text="Services">Services</span></a>
-    <a href="#about" class="roll" data-hover><span data-text="Work">Work</span></a>
+    <a href="#work" class="roll" data-hover><span data-text="Work">Work</span></a>
     <a href="#outro" class="roll" data-hover><span data-text="Contact">Contact</span></a>
   </nav>
   <a class="btn btn-sm" href="#outro" data-magnetic data-hover data-expr="happy"><span class="btn-fill"></span><span class="btn-txt">Let's talk</span></a>
@@ -561,8 +617,6 @@ html.on-dark .c-ring{border-color:rgba(255,255,255,.5)}
     <div class="space" aria-hidden="true">
       <div class="space-nebula"></div>
       <canvas class="space-stars"></canvas>
-      <div class="planet planet-b"></div>
-      <div class="planet planet-a"></div>
       <div class="horizon"></div>
       <svg class="terrain" viewBox="0 0 1440 200" preserveAspectRatio="none">
         <defs>
@@ -610,30 +664,25 @@ html.on-dark .c-ring{border-color:rgba(255,255,255,.5)}
   <!-- ABOUT -->
   <section class="about" id="about">
     <div class="about-inner">
-      <div class="about-left">
-        <div class="about-index"><b>01</b><span>/ ABOUT</span></div>
-        <div class="about-caption">
-          <div class="eyebrow"><span class="dot"></span>Meet DAW</div>
-          <p><b>Our resident mascot.</b> Move your cursor — DAW is watching. Keep scrolling to meet the rest of the crew, or give DAW a click. It loves that.</p>
-        </div>
+      <div class="about-left"></div>
+      <div class="ab-orbit" aria-hidden="true">
+        <span class="ab-tile" style="--x:18%;--y:25%"><span style="--d:6.4s;--dl:-1s"><svg viewBox="0 0 24 24" style="color:var(--fg)"><path d="M8 7 3 12l5 5M16 7l5 5-5 5M13.5 5l-3 14"/></svg></span></span>
+        <span class="ab-tile" style="--x:82%;--y:25%"><span style="--d:7s;--dl:-3s"><svg viewBox="0 0 24 24" style="color:var(--fg)"><path d="M3 8.5A1.5 1.5 0 0 1 4.5 7H7l1.6-2.2h6.8L17 7h2.5A1.5 1.5 0 0 1 21 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5z"/><circle cx="12" cy="12.6" r="3.6"/></svg></span></span>
+        <span class="ab-tile" style="--x:18%;--y:77%"><span style="--d:6.8s;--dl:-2s"><svg viewBox="0 0 24 24" style="color:var(--fg)"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor" stroke="none"/></svg></span></span>
+        <span class="ab-tile" style="--x:82%;--y:77%"><span style="--d:7.4s;--dl:-4s"><svg viewBox="0 0 24 24" style="color:var(--fg)"><circle cx="5" cy="6" r="2.6"/><circle cx="19" cy="6" r="2.6"/><circle cx="5" cy="18" r="2.6"/><circle cx="19" cy="18" r="2.6"/><path d="M7 8l3 3M17 8l-3 3M7 16l3-3M17 16l-3-3"/><rect x="9.5" y="10" width="5" height="4" rx="1.2"/></svg></span></span>
       </div>
       <div class="about-right">
         <div class="stage">
           <div class="statement">
-            <div class="eyebrow"><span class="dot"></span>About the studio</div>
-            <figure class="manifesto">
-              <span class="mf-corner tl"></span><span class="mf-corner tr"></span><span class="mf-corner bl"></span><span class="mf-corner br"></span>
-              <span class="mf-rail"></span>
-              <span class="mf-quote" aria-hidden="true">&ldquo;</span>
-              <div class="mf-head"><span class="rec"><i></i>Manifesto</span><span class="mf-rule"></span><span>Take 01 · DAW/ML</span></div>
-            <p class="statement-text">We are a hybrid crew where <span class="hl">code,</span> <span class="pill" style="--c1:#1f2b74;--c2:#3f6bff"><svg viewBox="0 0 24 24"><path d="M8 7 3 12l5 5M16 7l5 5-5 5"/></svg></span> <span class="hl">cameras</span> <span class="pill" style="--c1:#ff5a1f;--c2:#ffa53d"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="m16 10 5-3v10l-5-3"/></svg></span> and <span class="hl">creativity</span> share one desk. We ship software that scales, capture the world from four hundred feet up, cut stories frame by frame — and turn attention into <span class="hl">momentum.</span></p>
-              <figcaption class="mf-foot">
-                <div class="mf-stat"><b data-n="5">05</b><span>Crafts</span></div>
-                <div class="mf-stat"><b data-n="1">01</b><span>Shared desk</span></div>
-                <div class="mf-stat"><b><em data-n="400">400</em><small>ft</small></b><span>Flight ceiling</span></div>
-                <div class="mf-sign">— The DAW crew</div>
-              </figcaption>
-            </figure>
+            <div class="ab-eyebrow"><span class="dot"></span>About DAW Media<span class="rule"></span></div>
+            <h2 class="ab-title"><span class="ln"><span>More than a studio.</span></span><span class="ln"><span class="acc">A creative crew.</span></span></h2>
+            <p class="ab-copy">We are a hybrid crew where code, cameras and creativity share one desk. We ship software that scales, capture the world from four hundred feet up, and turn attention into momentum.</p>
+            <div class="ab-meta">
+              <div><b data-n="5">5</b><span>Crafts</span></div>
+              <div><b><em data-n="400" style="font-style:normal">400</em><small>ft</small></b><span>Flight ceiling</span></div>
+              <div><b>1</b><span>Shared desk</span></div>
+            </div>
+            <a class="btn-line" href="#work" data-hover data-expr="happy">Our Journey <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h12M9 3l5 5-5 5"/></svg></a>
           </div>
         </div>
       </div>
@@ -748,6 +797,93 @@ html.on-dark .c-ring{border-color:rgba(255,255,255,.5)}
     </div>
   </section>
 
+  <!-- WORK: a horizontal drawing board, each craft draws itself as it slides in -->
+  <section class="work" id="work">
+    <div class="work-top"><span>What we make</span><span class="work-count"><b>00</b> / 05</span></div>
+    <div class="work-track">
+      <div class="wi">
+        <svg class="wi-logo" viewBox="0 0 100 100" aria-hidden="true">
+          <path pathLength="1" d="M0 0H33C22 7 11 16 0 26.3Z"/><path pathLength="1" d="M0 100H30.5C20 93 10 85 0 75.3Z"/>
+          <path pathLength="1" fill-rule="evenodd" d="M0 40.4C18 24 38 4 54.7.5 82 3 100 22 100 50S82 97 52.8 99.8C38 95 18 76 0 60.3ZM9.9 50.8C25 66 45 85 60 84.6 76 84 88 72 88 50S76 16 60.7 15.2C45 15 25 36 9.9 50.8Z"/>
+          <path pathLength="1" d="M27.5 50.6C40 38 50 28 59.4 28 68 28 76.6 35 76.6 50S68 71 59.4 71C50 71 40 62 27.5 50.6Z"/>
+        </svg>
+        <div class="wi-txt">
+          <div class="ab-eyebrow"><span class="dot"></span>What we make<span class="rule"></span></div>
+          <h2>Five crafts, <span>one crew.</span></h2>
+          <p>From the first line of code to the final colour grade, every piece is designed, built and finished in-house.</p>
+          <span class="wi-hint">Keep scrolling <svg viewBox="0 0 22 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 5h19M16 1l4 4-4 4"/></svg></span>
+        </div>
+      </div>
+      <article class="cr cr-edit">
+        <div class="cr-art"><svg class="art" viewBox="0 0 260 220" aria-hidden="true">
+            <rect class="dr" pathLength="1" x="45" y="12" width="170" height="102" rx="12"/>
+            <path class="dr faint" pathLength="1" d="M45 32h170"/>
+            <path class="ar-play" d="M118 50v36l30-18z"/>
+            <g class="ar-row"><rect class="k1" x="30" y="132" width="58" height="14" rx="4"/><rect class="k2" x="92" y="132" width="36" height="14" rx="4"/><rect class="k1" x="132" y="132" width="98" height="14" rx="4"/></g>
+            <g class="ar-row"><rect class="k2" x="30" y="154" width="84" height="14" rx="4"/><rect class="k3" x="118" y="154" width="50" height="14" rx="4"/><rect class="k2" x="172" y="154" width="58" height="14" rx="4"/></g>
+            <g class="ar-row"><path class="wave" d="M30 184.0V188.0M34 180.9V191.1M38 179.1V192.9M42 179.2V192.8M46 180.8V191.2M50 182.9V189.1M54 183.7V188.3M58 183.6V188.4M62 183.4V188.6M66 182.2V189.8M70 181.9V190.1M74 183.1V188.9M78 182.5V189.5M82 179.8V192.2M86 178.2V193.8M90 178.5V193.5M94 180.6V191.4M98 183.6V188.4M102 181.8V190.2M106 180.6V191.4M110 181.1V190.9M114 182.5V189.5M118 183.8V188.2M122 183.9V188.1M126 182.9V189.1M130 181.2V190.8M134 180.0V192.0M138 180.3V191.7M142 182.3V189.7M146 182.6V189.4M150 179.7V192.3M154 178.3V193.7M158 178.8V193.2M162 180.9V191.1M166 183.4V188.6M170 182.9V189.1M174 182.6V189.4M178 183.5V188.5M182 183.3V188.7M186 183.0V189.0M190 184.0V188.0M194 181.8V190.2M198 179.6V192.4M202 178.5V193.5M206 179.3V192.7M210 181.8V190.2M214 183.0V189.0M218 180.4V191.6M222 179.5V192.5M226 180.2V191.8"/></g>
+            <g class="ar-head"><path d="M34 122v76"/><path d="M28 118h12l-6 7z"/></g>
+        </svg></div>
+        <div class="cr-meta"><span class="cr-node"></span><span class="cr-line"><i></i></span></div>
+        <div class="cr-txt"><small><b>01</b> &nbsp;/&nbsp; Cut · Colour · Sound</small><h3>Video Editing</h3><p>Story-first edits, graded and mixed so every frame earns its place.</p></div>
+      </article>
+      <article class="cr cr-motion">
+        <div class="cr-art"><svg class="art" viewBox="0 0 260 220" aria-hidden="true">
+            <ellipse class="dr faint" pathLength="1" cx="130" cy="96" rx="104" ry="36" transform="rotate(-10 130 96)"/>
+            <g class="ar-cube"><polygon class="ar-top" points="130,52 168,74 130,96 92,74"/>
+            <path class="dr" pathLength="1" d="M130 52 168 74 168 118 130 140 92 118 92 74ZM92 74 130 96 168 74M130 96V140"/></g>
+            <circle class="ar-dot" cx="130" cy="132" r="6"/>
+            <path class="dr faint" pathLength="1" d="M36 196H224"/>
+            <g transform="translate(56 196)"><path class="mk" d="M0-7 7 0 0 7-7 0Z"/></g><g transform="translate(104 196)"><path class="mk" d="M0-7 7 0 0 7-7 0Z"/></g><g transform="translate(156 196)"><path class="mk" d="M0-7 7 0 0 7-7 0Z"/></g><g transform="translate(204 196)"><path class="mk" d="M0-7 7 0 0 7-7 0Z"/></g>
+        </svg></div>
+        <div class="cr-meta"><span class="cr-node"></span><span class="cr-line"><i></i></span></div>
+        <div class="cr-txt"><small><b>02</b> &nbsp;/&nbsp; Model · Animate · Render</small><h3>3D Motion Graphics</h3><p>Logos, products and characters that move with weight and intent.</p></div>
+      </article>
+      <article class="cr cr-web">
+        <div class="cr-art"><svg class="art" viewBox="0 0 260 220" aria-hidden="true">
+            <g class="ar-layer" data-lift="0"><polygon class="dr ar-base" pathLength="1" points="121.3,73.0 225.3,133.0 138.7,183.0 34.7,123.0"/></g>
+            <g class="ar-layer" data-lift="-16"><polygon class="k3" points="81.5,106.0 131.7,135.0 123.9,139.5 73.7,110.5"/><polygon class="k3" points="67.6,114.0 100.6,133.0 92.8,137.5 59.9,118.5"/></g>
+            <g class="ar-layer" data-lift="-30"><polygon class="k1" points="121.3,83.0 207.9,133.0 176.8,151.0 90.2,101.0"/></g>
+            <g class="ar-layer" data-lift="-46"><polygon class="k2" points="140.4,142.0 166.4,157.0 140.4,172.0 114.4,157.0"/></g>
+            <path class="cur" d="M0 0V17L4.6 12.6 8 20 10.8 18.8 7.5 11.6H13.6Z" transform="translate(206 186)"/>
+        </svg></div>
+        <div class="cr-meta"><span class="cr-node"></span><span class="cr-line"><i></i></span></div>
+        <div class="cr-txt"><small><b>03</b> &nbsp;/&nbsp; Design · WebGL · Code</small><h3>3D Websites</h3><p>Fast, interactive sites people remember, built to scale.</p></div>
+      </article>
+      <article class="cr cr-video">
+        <div class="cr-art"><svg class="art" viewBox="0 0 260 220" aria-hidden="true">
+            <path class="dr" pathLength="1" d="M34 36V20H50"/><path class="dr" pathLength="1" d="M210 20H226V36"/><path class="dr" pathLength="1" d="M34 184V200H50"/><path class="dr" pathLength="1" d="M210 200H226V184"/>
+            <circle class="rec-dot" cx="44" cy="35" r="3.2"/><text class="rec-t" x="52" y="38.5">REC</text>
+            <circle class="lens" cx="130" cy="110" r="74"/>
+            <circle class="dr" pathLength="1" cx="130" cy="110" r="74"/>
+            <g class="iris"><polygon class="iris-open"/><line class="ib"/><line class="ib"/><line class="ib"/><line class="ib"/><line class="ib"/><line class="ib"/></g>
+        </svg></div>
+        <div class="cr-meta"><span class="cr-node"></span><span class="cr-line"><i></i></span></div>
+        <div class="cr-txt"><small><b>04</b> &nbsp;/&nbsp; Brand · Event · Commercial</small><h3>Videography</h3><p>Brand films and commercials, lit and shot with care.</p></div>
+      </article>
+      <article class="cr cr-drone">
+        <div class="cr-art"><svg class="art" viewBox="0 0 260 220" aria-hidden="true">
+            <ellipse class="dr faint" pathLength="1" cx="146" cy="118" rx="98" ry="58" transform="rotate(-8 146 118)"/>
+            <ellipse class="dr faint" pathLength="1" cx="152" cy="112" rx="64" ry="36" transform="rotate(-14 152 112)"/>
+            <ellipse class="dr faint" pathLength="1" cx="158" cy="106" rx="32" ry="17" transform="rotate(-18 158 106)"/>
+            <path class="fp" d="M18 180C60 122 100 198 140 140S214 60 242 66"/>
+            <circle class="fp-end" cx="242" cy="66" r="4.5"/>
+            <g class="ar-drone" transform="translate(18 180)">
+              <path class="arm" d="M-14-14 14 14M14-14-14 14"/>
+              <g transform="translate(-14 -14)"><circle class="ring" r="9"/><path class="blade" d="M-8 0H8"/></g><g transform="translate(14 -14)"><circle class="ring" r="9"/><path class="blade" d="M-8 0H8"/></g><g transform="translate(-14 14)"><circle class="ring" r="9"/><path class="blade" d="M-8 0H8"/></g><g transform="translate(14 14)"><circle class="ring" r="9"/><path class="blade" d="M-8 0H8"/></g>
+              <rect class="bd" x="-8" y="-6" width="16" height="12" rx="3.5"/>
+            </g>
+        </svg></div>
+        <div class="cr-meta"><span class="cr-node"></span><span class="cr-line"><i></i></span></div>
+        <div class="cr-txt"><small><b>05</b> &nbsp;/&nbsp; Aerial · FPV · Survey</small><h3>Drone Cinematography</h3><p>Licensed aerials and FPV flythroughs, planned to the metre.</p></div>
+      </article>
+      <div class="wk-end">
+        <b>Have a story <span>worth moving?</span></b>
+        <a class="btn-line" href="#outro" data-hover data-expr="happy">Start a project <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h12M9 3l5 5-5 5"/></svg></a>
+      </div>
+    </div>
+  </section>
+
   <!-- CINEMA -->
   <section class="cine" id="cine">
     <div class="cine-frame">
@@ -785,6 +921,7 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
 
 gsap.registerPlugin(ScrollTrigger);
+ScrollTrigger.config({ ignoreMobileResize: true });
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -845,7 +982,7 @@ const root = document.documentElement;
 /* ================= smooth scroll ================= */
 let lenis = null;
 if (window.Lenis && !reduce) {
-  lenis = new Lenis({ lerp: 0.085, wheelMultiplier: 0.9 });
+  lenis = new Lenis({ lerp: 0.075, wheelMultiplier: 0.85, touchMultiplier: 1.2, smoothWheel: true });
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add((t) => lenis.raf(t * 1000));
   gsap.ticker.lagSmoothing(0);
@@ -916,17 +1053,9 @@ addEventListener('pointermove', (e) => {
   mouse.last = performance.now();
 }, { passive: true });
 
-/* cursor + hover delegation */
-const cursorEl = $('.cursor'), dotEl = $('.c-dot'), ringEl = $('.c-ring'), labelEl = $('.c-label');
-const ringPos = { x: mouse.x, y: mouse.y };
-let domHover = null, fishHover = false, exprEl = null, api = null;
-function refreshCursor() {
-  const lbl = (domHover && domHover.dataset.cursor) || (!domHover && fishHover ? 'Poke!' : '');
-  cursorEl.classList.toggle('is-hover', !!domHover && !lbl);
-  cursorEl.classList.toggle('is-label', !!lbl);
-  cursorEl.classList.toggle('is-poke', !domHover && fishHover);
-  if (lbl) labelEl.textContent = lbl;
-}
+/* hover delegation (native cursor; the pointer becomes a hand over DAW, who can be poked) */
+let domHover = null, fishHover = false, exprEl = null, api = null, fishIdle = false;
+function refreshCursor() { root.style.cursor = !domHover && fishHover ? 'pointer' : ''; }
 function applyMood(el) {
   if (!api) return;
   api.mood(el ? el.dataset.expr : 'normal', el ? el.dataset.c || null : null, el && el.dataset.obj != null ? +el.dataset.obj : -1);
@@ -1095,7 +1224,10 @@ function init3D() {
   const Z = new THREE.Vector3(0, 0, 1);
 
   /* materials */
-  const orangeMat = new THREE.MeshPhysicalMaterial({ color: 0xfb7319, roughness: 0.24, clearcoat: 1, clearcoatRoughness: 0.07, sheen: 0.6, sheenColor: new THREE.Color('#ffc58f'), sheenRoughness: 0.4, emissive: 0xfb7319, emissiveIntensity: 0.07 });
+  // brand clownfish orange #FD6D0E: kept out of tone mapping and lit mostly by its own emissive,
+  // so the shell reads as the true brand colour on screen instead of a washed-out peach
+  const FISH_ORANGE = new THREE.Color('#fd6d0e');
+  const orangeMat = new THREE.MeshPhysicalMaterial({ color: FISH_ORANGE, roughness: 0.3, clearcoat: 1, clearcoatRoughness: 0.08, emissive: FISH_ORANGE, emissiveIntensity: 0.38, envMapIntensity: 0.22, toneMapped: false });
   const whiteMat = new THREE.MeshPhysicalMaterial({ color: 0xfbf7f2, roughness: 0.3, clearcoat: 0.9, clearcoatRoughness: 0.1 });
   const navyMat = new THREE.MeshPhysicalMaterial({ color: 0x1a2372, roughness: 0.22, clearcoat: 1, clearcoatRoughness: 0.05 });
   const eyeMat = new THREE.MeshPhysicalMaterial({ color: 0x121a5c, roughness: 0.06, clearcoat: 1, clearcoatRoughness: 0.02 });
@@ -1219,12 +1351,18 @@ function init3D() {
 
   // orbit rings (appear in About)
   const orbitG = new THREE.Group(); scene.add(orbitG);
-  const orbitMats = [];
-  [[2.0, 1.15, 0xff7a1a], [2.45, -0.95, 0x1f2b74]].forEach(([r, tilt, col]) => {
-    const pts = new THREE.EllipseCurve(0, 0, r, r, 0, Math.PI * 2).getPoints(160).map((p) => new THREE.Vector3(p.x, p.y, 0));
+  const orbitMats = [], orbitBeads = [];
+  // two wide, flat orbits crossing behind and in front of DAW (fixed orientation, like a planet's rings)
+  [[2.7, 1.3, -0.2, 0xff7a1a, 0.42], [2.3, 1.22, 0.26, 0x1f2b74, -0.3]].forEach(([r, tx, tz, col, speed]) => {
+    const ring = new THREE.Group(); ring.rotation.order = 'ZXY'; ring.rotation.set(tx, 0, tz); orbitG.add(ring);
+    const pts = new THREE.EllipseCurve(0, 0, r, r, 0, Math.PI * 2).getPoints(180).map((p) => new THREE.Vector3(p.x, p.y, 0));
     const m = new THREE.LineBasicMaterial({ color: col, transparent: true, opacity: 0 });
-    const line = new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(pts), m);
-    line.rotation.x = tilt; line.rotation.y = tilt * 0.3; orbitG.add(line); orbitMats.push(m);
+    ring.add(new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(pts), m)); orbitMats.push(m);
+    // a bead travelling along the ring
+    const spin = new THREE.Group(); ring.add(spin);
+    const bm = new THREE.MeshBasicMaterial({ color: col, transparent: true, opacity: 0, toneMapped: false });
+    const bead = new THREE.Mesh(new THREE.SphereGeometry(0.08, 16, 12), bm); bead.position.x = r; spin.add(bead);
+    orbitBeads.push({ spin, bm, speed });
   });
 
   /* ---------- discipline objects ---------- */
@@ -1246,7 +1384,7 @@ function init3D() {
   });
 
   /* ---------- ambient bubbles ---------- */
-  const bCount = isTouch ? 90 : 170;
+  const bCount = isTouch ? 36 : 64;
   const bPos = new Float32Array(bCount * 3), bCol = new Float32Array(bCount * 3), bSpd = new Float32Array(bCount);
   const pal = ['#ff8a3d', '#ffb067', '#ff7a1a', '#7d9bff'].map((c) => new THREE.Color(c));
   for (let i = 0; i < bCount; i++) {
@@ -1260,7 +1398,7 @@ function init3D() {
   const bGeo = new THREE.BufferGeometry();
   bGeo.setAttribute('position', new THREE.BufferAttribute(bPos, 3));
   bGeo.setAttribute('color', new THREE.BufferAttribute(bCol, 3));
-  const bubbles = new THREE.Points(bGeo, new THREE.PointsMaterial({ size: 0.15, map: bubbleTex, vertexColors: true, transparent: true, depthWrite: false, opacity: 0.6 }));
+  const bubbles = new THREE.Points(bGeo, new THREE.PointsMaterial({ size: 0.15, map: bubbleTex, vertexColors: true, transparent: true, depthWrite: false, opacity: 0.42 }));
   scene.add(bubbles);
 
   /* ---------- fx sprite pool: trail, sparkles, mouth bubbles ---------- */
@@ -1536,8 +1674,8 @@ function init3D() {
 
     orbitG.position.copy(fish.position);
     orbitG.scale.setScalar(k);
-    orbitG.rotation.z = t * 0.08;
-    orbitMats.forEach((mt, i) => { mt.opacity = m * (i ? 0.18 : 0.32) * (1 - S.b); });
+    orbitMats.forEach((mt, i) => { mt.opacity = m * (i ? 0.26 : 0.45) * (1 - S.b); });
+    orbitBeads.forEach((b) => { b.spin.rotation.z = t * b.speed; b.bm.opacity = m * (1 - S.b); });
 
     // ambient bubbles rise; scroll adds parallax
     const pa = bGeo.attributes.position;
@@ -1793,6 +1931,23 @@ function say(text, hold = 0) {
 }
 const hush = (delay = 200) => { clearTimeout(sayTimer); sayTimer = setTimeout(() => sayEl.classList.remove('on'), delay); };
 
+// aura colour: one tween owns --sc, so hovering in, out, or across cards always blends from where it is
+const AURA_DEFAULT = '#ff7a1a';
+gsap.set(crewEl, { '--sc': AURA_DEFAULT });
+const tintAura = (c) => gsap.to(crewEl, { '--sc': c, duration: 0.7, ease: 'power2.out', overwrite: true });
+
+// aura sweep: rotation is integrated here and its speed eases between idle and focus,
+// so the ring speeds up / slows down instead of snapping to a new angle
+const sweepEl = $('.aura-sweep');
+const sweep = { a: 0, v: 60 };
+gsap.ticker.add((time, dtMs) => {
+  const dt = Math.min(dtMs / 1000, 0.05);
+  const target = crewEl.classList.contains('is-focus') || boyEl.matches(':hover') ? 165 : 60; // deg/s
+  sweep.v += (target - sweep.v) * (1 - Math.exp(-dt * 3));
+  sweep.a = (sweep.a + sweep.v * dt) % 360;
+  sweepEl.style.transform = `rotate(${sweep.a}deg)`;
+});
+
 gsap.set(leanEl, { transformPerspective: 900 });
 const leanTo = gsap.quickTo(leanEl, 'rotation', { duration: 0.9, ease: 'power3.out' });
 let activeSvc = null;
@@ -1800,7 +1955,7 @@ function focusSvc(s) {
   if (activeSvc === s) return;
   if (activeSvc) releaseSvc(activeSvc, true);
   activeSvc = s;
-  crewEl.style.setProperty('--sc', s.dataset.c);
+  tintAura(s.dataset.c);
   crewEl.classList.add('is-focus');
   s.classList.add('is-on');
   s._line.classList.add('on');
@@ -1814,7 +1969,7 @@ function releaseSvc(s, swapping = false) {
   if (swapping || activeSvc !== s) return;
   activeSvc = null;
   crewEl.classList.remove('is-focus');
-  crewEl.style.removeProperty('--sc');
+  tintAura(AURA_DEFAULT);
   leanTo(0);
   hush();
 }
@@ -1856,7 +2011,6 @@ addEventListener('pointerdown', (e) => {
 /* ================= main ticker ================= */
 const marquees = $$('.marquee').map((el, i) => ({ el, track: $('.track', el), x: 0, w: 0, dir: i ? -1 : 1 }));
 const measureMarquees = () => marquees.forEach((m) => { m.w = m.track.firstElementChild.offsetWidth; });
-const loaderEyes = $('.loader-eyes'), loaderFace = $('.loader-face');
 const tcEl = $('.tc'), altEl = $('.alt'), spdEl = $('.spd'), progEl = $('.progress'), badgeText = $('.badge-text');
 let lastScroll = window.scrollY, vel = 0, frame = 0, badgeRot = 0;
 const cineFrame = $('.cine-frame');
@@ -1869,18 +2023,6 @@ gsap.ticker.add((time, dtMs) => {
   const sNow = lenis ? lenis.scroll : window.scrollY;
   vel += (sNow - lastScroll - vel) * 0.12;
   lastScroll = sNow;
-
-  // cursor
-  ringPos.x += (mouse.x - ringPos.x) * 0.18;
-  ringPos.y += (mouse.y - ringPos.y) * 0.18;
-  dotEl.style.transform = `translate3d(${mouse.x}px,${mouse.y}px,0)`;
-  ringEl.style.transform = `translate3d(${ringPos.x}px,${ringPos.y}px,0)`;
-
-  // the loader's little face follows the mouse too
-  if (loaderEyes && loaderEyes.isConnected) {
-    loaderEyes.style.transform = `translate(${mouse.nx * 14}px,${-mouse.ny * 10}px)`;
-    loaderFace.style.transform = `translate(${mouse.nx * 18}px,${-mouse.ny * 12}px) rotate(${mouse.nx * 6}deg)`;
-  }
 
   // marquee reacts to scroll velocity
   const skew = clamp(-vel * 0.25, -10, 10);
@@ -1904,7 +2046,7 @@ gsap.ticker.add((time, dtMs) => {
   badgeRot += (0.25 + Math.abs(vel) * 0.3) * (vel < -0.5 ? -1 : 1);
   badgeText.style.transform = `rotate(${badgeRot}deg)`;
 
-  if (api) {
+  if (api && !fishIdle) {
     if (!isTouch && frame % 3 === 0) {
       const h = api.hitTest(mouse.nx, mouse.ny);
       if (h !== fishHover) { fishHover = h; refreshCursor(); api.setHover(h); }
@@ -1941,9 +2083,7 @@ function setupScroll() {
     .fromTo(l2, { x: () => -gapX(), y: () => -gapY() }, { x: 0, y: 0, duration: 0.75, ease: 'power2.inOut' }, 0.2);
   if (api) heroTl.fromTo('.logo-mark', { opacity: 0, scale: 0.3, rotate: -120 }, { opacity: 1, scale: 1, rotate: 0, duration: 0.3, ease: 'back.out(2)' }, 0.12);
   // space backdrop: slow parallax while pinned, then it dissolves into the light page as the hero leaves
-  heroTl.to('.planet-a', { yPercent: 6, xPercent: -2, duration: 1, ease: 'none' }, 0)
-    .to('.planet-b', { yPercent: 10, duration: 1, ease: 'none' }, 0)
-    .to('.horizon', { scaleX: 1.08, opacity: 0.85, duration: 1, ease: 'none' }, 0);
+  heroTl.to('.horizon', { scaleX: 1.08, opacity: 0.85, duration: 1, ease: 'none' }, 0);
   gsap.to('.space', { opacity: 0, ease: 'none', scrollTrigger: { trigger: '.marquee-wrap', start: 'top bottom', end: 'top 25%', scrub: true } });
   ScrollTrigger.create({
     trigger: '.marquee-wrap', start: 'top 40%',
@@ -1967,29 +2107,21 @@ function setupScroll() {
   gsap.fromTo('.m1', { rotate: -9, xPercent: -4 }, { rotate: -2, xPercent: 4, ease: 'none', scrollTrigger: { trigger: '.marquee-wrap', start: 'top bottom', end: 'bottom top', scrub: true } });
   gsap.fromTo('.m2', { rotate: 8, xPercent: 4 }, { rotate: 2, xPercent: -4, ease: 'none', scrollTrigger: { trigger: '.marquee-wrap', start: 'top bottom', end: 'bottom top', scrub: true } });
 
-  // about: the statement plays in as one quick timed reveal when the section arrives (not tied to scroll distance)
-  const words = $$('.statement-text .word');
+  // about: a quiet, timed reveal when the section arrives
   gsap.timeline({ scrollTrigger: { trigger: '#about', start: 'top 60%', toggleActions: 'play none none reverse' } })
-    .fromTo('.about-index', { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.8, ease: 'power3.out' }, 0)
-    .fromTo('.statement .eyebrow', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, 0)
-    .fromTo('.manifesto', { opacity: 0, y: 40, clipPath: 'inset(0% 0% 100% 0%)' }, { opacity: 1, y: 0, clipPath: 'inset(-20% -20% -20% -20%)', duration: 0.9, ease: 'expo.out' }, 0)
-    .fromTo('.mf-corner', { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, stagger: 0.06, ease: 'back.out(3)' }, 0.25)
-    .fromTo('.mf-rail', { scaleY: 0 }, { scaleY: 1, duration: 1.1, ease: 'power3.inOut' }, 0.2)
-    .fromTo('.mf-quote', { opacity: 0, y: 30, rotate: -12 }, { opacity: 0.35, y: 0, rotate: 0, duration: 1, ease: 'power3.out' }, 0.2)
-    .fromTo(words, { opacity: 0, yPercent: 60, rotate: 6 }, { opacity: 1, yPercent: 0, rotate: 0, duration: 0.7, stagger: 0.016, ease: 'power3.out' }, 0.1)
-    .fromTo('.mf-foot > *', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6, stagger: 0.08, ease: 'power3.out' }, 0.6)
-    .fromTo($$('.mf-stat [data-n]'), { innerText: 0 }, {
-      innerText: (i, el) => +el.dataset.n, duration: 1.2, ease: 'power2.out', snap: { innerText: 1 },
-      onUpdate() { this.targets().forEach((el) => { if (+el.dataset.n < 100) el.innerText = String(el.innerText).padStart(2, '0'); }); },
-    }, 0.6)
-    .fromTo('.about-caption', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, 0.5);
+    .fromTo('.ab-eyebrow', { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, 0)
+    .fromTo('.statement .rule', { scaleX: 0 }, { scaleX: 1, duration: 0.9, ease: 'power3.inOut' }, 0.1)
+    .fromTo('.ab-title .ln > span', { yPercent: 105 }, { yPercent: 0, duration: 0.9, stagger: 0.1, ease: 'expo.out' }, 0.1)
+    .fromTo(['.ab-copy', '.ab-meta', '.statement .btn-line'], { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.7, stagger: 0.08, ease: 'power3.out' }, 0.35)
+    .fromTo($$('.ab-meta [data-n]'), { innerText: 0 }, { innerText: (i, el) => +el.dataset.n, duration: 1.2, ease: 'power2.out', snap: { innerText: 1 } }, 0.45)
+    .fromTo('.ab-tile', { scale: 0.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.8, stagger: 0.07, ease: 'back.out(1.8)' }, 0.25);
 
   // then a pin hands the stage to the crew: the boy rises at the centre, DAW swims over to his shoulder,
   // and the five crafts float out around them
   gsap.timeline({ scrollTrigger: { trigger: '#about', start: 'top top', end: () => '+=' + innerHeight * 1.5, pin: true, scrub: 0.8, invalidateOnRefresh: true, anticipatePin: 1 } })
     .to({}, { duration: 0.3 })
     .fromTo('.statement', { yPercent: 0, opacity: 1 }, { yPercent: -16, opacity: 0, duration: 0.6, ease: 'power2.in' })
-    .to('.about-caption > *', { opacity: 0, y: -20, duration: 0.4, ease: 'power2.in' }, '<')
+    .to('.ab-orbit', { opacity: 0, scale: 0.92, duration: 0.5, ease: 'power2.in' }, '<')
     .fromTo('.crew', { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.01 }, '>-0.15')
     .fromTo('.boy-aura', { scale: 0.3, opacity: 0, rotate: -90 }, { scale: 1, opacity: 1, rotate: 0, duration: 0.9, ease: 'back.out(1.4)' }, '<')
     .fromTo('.boy-float img', { yPercent: 45, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }, '<0.1')
@@ -1999,6 +2131,102 @@ function setupScroll() {
     .fromTo('.svc', { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.6, stagger: 0.09, ease: 'back.out(2)' }, '<')
     .fromTo(['.crew-head > *', '.crew-hint'], { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.07, ease: 'power3.out' }, '<0.2')
     .to({}, { duration: 0.4 });
+
+  // work: the board slides sideways while pinned; every craft draws itself in as it arrives
+  const work = $('#work'), track = $('.work-track'), crs = $$('.cr'), wkCount = $('.work-count b');
+  const railDist = () => Math.max(0, track.scrollWidth - innerWidth);
+  const railTween = gsap.to(track, {
+    x: () => -railDist(), ease: 'none',
+    scrollTrigger: { trigger: work, start: 'top top', end: () => '+=' + railDist(), pin: true, scrub: 0.8, invalidateOnRefresh: true, anticipatePin: 1 },
+  });
+  ScrollTrigger.create({ trigger: work, start: 'top bottom', end: () => '+=' + (railDist() + innerHeight * 2), onToggle: (self) => work.classList.toggle('live', self.isActive) });
+  const webglEl = $('#webgl');
+  ScrollTrigger.create({ trigger: work, start: 'top top', endTrigger: '#outro', end: 'top bottom',
+    onToggle: (self) => { fishIdle = self.isActive; if (webglEl) webglEl.style.opacity = fishIdle ? 0 : ''; } });
+
+  // intro slide: the logo draws, fills, and the words rise
+  gsap.timeline({ scrollTrigger: { trigger: work, start: 'top 80%', end: 'top top', scrub: 0.6 } })
+    .to('.wi-logo path', { strokeDashoffset: 0, duration: 1, stagger: 0.12, ease: 'none' }, 0)
+    .to('.wi-logo path', { fillOpacity: 1, strokeOpacity: 0, duration: 0.5, ease: 'none' }, 0.95)
+    .fromTo('.wi-txt > *', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.12, ease: 'power2.out' }, 0.3);
+
+  // per craft: a short "arrive" timeline, plus a long one that keeps it moving while it is on screen
+  const arrive = (el) => gsap.timeline({ defaults: { ease: 'none' },
+    scrollTrigger: { trigger: el, containerAnimation: railTween, start: 'left 96%', end: 'left 30%', scrub: 0.5 } });
+  const along = (el, tween) => gsap.to(tween.target, { ...tween.vars, ease: 'none',
+    scrollTrigger: { trigger: el, containerAnimation: railTween, start: tween.start || 'left 75%', end: tween.end || 'right 10%', scrub: 0.5 } });
+  crs.forEach((el, i) => {
+    arrive(el)
+      .to($('.cr-node', el), { backgroundColor: '#fd6d0e', borderColor: '#fd6d0e', duration: 0.1 }, 0)
+      .to($$('.dr', el), { strokeDashoffset: 0, duration: 0.55, stagger: 0.05 }, 0)
+      .fromTo($$('.cr-txt > *', el), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.35, stagger: 0.07, ease: 'power2.out' }, 0.2);
+    gsap.fromTo($('.cr-line i', el), { scaleX: 0 }, { scaleX: 1, ease: 'none',
+      scrollTrigger: { trigger: el, containerAnimation: railTween, start: 'left 50%', end: () => `right+=${parseFloat(getComputedStyle(track).columnGap) || 0} 96%`, scrub: 0.5 } });
+    ScrollTrigger.create({ trigger: el, containerAnimation: railTween, start: 'left 60%', end: 'right 40%',
+      onToggle: (self) => { if (self.isActive) wkCount.textContent = String(i + 1).padStart(2, '0'); } });
+  });
+  ScrollTrigger.create({ trigger: crs[0], containerAnimation: railTween, start: 'left 60%', onLeaveBack: () => { wkCount.textContent = '00'; } });
+
+  // 01 editing: clips slide onto the timeline, the viewer lights up, the playhead runs
+  { const el = $('.cr-edit');
+    arrive(el).fromTo($$('.ar-row', el), { x: 90, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4, stagger: 0.08, ease: 'power2.out' }, 0.1)
+      .fromTo($('.ar-play', el), { scale: 0, transformOrigin: '50% 50%' }, { scale: 1, duration: 0.25, ease: 'back.out(2.5)' }, 0.45);
+    along(el, { target: $('.ar-head', el), vars: { x: 192 } }); }
+
+  // 02 motion: the cube draws, its top fills, a moon orbits and keyframes pop on the curve
+  { const el = $('.cr-motion'), dot = $('.ar-dot', el), orb = { a: Math.PI / 2 };
+    const placeDot = () => {
+      const x = 104 * Math.cos(orb.a), y = 36 * Math.sin(orb.a), r = -10 * Math.PI / 180;
+      dot.setAttribute('cx', (130 + x * Math.cos(r) - y * Math.sin(r)).toFixed(2));
+      dot.setAttribute('cy', (96 + x * Math.sin(r) + y * Math.cos(r)).toFixed(2));
+      dot.style.opacity = Math.sin(orb.a) > 0 ? 1 : 0.3;
+    };
+    placeDot();
+    arrive(el).to($('.ar-top', el), { opacity: 0.9, duration: 0.2 }, 0.45)
+      .fromTo($$('.mk', el), { scale: 0, transformOrigin: '50% 50%' }, { scale: 1, duration: 0.15, stagger: 0.08, ease: 'back.out(3)' }, 0.4);
+    along(el, { target: orb, vars: { a: Math.PI / 2 + Math.PI * 3, onUpdate: placeDot } });
+    const cube = $('.ar-cube', el), bob = { p: 0 };
+    along(el, { target: bob, vars: { p: 1, onUpdate: () => cube.setAttribute('transform', `translate(0 ${(-Math.abs(Math.sin(bob.p * Math.PI * 2)) * 12).toFixed(2)})`) } }); }
+
+  // 03 websites: the page explodes into its layers, a cursor drifts in to point at the button
+  { const el = $('.cr-web');
+    arrive(el).to($('.ar-base', el), { fillOpacity: 1, duration: 0.2 }, 0.35)
+      .fromTo($$('.ar-layer', el).slice(1), { opacity: 0 }, { opacity: 1, duration: 0.15, stagger: 0.06 }, 0.35);
+    $$('.ar-layer', el).forEach((g) => along(el, { target: g, vars: { y: +g.dataset.lift }, start: 'left 70%', end: 'left 5%' }));
+    along(el, { target: $('.cur', el), vars: { x: '-=42', y: '-=78' }, start: 'left 55%', end: 'right 20%' }); }
+
+  // 04 videography: the aperture opens as you scroll
+  { const el = $('.cr-video'), lines = $$('.ib', el), poly = $('.iris-open', el), iris = { r: 6, rot: 0 };
+    const drawIris = () => {
+      const cx = 130, cy = 110, R = 73, pts = [];
+      for (let k = 0; k < 6; k++) { const a = iris.rot + k * Math.PI / 3; pts.push([cx + iris.r * Math.cos(a), cy + iris.r * Math.sin(a)]); }
+      poly.setAttribute('points', pts.map((p) => p.map((v) => v.toFixed(2)).join(',')).join(' '));
+      lines.forEach((ln, k) => {
+        const [x1, y1] = pts[k], [x2, y2] = pts[(k + 1) % 6];
+        let dx = x2 - x1, dy = y2 - y1; const L = Math.hypot(dx, dy) || 1; dx /= L; dy /= L;
+        const fx = x1 - cx, fy = y1 - cy, b = fx * dx + fy * dy, c = fx * fx + fy * fy - R * R, tt = -b + Math.sqrt(Math.max(0, b * b - c));
+        ln.setAttribute('x1', x1.toFixed(2)); ln.setAttribute('y1', y1.toFixed(2));
+        ln.setAttribute('x2', (x1 + dx * tt).toFixed(2)); ln.setAttribute('y2', (y1 + dy * tt).toFixed(2));
+      });
+    };
+    drawIris();
+    arrive(el).fromTo($('.iris', el), { opacity: 0 }, { opacity: 1, duration: 0.2 }, 0.3);
+    along(el, { target: iris, vars: { r: 54, rot: -0.85, onUpdate: drawIris }, start: 'left 70%', end: 'right 25%' }); }
+
+  // 05 drone: the flight path draws itself and the drone follows it
+  { const el = $('.cr-drone'), fp = $('.fp', el), drone = $('.ar-drone', el), len = fp.getTotalLength(), fl = { p: 0 };
+    fp.style.strokeDasharray = len; fp.style.strokeDashoffset = len;
+    const fly = () => {
+      const d = Math.max(0.5, fl.p * len), a = fp.getPointAtLength(d), b = fp.getPointAtLength(Math.min(len, d + 2));
+      drone.setAttribute('transform', `translate(${a.x.toFixed(2)} ${a.y.toFixed(2)}) rotate(${(Math.atan2(b.y - a.y, b.x - a.x) * 57.3 * 0.3).toFixed(2)})`);
+      fp.style.strokeDashoffset = len * (1 - fl.p);
+    };
+    fly();
+    arrive(el).fromTo($('.fp-end', el), { scale: 0, transformOrigin: '50% 50%' }, { scale: 1, duration: 0.2, ease: 'back.out(3)' }, 0.5);
+    along(el, { target: fl, vars: { p: 1, onUpdate: fly }, start: 'left 80%', end: 'right 15%' }); }
+
+  gsap.fromTo('.wk-end > *', { opacity: 0, y: 30 }, { opacity: 1, y: 0, stagger: 0.1, ease: 'power2.out',
+    scrollTrigger: { trigger: '.wk-end', containerAnimation: railTween, start: 'left 95%', end: 'left 60%', scrub: 0.5 } });
 
   // cinema: the frame opens out to full bleed, then a long pin plays iris → fly-through → light
   $$('.cine-line').forEach((line) => {
@@ -2021,7 +2249,8 @@ function setupScroll() {
 
   // on screen from entry, through the 6.6-screen pin (iris → light → film → paper), until it has scrolled away
   ScrollTrigger.create({ trigger: '#cine', start: 'top bottom', end: () => '+=' + innerHeight * 8.6, invalidateOnRefresh: true, onToggle: (self) => { C.active = self.isActive; } });
-  gsap.fromTo('.cine-frame', { clipPath: 'inset(8% 6% 0% 6% round 40px)' }, { clipPath: 'inset(0% 0% 0% 0% round 0px)', ease: 'power2.out',
+  const narrow = matchMedia('(max-width:760px)').matches;
+  gsap.fromTo('.cine-frame', { clipPath: narrow ? 'inset(8% 7% 0% 7% round 28px)' : 'inset(10% 16% 0% 16% round 48px)' }, { clipPath: 'inset(0% 0% 0% 0% round 0px)', ease: 'power1.inOut',
     scrollTrigger: { trigger: '#cine', start: 'top bottom', end: 'top top', scrub: 1 } });
 
   gsap.set('.cine-line .cw > span', { yPercent: 110 });
@@ -2069,38 +2298,30 @@ function setupScroll() {
 
 /* ================= boot ================= */
 async function boot() {
-  await Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 2500))]);
+  const loaderDone = window.__loaderDone || Promise.resolve();   // started by the inline loader script
+
+  await Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 1200))]);
   $$('.hero-title .line').forEach((l) => splitChars(l));
   $$('.outro-title .row').forEach((r) => splitChars(r, 'ch', null));
-  splitWords($('.statement-text'));
+  gsap.set('.hero-title .ci', { yPercent: 110 });   // hidden under the line mask until the loader lifts
   measureMarquees();
   refreshAnchor();
   document.fonts.addEventListener('loadingdone', refreshAnchor);
   setupScroll();
   ScrollTrigger.addEventListener('refresh', refreshAnchor);
-
-  const counter = { v: 0 };
-  const countEl = $('.loader-count'), barEl = $('.loader-bar i');
-  gsap.timeline()
-    .to(counter, {
-      v: 100, duration: reduce ? 0.4 : 2, ease: 'power2.inOut',
-      onUpdate: () => {
-        countEl.textContent = String(Math.round(counter.v)).padStart(3, '0');
-        barEl.style.transform = `scaleX(${counter.v / 100})`;
-      },
-    })
-    .to('.loader-eyes i', { scaleY: 0.06, duration: 0.12, yoyo: true, repeat: 1 }, '+=0.1')
-    .to('.loader-face', { scale: 0.6, opacity: 0, duration: 0.45, ease: 'back.in(2)' })
-    .add(intro);
+  await loaderDone;
+  intro();
 }
 
 function intro() {
   gsap.timeline()
-    .to('#loader', { clipPath: 'inset(0 0 100% 0)', duration: 1.15, ease: 'expo.inOut' })
-    .from('.hero-title .ci', { yPercent: 115, rotate: 10, duration: 1.3, ease: 'expo.out', stagger: 0.05 }, '-=0.45')
-    .to(S, { introY: 0, introSpin: 0, duration: 2.2, ease: 'expo.out' }, '<-0.15')
-    .from('.nav > *', { y: -30, opacity: 0, duration: 0.9, stagger: 0.08, ease: 'power3.out' }, '<0.3')
-    .from(['.hero-kicker', '.hud > *', '.hero-bottom > *'], { y: 30, opacity: 0, duration: 1, stagger: 0.06, ease: 'power3.out' }, '<0.1')
+    .to(['.loader-mark', '.loader-meta'], { opacity: 0, scale: 0.94, duration: 0.35, ease: 'power2.in' })
+    .to('#loader', { clipPath: 'inset(0 0 100% 0)', duration: 0.8, ease: 'expo.inOut' }, '-=0.1')
+    // DAW MEDIA: the letters rise out of their lines one after another, settling from a slight tilt
+    .fromTo('.hero-title .ci', { yPercent: 110, rotate: 7 }, { yPercent: 0, rotate: 0, duration: 1.15, ease: 'expo.out', stagger: 0.055 }, '<0.18')
+    .to(S, { introY: 0, introSpin: 0, duration: 2, ease: 'expo.out' }, '<')
+    .from('.nav > *', { y: -24, opacity: 0, duration: 0.8, stagger: 0.07, ease: 'power3.out' }, '<0.3')
+    .from(['.hero-kicker', '.hud > *', '.hero-bottom > *'], { y: 24, opacity: 0, duration: 0.9, stagger: 0.05, ease: 'power3.out' }, '<0.05')
     .add(() => api && api.bubble(3), '-=0.6')
     .add(() => {
       $('#loader').remove();
