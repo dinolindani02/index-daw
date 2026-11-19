@@ -173,19 +173,6 @@ html.on-space .nav .btn:not(:hover){background:rgba(255,255,255,.06)}
   .hero-cta .btn{padding:13px 18px;font-size:13px}
 }
 
-/* ---------- marquee ---------- */
-.marquee-wrap{position:relative;z-index:1;height:46vh;min-height:300px;display:grid;place-items:center;overflow:hidden}
-.marquee{position:absolute;left:-6vw;right:-6vw;white-space:nowrap;padding:18px 0;overflow:hidden}
-.m1{background:var(--grad);color:#fff;transform:rotate(-4deg);z-index:2;box-shadow:0 30px 70px -20px rgba(255,106,16,.55)}
-.m2{background:#fff;border-block:1px solid var(--line);transform:rotate(3deg);box-shadow:0 20px 50px -30px rgba(22,25,44,.25)}
-.track{display:inline-flex;will-change:transform}
-.mq{display:inline-flex;align-items:center;font:800 clamp(30px,4.4vw,70px)/1 var(--display);letter-spacing:-.02em;text-transform:uppercase}
-.mq span{padding:0 .35em;transition:color .3s,-webkit-text-stroke-color .3s}
-.m2 .mq{color:var(--a1)}
-.m2 .mq span{color:transparent;-webkit-text-stroke:1.2px var(--a1)}
-.m2 .mq span:hover{color:var(--a1);-webkit-text-stroke-color:transparent}
-.m1 .mq span:hover{color:var(--fg)}
-.star{width:.6em;height:.6em;animation:spin 6s linear infinite;flex:none}
 @keyframes spin{to{transform:rotate(360deg)}}
 
 /* ---------- about ---------- */
@@ -455,6 +442,45 @@ html.on-space .nav .btn:not(:hover){background:rgba(255,255,255,.06)}
 .cr-art svg{display:block;width:100%;height:100%;overflow:visible}
 .cr-meta{position:relative;height:11px;margin-bottom:22px}
 .cr-node{position:absolute;left:0;top:0;z-index:1;width:11px;height:11px;border-radius:50%;border:1.5px solid rgba(12,29,79,.28);background:var(--bg)}
+
+/* each craft sits on its own panel: a navy-tinted card with a pattern that belongs to the craft,
+   a soft colour glow, and a small technical tag in the corner. The pattern drifts as the rail runs. */
+.cr-art{--n:12,29,79;--glow:rgba(255,107,10,.22);position:relative;isolation:isolate;overflow:hidden;border-radius:26px;padding:16px 18px;
+  background:linear-gradient(155deg,#fff 0%,#f3f1ec 55%,#e9edf7 100%);
+  box-shadow:0 34px 60px -38px rgba(12,29,79,.45),0 2px 6px -2px rgba(12,29,79,.08),inset 0 0 0 1px rgba(12,29,79,.07)}
+.cr-art::before{content:'';position:absolute;z-index:-1;width:75%;aspect-ratio:1;right:-22%;bottom:-38%;border-radius:50%;background:radial-gradient(closest-side,var(--glow),transparent);filter:blur(6px)}
+.cr-art::after{content:var(--tag);position:absolute;right:16px;top:14px;font:500 9px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:rgba(12,29,79,.42)}
+.cr-art svg{position:relative;z-index:1}
+.cr-bg{position:absolute;inset:0 -30%;z-index:-2;pointer-events:none;will-change:transform}
+/* 01 editing — film-strip sprockets and timeline lanes */
+.cr-edit .cr-art{--tag:'TC 00:01:24:12'}
+.cr-edit .cr-bg{background:
+  linear-gradient(90deg,rgba(var(--n),.13) 0 12px,transparent 12px 24px) 0 10px/24px 7px repeat-x,
+  linear-gradient(90deg,rgba(var(--n),.13) 0 12px,transparent 12px 24px) 0 calc(100% - 10px)/24px 7px repeat-x,
+  repeating-linear-gradient(0deg,transparent 0 21px,rgba(var(--n),.06) 21px 22px)}
+/* 02 motion — isometric grid, cool blue light */
+.cr-motion .cr-art{--tag:'KEY 04 · EASE';--glow:rgba(63,107,255,.26);background:linear-gradient(155deg,#fbfcff 0%,#eef1fa 60%,#e2e8f8 100%)}
+.cr-motion .cr-bg{background:
+  repeating-linear-gradient(30deg,transparent 0 23px,rgba(var(--n),.075) 23px 24px),
+  repeating-linear-gradient(150deg,transparent 0 23px,rgba(var(--n),.075) 23px 24px);
+  -webkit-mask:radial-gradient(70% 80% at 50% 55%,#000 35%,transparent 100%);mask:radial-gradient(70% 80% at 50% 55%,#000 35%,transparent 100%)}
+/* 03 websites — dot grid with a browser bar */
+.cr-web .cr-art{--tag:'1440 × 900';--glow:rgba(63,107,255,.2);padding-top:34px}
+.cr-web .cr-bg{background:radial-gradient(rgba(var(--n),.2) 1px,transparent 1.6px) 0 0/16px 16px}
+.cr-web .cr-art > i{position:absolute;left:0;right:0;top:0;height:24px;z-index:0;border-bottom:1px solid rgba(12,29,79,.08);background:rgba(255,255,255,.7);
+  background-image:radial-gradient(circle,#ff6b0a 3px,transparent 3.5px),radial-gradient(circle,rgba(12,29,79,.25) 3px,transparent 3.5px),radial-gradient(circle,rgba(12,29,79,.25) 3px,transparent 3.5px);
+  background-size:12px 24px;background-repeat:no-repeat;background-position:14px 0,28px 0,42px 0}
+/* 04 videography — rule-of-thirds and focus rings, warm key light */
+.cr-video .cr-art{--tag:'ƒ/1.8 · 4K';--glow:rgba(255,165,61,.3)}
+.cr-video .cr-bg{background:repeating-radial-gradient(circle at 50% 50%,transparent 0 17px,rgba(var(--n),.07) 17px 18px)}
+.cr-video .cr-art > i{position:absolute;inset:0;z-index:-1;pointer-events:none;background:
+  linear-gradient(90deg,transparent calc(33.33% - .5px),rgba(var(--n),.1) calc(33.33% - .5px) calc(33.33% + .5px),transparent 0 calc(66.66% - .5px),rgba(var(--n),.1) 0 calc(66.66% + .5px),transparent 0),
+  linear-gradient(0deg,transparent calc(33.33% - .5px),rgba(var(--n),.1) calc(33.33% - .5px) calc(33.33% + .5px),transparent 0 calc(66.66% - .5px),rgba(var(--n),.1) 0 calc(66.66% + .5px),transparent 0)}
+/* 05 drone — topographic contours over a sky-to-ground wash */
+.cr-drone .cr-art{--tag:'ALT 120M · N 12°';--glow:rgba(63,107,255,.22);background:linear-gradient(180deg,#eef2fb 0%,#f6f3ee 60%,#efe8dc 100%)}
+.cr-drone .cr-bg{background:
+  repeating-radial-gradient(ellipse 60% 40% at 62% 46%,transparent 0 13px,rgba(var(--n),.085) 13px 14px),
+  repeating-radial-gradient(ellipse 40% 30% at 18% 88%,transparent 0 11px,rgba(var(--n),.06) 11px 12px)}
 .cr-line{position:absolute;left:11px;top:5px;width:calc(100% + var(--gap) - 11px);height:1px;background:var(--line)}
 .cr-line i{position:absolute;inset:0;background:var(--a1);transform-origin:left;transform:scaleX(0)}
 article.cr:last-of-type .cr-line{display:none}
@@ -655,12 +681,6 @@ html.on-dark .nav,html.on-dark .logo{color:#fff}
     </div>
   </section>
 
-  <!-- MARQUEE -->
-  <section class="marquee-wrap" aria-hidden="true">
-    <div class="marquee m2"><div class="track"></div></div>
-    <div class="marquee m1"><div class="track"></div></div>
-  </section>
-
   <!-- ABOUT -->
   <section class="about" id="about">
     <div class="about-inner">
@@ -815,7 +835,7 @@ html.on-dark .nav,html.on-dark .logo{color:#fff}
         </div>
       </div>
       <article class="cr cr-edit">
-        <div class="cr-art"><svg class="art" viewBox="0 0 260 220" aria-hidden="true">
+        <div class="cr-art"><span class="cr-bg" aria-hidden="true"></span><i aria-hidden="true"></i><svg class="art" viewBox="0 0 260 220" aria-hidden="true">
             <rect class="dr" pathLength="1" x="45" y="12" width="170" height="102" rx="12"/>
             <path class="dr faint" pathLength="1" d="M45 32h170"/>
             <path class="ar-play" d="M118 50v36l30-18z"/>
@@ -828,7 +848,7 @@ html.on-dark .nav,html.on-dark .logo{color:#fff}
         <div class="cr-txt"><small><b>01</b> &nbsp;/&nbsp; Cut · Colour · Sound</small><h3>Video Editing</h3><p>Story-first edits, graded and mixed so every frame earns its place.</p></div>
       </article>
       <article class="cr cr-motion">
-        <div class="cr-art"><svg class="art" viewBox="0 0 260 220" aria-hidden="true">
+        <div class="cr-art"><span class="cr-bg" aria-hidden="true"></span><i aria-hidden="true"></i><svg class="art" viewBox="0 0 260 220" aria-hidden="true">
             <ellipse class="dr faint" pathLength="1" cx="130" cy="96" rx="104" ry="36" transform="rotate(-10 130 96)"/>
             <g class="ar-cube"><polygon class="ar-top" points="130,52 168,74 130,96 92,74"/>
             <path class="dr" pathLength="1" d="M130 52 168 74 168 118 130 140 92 118 92 74ZM92 74 130 96 168 74M130 96V140"/></g>
@@ -840,7 +860,7 @@ html.on-dark .nav,html.on-dark .logo{color:#fff}
         <div class="cr-txt"><small><b>02</b> &nbsp;/&nbsp; Model · Animate · Render</small><h3>3D Motion Graphics</h3><p>Logos, products and characters that move with weight and intent.</p></div>
       </article>
       <article class="cr cr-web">
-        <div class="cr-art"><svg class="art" viewBox="0 0 260 220" aria-hidden="true">
+        <div class="cr-art"><span class="cr-bg" aria-hidden="true"></span><i aria-hidden="true"></i><svg class="art" viewBox="0 0 260 220" aria-hidden="true">
             <g class="ar-layer" data-lift="0"><polygon class="dr ar-base" pathLength="1" points="121.3,73.0 225.3,133.0 138.7,183.0 34.7,123.0"/></g>
             <g class="ar-layer" data-lift="-16"><polygon class="k3" points="81.5,106.0 131.7,135.0 123.9,139.5 73.7,110.5"/><polygon class="k3" points="67.6,114.0 100.6,133.0 92.8,137.5 59.9,118.5"/></g>
             <g class="ar-layer" data-lift="-30"><polygon class="k1" points="121.3,83.0 207.9,133.0 176.8,151.0 90.2,101.0"/></g>
@@ -851,7 +871,7 @@ html.on-dark .nav,html.on-dark .logo{color:#fff}
         <div class="cr-txt"><small><b>03</b> &nbsp;/&nbsp; Design · WebGL · Code</small><h3>3D Websites</h3><p>Fast, interactive sites people remember, built to scale.</p></div>
       </article>
       <article class="cr cr-video">
-        <div class="cr-art"><svg class="art" viewBox="0 0 260 220" aria-hidden="true">
+        <div class="cr-art"><span class="cr-bg" aria-hidden="true"></span><i aria-hidden="true"></i><svg class="art" viewBox="0 0 260 220" aria-hidden="true">
             <path class="dr" pathLength="1" d="M34 36V20H50"/><path class="dr" pathLength="1" d="M210 20H226V36"/><path class="dr" pathLength="1" d="M34 184V200H50"/><path class="dr" pathLength="1" d="M210 200H226V184"/>
             <circle class="rec-dot" cx="44" cy="35" r="3.2"/><text class="rec-t" x="52" y="38.5">REC</text>
             <circle class="lens" cx="130" cy="110" r="74"/>
@@ -862,7 +882,7 @@ html.on-dark .nav,html.on-dark .logo{color:#fff}
         <div class="cr-txt"><small><b>04</b> &nbsp;/&nbsp; Brand · Event · Commercial</small><h3>Videography</h3><p>Brand films and commercials, lit and shot with care.</p></div>
       </article>
       <article class="cr cr-drone">
-        <div class="cr-art"><svg class="art" viewBox="0 0 260 220" aria-hidden="true">
+        <div class="cr-art"><span class="cr-bg" aria-hidden="true"></span><i aria-hidden="true"></i><svg class="art" viewBox="0 0 260 220" aria-hidden="true">
             <ellipse class="dr faint" pathLength="1" cx="146" cy="118" rx="98" ry="58" transform="rotate(-8 146 118)"/>
             <ellipse class="dr faint" pathLength="1" cx="152" cy="112" rx="64" ry="36" transform="rotate(-14 152 112)"/>
             <ellipse class="dr faint" pathLength="1" cx="158" cy="106" rx="32" ry="17" transform="rotate(-18 158 106)"/>
@@ -1033,15 +1053,6 @@ function splitWords(el) {
   });
   return out;
 }
-
-/* ================= marquee content ================= */
-const starSVG = '<svg class="star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c.6 6.4 5.6 11.4 12 12-6.4.6-11.4 5.6-12 12-.6-6.4-5.6-11.4-12-12C6.4 11.4 11.4 6.4 12 0z"/></svg>';
-const mqWords = ['Software Solutions', 'Digital Marketing', 'Drone Cinematography', 'Video Editing'];
-$$('.marquee .track').forEach((tr, k) => {
-  const words = k ? mqWords : [...mqWords].reverse();
-  const block = words.map((w) => `<span>${w}</span>${starSVG}`).join('');
-  tr.innerHTML = `<div class="mq">${block}${block}</div><div class="mq">${block}${block}</div>`;
-});
 
 /* ================= pointer ================= */
 const mouse = { x: innerWidth / 2, y: innerHeight / 2, nx: 0, ny: 0, last: 0, speed: 0 };
@@ -2009,8 +2020,6 @@ addEventListener('pointerdown', (e) => {
 });
 
 /* ================= main ticker ================= */
-const marquees = $$('.marquee').map((el, i) => ({ el, track: $('.track', el), x: 0, w: 0, dir: i ? -1 : 1 }));
-const measureMarquees = () => marquees.forEach((m) => { m.w = m.track.firstElementChild.offsetWidth; });
 const tcEl = $('.tc'), altEl = $('.alt'), spdEl = $('.spd'), progEl = $('.progress'), badgeText = $('.badge-text');
 let lastScroll = window.scrollY, vel = 0, frame = 0, badgeRot = 0;
 const cineFrame = $('.cine-frame');
@@ -2023,15 +2032,6 @@ gsap.ticker.add((time, dtMs) => {
   const sNow = lenis ? lenis.scroll : window.scrollY;
   vel += (sNow - lastScroll - vel) * 0.12;
   lastScroll = sNow;
-
-  // marquee reacts to scroll velocity
-  const skew = clamp(-vel * 0.25, -10, 10);
-  marquees.forEach((m) => {
-    if (!m.w) return;
-    m.x += (0.7 + Math.abs(vel) * 0.35) * m.dir * (vel < -0.5 ? -1 : 1);
-    m.x = gsap.utils.wrap(-m.w, 0, m.x);
-    m.track.style.transform = `translate3d(${m.x}px,0,0) skewX(${skew}deg)`;
-  });
 
   // HUD
   const f = Math.floor(t * 24);
@@ -2067,7 +2067,6 @@ addEventListener('resize', () => {
   refreshAnchor();
   api && api.resize();
   cine && cine.resize();
-  measureMarquees();
 });
 
 /* ================= scroll choreography ================= */
@@ -2084,15 +2083,15 @@ function setupScroll() {
   if (api) heroTl.fromTo('.logo-mark', { opacity: 0, scale: 0.3, rotate: -120 }, { opacity: 1, scale: 1, rotate: 0, duration: 0.3, ease: 'back.out(2)' }, 0.12);
   // space backdrop: slow parallax while pinned, then it dissolves into the light page as the hero leaves
   heroTl.to('.horizon', { scaleX: 1.08, opacity: 0.85, duration: 1, ease: 'none' }, 0);
-  gsap.to('.space', { opacity: 0, ease: 'none', scrollTrigger: { trigger: '.marquee-wrap', start: 'top bottom', end: 'top 25%', scrub: true } });
+  gsap.to('.space', { opacity: 0, ease: 'none', scrollTrigger: { trigger: '#about', start: 'top bottom', end: 'top 25%', scrub: true } });
   ScrollTrigger.create({
-    trigger: '.marquee-wrap', start: 'top 40%',
+    trigger: '#about', start: 'top 40%',
     onEnter: () => document.documentElement.classList.remove('on-space'),
     onLeaveBack: () => document.documentElement.classList.add('on-space'),
   });
 
   // hero -> about: DAW barrel-rolls across to the left column, objects fall into orbit
-  gsap.timeline({ scrollTrigger: { trigger: '.marquee-wrap', start: 'top bottom', endTrigger: '#about', end: 'top top', scrub: 1.2, invalidateOnRefresh: true } })
+  gsap.timeline({ scrollTrigger: { trigger: '#about', start: 'top bottom', endTrigger: '#about', end: 'top top', scrub: 1.2, invalidateOnRefresh: true } })
     .fromTo(S, { h: 0, ry: Math.PI * 2, spread: 0 }, { h: 1, ry: Math.PI * 4, spread: 1, ease: 'power2.inOut', immediateRender: false });
 
   gsap.to('.hero-title .char', {
@@ -2100,12 +2099,9 @@ function setupScroll() {
     xPercent: (i, el, arr) => (i - (arr.length - 1) / 2) * 40,
     rotation: () => gsap.utils.random(-40, 40),
     opacity: 0, ease: 'none',
-    scrollTrigger: { trigger: '.marquee-wrap', start: 'top bottom', end: 'top top', scrub: 1 },
+    scrollTrigger: { trigger: '#about', start: 'top bottom', end: 'top top', scrub: 1 },
   });
-  gsap.to(['.hero-kicker', '.hud', '.hero-bottom'], { opacity: 0, y: -60, ease: 'none', scrollTrigger: { trigger: '.marquee-wrap', start: 'top bottom', end: 'top 45%', scrub: true } });
-
-  gsap.fromTo('.m1', { rotate: -9, xPercent: -4 }, { rotate: -2, xPercent: 4, ease: 'none', scrollTrigger: { trigger: '.marquee-wrap', start: 'top bottom', end: 'bottom top', scrub: true } });
-  gsap.fromTo('.m2', { rotate: 8, xPercent: 4 }, { rotate: 2, xPercent: -4, ease: 'none', scrollTrigger: { trigger: '.marquee-wrap', start: 'top bottom', end: 'bottom top', scrub: true } });
+  gsap.to(['.hero-kicker', '.hud', '.hero-bottom'], { opacity: 0, y: -60, ease: 'none', scrollTrigger: { trigger: '#about', start: 'top bottom', end: 'top 45%', scrub: true } });
 
   // about: a quiet, timed reveal when the section arrives
   gsap.timeline({ scrollTrigger: { trigger: '#about', start: 'top 60%', toggleActions: 'play none none reverse' } })
@@ -2139,8 +2135,7 @@ function setupScroll() {
     x: () => -railDist(), ease: 'none',
     scrollTrigger: { trigger: work, start: 'top top', end: () => '+=' + railDist(), pin: true, scrub: 0.8, invalidateOnRefresh: true, anticipatePin: 1 },
   });
-  ScrollTrigger.create({ trigger: work, start: 'top bottom', end: () => '+=' + (railDist() + innerHeight * 2), onToggle: (self) => work.classList.toggle('live', self.isActive) });
-  const webglEl = $('#webgl');
+  ScrollTrigger.create({ trigger: work, start: 'top bottom', end: () => '+=' + (railDist() + innerHeight * 2), onToggle: (self) => work.classList.toggle('live', self.isActive) });  const webglEl = $('#webgl');
   ScrollTrigger.create({ trigger: work, start: 'top top', endTrigger: '#outro', end: 'top bottom',
     onToggle: (self) => { fishIdle = self.isActive; if (webglEl) webglEl.style.opacity = fishIdle ? 0 : ''; } });
 
@@ -2156,6 +2151,9 @@ function setupScroll() {
   const along = (el, tween) => gsap.to(tween.target, { ...tween.vars, ease: 'none',
     scrollTrigger: { trigger: el, containerAnimation: railTween, start: tween.start || 'left 75%', end: tween.end || 'right 10%', scrub: 0.5 } });
   crs.forEach((el, i) => {
+    // the panel pattern drifts against the rail, so each card reads with a little depth
+    gsap.fromTo($('.cr-bg', el), { xPercent: 9 }, { xPercent: -9, ease: 'none',
+      scrollTrigger: { trigger: el, containerAnimation: railTween, start: 'left right', end: 'right left', scrub: 0.5 } });
     arrive(el)
       .to($('.cr-node', el), { backgroundColor: '#fd6d0e', borderColor: '#fd6d0e', duration: 0.1 }, 0)
       .to($$('.dr', el), { strokeDashoffset: 0, duration: 0.55, stagger: 0.05 }, 0)
@@ -2304,7 +2302,6 @@ async function boot() {
   $$('.hero-title .line').forEach((l) => splitChars(l));
   $$('.outro-title .row').forEach((r) => splitChars(r, 'ch', null));
   gsap.set('.hero-title .ci', { yPercent: 110 });   // hidden under the line mask until the loader lifts
-  measureMarquees();
   refreshAnchor();
   document.fonts.addEventListener('loadingdone', refreshAnchor);
   setupScroll();
