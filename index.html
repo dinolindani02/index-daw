@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DAW Media Lab — Code. Sky. Story.</title>
 <meta name="description" content="DAW Media Lab — software, digital marketing, drone cinematography and video editing.">
-<meta name="theme-color" content="#f4f0ea">
+<meta name="theme-color" content="#FAEDE1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -13,7 +13,7 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#f4f0ea; --fg:#0c1d4f; --mut:rgba(12,29,79,.6); --line:rgba(12,29,79,.12);
+  --bg:#FAEDE1; --fg:#0c1d4f; --mut:rgba(12,29,79,.6); --line:rgba(12,29,79,.12);
   --a1:#ff6b0a; --a2:#ffa53d; --a3:#ff5a1f; --a4:#0a2d7e; --sky:#3f6bff;
   --grad:linear-gradient(100deg,var(--a3),var(--a1) 45%,var(--a2));
   --pad:clamp(16px,3vw,44px);
@@ -28,16 +28,9 @@ body{background:var(--bg);color:var(--fg);font-family:'Manrope',system-ui,sans-s
 a{color:inherit;text-decoration:none}
 ::selection{background:var(--a1);color:#fff}
 
-/* ---------- background ---------- */
-.bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.blob{position:absolute;width:70vmax;height:70vmax;border-radius:50%;opacity:.5}
-.b1{background:radial-gradient(circle,rgba(255,138,51,.42),transparent 62%);left:-25vmax;top:-30vmax;animation:d1 24s ease-in-out infinite alternate}
-.b2{background:radial-gradient(circle,rgba(255,190,110,.5),transparent 62%);right:-30vmax;top:5vh;animation:d2 28s ease-in-out infinite alternate}
-.b3{background:radial-gradient(circle,rgba(255,255,255,.95),transparent 62%);left:20vw;bottom:-45vmax;opacity:.8;animation:d3 32s ease-in-out infinite alternate}
-@keyframes d1{to{transform:translate(18vw,22vh) scale(1.15)}}
-@keyframes d2{to{transform:translate(-14vw,30vh) scale(.9)}}
-@keyframes d3{to{transform:translate(-20vw,-12vh) scale(1.2)}}
 #webgl{position:fixed;inset:0;width:100%;height:100%;z-index:2;pointer-events:none;transition:opacity .45s}
+/* while About is on screen DAW swims in front of it: over the studio setup, then the opaque navy sky */
+html.fish-front #webgl{z-index:5}
 .grain{position:fixed;inset:-50%;z-index:70;pointer-events:none;opacity:.045;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 @keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-4%,3%)}40%{transform:translate(3%,-5%)}60%{transform:translate(-6%,-2%)}80%{transform:translate(5%,4%)}100%{transform:translate(0,0)}}
 .progress{position:fixed;left:0;top:0;width:100%;height:3px;background:var(--grad);transform-origin:left;transform:scaleX(0);z-index:60}
@@ -176,7 +169,8 @@ html.on-space .nav .btn:not(:hover){background:rgba(255,255,255,.06)}
 @keyframes spin{to{transform:rotate(360deg)}}
 
 /* ---------- about ---------- */
-.about{position:relative;z-index:3;height:100vh;height:100svh}
+.about{position:relative;z-index:3;height:100vh;height:100svh;
+  background:url(images/about-bg.png) center/cover no-repeat var(--bg)}
 .about-inner{position:relative;height:100%;display:grid;grid-template-columns:1fr 1fr;padding:96px var(--pad) var(--pad)}
 .about-left{position:relative}
 .about-right{position:relative}
@@ -192,8 +186,17 @@ html.on-space .nav .btn:not(:hover){background:rgba(255,255,255,.06)}
 .ab-title .ln > span{display:block}
 .ab-title .acc{color:var(--a1)}
 .ab-copy{max-width:400px;font-size:15px;line-height:1.7;color:var(--mut);margin-bottom:30px}
-.ab-meta{display:flex;gap:clamp(22px,3vw,44px);margin-bottom:32px}
-.ab-meta div{display:flex;flex-direction:column;gap:7px}
+/* frosted glass card holding the statement */
+.ab-glass{position:relative;max-width:540px;padding:clamp(28px,3.2vw,48px);border-radius:28px;
+  background:rgba(255,255,255,.34);-webkit-backdrop-filter:blur(22px) saturate(150%);backdrop-filter:blur(22px) saturate(150%);
+  border:1px solid rgba(255,255,255,.75);
+  box-shadow:0 40px 80px -40px rgba(12,29,79,.28),0 2px 8px -4px rgba(12,29,79,.08),inset 0 1px 0 rgba(255,255,255,.9),inset 0 0 0 1px rgba(255,255,255,.18)}
+.ab-glass::after{content:'';position:absolute;left:clamp(28px,3.2vw,48px);top:-1px;width:64px;height:2px;border-radius:2px;background:var(--a1)}
+.ab-glass .ab-copy{max-width:none}
+.ab-meta{display:grid;grid-template-columns:repeat(3,1fr);margin-bottom:30px;padding:18px 0;border-block:1px solid rgba(12,29,79,.1)}
+.ab-meta div{display:flex;flex-direction:column;gap:7px;padding:0 18px}
+.ab-meta div:first-child{padding-left:0}
+.ab-meta div + div{border-left:1px solid rgba(12,29,79,.1)}
 .ab-meta b{font:700 22px/1 'Manrope',sans-serif;letter-spacing:-.02em;color:var(--fg);font-variant-numeric:tabular-nums}
 .ab-meta b small{font-size:.6em;color:var(--a1);margin-left:1px}
 .ab-meta span{font:500 10px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--mut)}
@@ -202,22 +205,46 @@ html.on-space .nav .btn:not(:hover){background:rgba(255,255,255,.06)}
 .btn-line:hover{background:var(--a1);color:#fff;box-shadow:0 16px 30px -14px rgba(253,109,14,.7)}
 .btn-line:hover svg{color:#fff;transform:translateX(4px)}
 
-/* glass tiles orbiting DAW (DAW itself is the 3D model, centred on this column) */
-.ab-orbit{position:absolute;left:0;top:0;width:50%;height:100%;pointer-events:none;z-index:1}
-.ab-tile{position:absolute;left:var(--x);top:var(--y);translate:-50% -50%;width:clamp(68px,6.4vw,96px);aspect-ratio:1;border-radius:26%;display:grid;place-items:center;
-  background:linear-gradient(150deg,rgba(255,255,255,.92),rgba(255,250,244,.62));border:1px solid rgba(255,255,255,.9);
-  box-shadow:0 24px 40px -22px rgba(160,70,10,.45),inset 0 1px 0 #fff,inset 0 -8px 18px rgba(253,109,14,.06)}
-.ab-tile > span{display:grid;place-items:center;width:100%;height:100%;animation:tileFloat var(--d,6s) ease-in-out var(--dl,0s) infinite}
-.ab-tile svg{width:38%;height:38%;fill:none;stroke:var(--fg);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-@keyframes tileFloat{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-10px) rotate(2deg)}}
+/* the studio setup floats in the left column; DAW (the 3D model) hovers on .ab-fish, above the camera */
+.ab-stage{position:absolute;left:0;top:0;width:50%;height:100%;pointer-events:none;z-index:1;display:grid;place-items:center}
+.ab-prop{position:relative;width:min(36vw,66vh,600px);aspect-ratio:1320/1192;margin-top:9vh}
+.ab-visual{position:absolute;inset:0}
+.ab-float{position:absolute;inset:0;animation:propFloat 7s ease-in-out infinite}
+.ab-float img{display:block;width:100%;height:100%;object-fit:contain;user-select:none;-webkit-user-drag:none;
+  filter:drop-shadow(0 30px 34px rgba(12,29,79,.22))}
+.ab-shadow{position:absolute;left:20%;right:20%;bottom:-5%;height:7%;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(12,29,79,.26),transparent);animation:propShadow 7s ease-in-out infinite}
+.ab-fish{position:absolute;left:3%;top:-4%;width:28%;aspect-ratio:1}
+@keyframes propFloat{50%{transform:translateY(-2.2%)}}
+@keyframes propShadow{50%{transform:scaleX(.86);opacity:.7}}
 
 
 @property --ang{syntax:'<angle>';inherits:false;initial-value:0deg}
 @keyframes ang{to{--ang:360deg}}
 
 /* ---------- crew: the boy, DAW, and the five crafts ---------- */
+/* navy deep-space backdrop, a cousin of the hero sky: starfield, blue nebulae, a warm glow under the boy */
+.crew-space{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;opacity:0;visibility:hidden;
+  background:radial-gradient(120% 90% at 50% 108%,#1d2f86 0%,#10206a 30%,#0a1650 55%,#060e36 80%,#040a26 100%)}
+.crew-space .space-nebula{opacity:1;
+  background:radial-gradient(42% 34% at 16% 26%,rgba(80,120,255,.22),transparent 70%),
+             radial-gradient(36% 30% at 84% 20%,rgba(120,100,230,.16),transparent 70%),
+             radial-gradient(30% 26% at 70% 78%,rgba(63,107,255,.14),transparent 70%)}
+.crew-space .cs-glow{position:absolute;left:50%;bottom:-18vh;width:90vw;height:52vh;translate:-50% 0;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(255,138,51,.26),rgba(255,90,31,.08) 55%,transparent)}
+.crew-space .cs-arc{position:absolute;left:50%;top:52%;width:min(118vh,96vw);aspect-ratio:1;translate:-50% -50%;border-radius:50%;
+  border:1px solid rgba(160,185,255,.10);-webkit-mask:linear-gradient(#000 30%,transparent 75%);mask:linear-gradient(#000 30%,transparent 75%)}
+.crew-space .cs-arc.a2{width:min(150vh,124vw);border-style:dashed;border-color:rgba(160,185,255,.07)}
+.crew-space .space-vignette{background:radial-gradient(120% 90% at 50% 45%,transparent 55%,rgba(2,5,22,.6) 100%)}
+html.on-crew .nav{--fg:#eef1fb;--line:rgba(255,255,255,.18);color:var(--fg)}
+html.on-crew .logo{color:#fff}
+html.on-crew .nav .btn:not(:hover){background:rgba(255,255,255,.06)}
+
 @property --sc{syntax:'<color>';inherits:true;initial-value:#ff7a1a}
-.crew{position:absolute;inset:96px var(--pad) var(--pad);visibility:hidden;--sc:#ff7a1a}
+.crew{position:absolute;inset:96px var(--pad) var(--pad);visibility:hidden;--sc:#ff7a1a;
+  --fg:#eef1fb;--mut:rgba(214,222,250,.66);--line:rgba(255,255,255,.16);color:var(--fg)}
+.crew .svc{--fg:#0c1d4f;--mut:rgba(12,29,79,.6);--line:rgba(12,29,79,.12);color:var(--fg)}
+.crew .svc-fx{color:#fff}
 .crew-stage{position:absolute;inset:0}
 .crew-head{position:absolute;left:0;bottom:0;max-width:290px;z-index:4}
 .crew-head .eyebrow{margin-bottom:16px}
@@ -229,7 +256,7 @@ html.on-space .nav .btn:not(:hover){background:rgba(255,255,255,.06)}
 
 /* connector lines from each craft to the boy */
 .crew-lines{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:1}
-.crew-lines path{fill:none;stroke:rgba(12,29,79,.2);stroke-width:1.2;stroke-dasharray:3 6;vector-effect:non-scaling-stroke;animation:flow 1.6s linear infinite;transition:stroke .4s,stroke-width .4s,opacity .4s}
+.crew-lines path{fill:none;stroke:rgba(180,200,255,.32);stroke-width:1.2;stroke-dasharray:3 6;vector-effect:non-scaling-stroke;animation:flow 1.6s linear infinite;transition:stroke .4s,stroke-width .4s,opacity .4s}
 .crew-lines path.on{stroke:var(--c);stroke-width:2;stroke-dasharray:10 6;animation-duration:.5s}
 .crew.is-focus .crew-lines path:not(.on){opacity:.35}
 @keyframes flow{to{stroke-dashoffset:-18}}
@@ -238,18 +265,18 @@ html.on-space .nav .btn:not(:hover){background:rgba(255,255,255,.06)}
 .boy{position:absolute;left:50%;top:50%;height:min(86%,700px,54vw);aspect-ratio:450/740;translate:-50% -50%;z-index:2}
 .boy-aura{position:absolute;left:50%;top:42%;width:165%;aspect-ratio:1;translate:-50% -50%;pointer-events:none}
 .boy-aura > *{position:absolute;border-radius:50%}
-.aura-disc{inset:10%;background:radial-gradient(closest-side,rgba(255,255,255,.95),rgba(255,255,255,.55) 55%,rgba(255,255,255,0))}
+.aura-disc{inset:10%;background:radial-gradient(closest-side,rgba(150,175,255,.34),rgba(80,115,255,.14) 55%,rgba(63,107,255,0))}
 .aura-glow{inset:16%;background:radial-gradient(closest-side,color-mix(in srgb,var(--sc) 34%,transparent),transparent);animation:breathe 5s ease-in-out infinite}
-.aura-ring{inset:13%;border:1px dashed rgba(12,29,79,.2);animation:spin 70s linear infinite}
-.aura-ticks{inset:4%;background:repeating-conic-gradient(rgba(12,29,79,.4) 0 .6deg,transparent .6deg 6deg);-webkit-mask:radial-gradient(closest-side,transparent 93%,#000 93.5% 97%,transparent 97.5%);mask:radial-gradient(closest-side,transparent 93%,#000 93.5% 97%,transparent 97.5%);animation:spin 120s linear infinite reverse;opacity:.7}
+.aura-ring{inset:13%;border:1px dashed rgba(180,200,255,.3);animation:spin 70s linear infinite}
+.aura-ticks{inset:4%;background:repeating-conic-gradient(rgba(190,208,255,.5) 0 .6deg,transparent .6deg 6deg);-webkit-mask:radial-gradient(closest-side,transparent 93%,#000 93.5% 97%,transparent 97.5%);mask:radial-gradient(closest-side,transparent 93%,#000 93.5% 97%,transparent 97.5%);animation:spin 120s linear infinite reverse;opacity:.7}
 .aura-sweep{inset:7%;background:conic-gradient(from 0deg,transparent 0 62%,var(--sc));-webkit-mask:radial-gradient(closest-side,transparent 95%,#000 96% 99%,transparent 100%);mask:radial-gradient(closest-side,transparent 95%,#000 96% 99%,transparent 100%);will-change:transform}
 /* the sweep's spin speed and the --sc colour are eased in JS, so hover in/out never jumps */
 .aura-glow{transition:inset .8s var(--ease)}
 .boy:hover .aura-glow,.crew.is-focus .aura-glow{inset:8%}
 @keyframes breathe{50%{transform:scale(1.08);opacity:.8}}
-.boy-floor{position:absolute;left:50%;bottom:-1%;width:92%;height:8%;translate:-50% 0;border-radius:50%;background:radial-gradient(closest-side,color-mix(in srgb,var(--sc) 30%,rgba(12,29,79,.3)),transparent);pointer-events:none}
+.boy-floor{position:absolute;left:50%;bottom:-1%;width:92%;height:8%;translate:-50% 0;border-radius:50%;background:radial-gradient(closest-side,color-mix(in srgb,var(--sc) 40%,rgba(2,6,30,.5)),transparent);pointer-events:none}
 .boy-lean{position:absolute;inset:0;transform-origin:50% 92%}
-.boy-float{position:absolute;inset:0;animation:boyFloat 6s ease-in-out infinite;filter:drop-shadow(0 26px 30px rgba(120,60,10,.2))}
+.boy-float{position:absolute;inset:0;animation:boyFloat 6s ease-in-out infinite;filter:drop-shadow(0 26px 30px rgba(0,4,24,.45))}
 @keyframes boyFloat{50%{transform:translateY(-1.4%)}}
 .boy img{display:block;width:100%;height:100%;object-fit:contain;-webkit-mask:linear-gradient(#000 80%,transparent 99%);mask:linear-gradient(#000 80%,transparent 99%);user-select:none;-webkit-user-drag:none}
 /* DAW (the 3D fish) is placed on this anchor, just off the boy's shoulder */
@@ -264,7 +291,7 @@ html.on-space .nav .btn:not(:hover){background:rgba(255,255,255,.06)}
 .svc-float{display:block;position:relative;animation:svcFloat var(--d,6s) ease-in-out var(--dl,0s) infinite}
 @keyframes svcFloat{0%,100%{transform:translate(0,0)}33%{transform:translate(5px,-10px)}66%{transform:translate(-4px,6px)}}
 .svc:hover .svc-float,.svc:focus-visible .svc-float{animation-play-state:paused}
-.svc-card{position:relative;display:flex;align-items:center;gap:12px;padding:9px 20px 9px 9px;border-radius:999px;background:linear-gradient(160deg,rgba(255,255,255,.94),rgba(255,255,255,.66));border:1px solid rgba(12,29,79,.08);box-shadow:0 18px 40px -22px rgba(120,60,10,.45),inset 0 1px 0 #fff;transition:transform .6s var(--ease),box-shadow .4s,border-color .4s}
+.svc-card{position:relative;display:flex;align-items:center;gap:12px;padding:9px 20px 9px 9px;border-radius:999px;background:var(--bg);border:1px solid rgba(12,29,79,.08);box-shadow:0 18px 40px -22px rgba(120,60,10,.45),inset 0 1px 0 #fff;transition:transform .6s var(--ease),box-shadow .4s,border-color .4s}
 .svc-card::before{content:'';position:absolute;inset:-1px;border-radius:inherit;padding:1.5px;background:conic-gradient(from var(--ang),transparent 0 55%,var(--c) 85%,transparent);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .4s;pointer-events:none}
 .svc:hover .svc-card,.svc:focus-visible .svc-card{transform:scale(1.06);border-color:transparent;box-shadow:0 26px 50px -20px color-mix(in srgb,var(--c) 60%,transparent),inset 0 1px 0 #fff}
 .svc:hover .svc-card::before,.svc:focus-visible .svc-card::before{opacity:1;animation:ang 2.4s linear infinite}
@@ -341,7 +368,7 @@ html.on-space .nav .btn:not(:hover){background:rgba(255,255,255,.06)}
 .web-scene{position:absolute;left:0;right:0;top:24px;bottom:0;perspective:520px;display:grid!important;place-items:center}
 .web-stack{position:relative;width:128px;height:88px;transform-style:preserve-3d;animation:webTilt 6s ease-in-out infinite}
 .wl{position:absolute;border-radius:7px;animation:webLift 2.4s cubic-bezier(.5,0,.3,1) infinite alternate}
-.wl.l1{inset:0;--z:0px;background:linear-gradient(rgba(12,29,79,.12) 0 0) 10px 66px/60px 3px no-repeat,linear-gradient(rgba(12,29,79,.12) 0 0) 10px 73px/44px 3px no-repeat,#f4f0ea;box-shadow:0 18px 30px rgba(0,0,0,.45)}
+.wl.l1{inset:0;--z:0px;background:linear-gradient(rgba(12,29,79,.12) 0 0) 10px 66px/60px 3px no-repeat,linear-gradient(rgba(12,29,79,.12) 0 0) 10px 73px/44px 3px no-repeat,#FAEDE1;box-shadow:0 18px 30px rgba(0,0,0,.45)}
 .wl.l2{left:9px;right:9px;top:9px;height:44px;--z:16px;background:var(--grad);box-shadow:0 10px 18px rgba(0,0,0,.25)}
 .wl.l3{left:76px;top:30px;width:36px;height:36px;border-radius:50%;--z:34px;background:radial-gradient(circle at 34% 30%,#dbe4ff,#3f6bff 55%,#1f2b74);box-shadow:0 10px 16px rgba(0,0,0,.3)}
 .wl.l4{left:12px;top:24px;width:46px;height:9px;border-radius:999px;--z:26px;background:#0c1d4f}
@@ -398,10 +425,13 @@ html.on-space .nav .btn:not(:hover){background:rgba(255,255,255,.06)}
   .about-left{position:absolute;inset:84px var(--pad) var(--pad);pointer-events:none}
   .about-right{padding-top:38vh}
   .statement{padding-left:0}
-  .ab-orbit{width:100%;height:46%}
-  .ab-tile{width:58px}
+  .ab-stage{width:100%;height:46%;padding-top:84px}
+  .ab-prop{width:min(78vw,36vh * 1.1);margin-top:0}
   .ab-copy{font-size:14px;margin-bottom:22px}
   .ab-meta{margin-bottom:24px}
+  .ab-glass{padding:24px 22px;border-radius:22px}
+  .ab-glass::after{left:22px}
+  .ab-meta div{padding:0 12px}
   .eyebrow{margin-bottom:16px}
 
   .crew{inset:84px var(--pad) var(--pad)}
@@ -420,15 +450,34 @@ html.on-space .nav .btn:not(:hover){background:rgba(255,255,255,.06)}
 }
 
 /* ---------- work: a horizontal drawing board ---------- */
-.work{position:relative;z-index:4;height:100vh;height:100svh;overflow:hidden}
-.work-top{position:absolute;left:var(--pad);right:var(--pad);top:clamp(92px,13vh,124px);display:flex;justify-content:space-between;align-items:center;z-index:2;font:500 10.5px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--mut);pointer-events:none}
+.work{position:relative;z-index:4;height:100vh;height:100svh;overflow:hidden}.work-top{position:absolute;left:var(--pad);right:var(--pad);top:clamp(92px,13vh,124px);display:flex;justify-content:space-between;align-items:center;z-index:2;font:500 10.5px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--mut);pointer-events:none}
 .work-count{font-variant-numeric:tabular-nums}
 .work-count b{color:var(--fg);font-weight:500}
 .work-track{--gap:clamp(64px,8vw,140px);--art:clamp(170px,30vh,260px);position:absolute;left:0;top:0;bottom:0;display:flex;align-items:center;gap:var(--gap);padding:0 var(--pad);will-change:transform}
 .work:not(.live) *{animation-play-state:paused!important}
 
-.wi{flex:none;width:calc(100vw - var(--pad) * 2 - var(--gap));display:grid;grid-template-columns:auto minmax(0,520px);justify-content:center;align-items:center;gap:clamp(36px,6vw,110px)}
-.wi-logo{width:clamp(120px,14vw,210px);height:auto;overflow:visible}
+/* intro spread: headline on the left, an index of the five crafts on the right */
+.wi{flex:none;width:calc(100vw - var(--pad) * 2 - var(--gap));display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);align-items:center;gap:clamp(40px,7vw,140px);padding:0 clamp(0px,3vw,56px)}
+.wi-logo{display:block;width:clamp(44px,3.8vw,60px);height:auto;overflow:visible;margin-bottom:clamp(22px,4vh,36px)}
+.wi .wi-txt h2{font-size:clamp(40px,5.4vw,92px);line-height:.98;letter-spacing:-.05em}
+.wi .wi-txt p{max-width:440px;margin-top:24px}
+.wi-list{list-style:none;border-top:1px solid var(--line)}
+.wi-list button{position:relative;width:100%;display:grid;grid-template-columns:clamp(34px,3vw,48px) minmax(0,1fr) auto 18px;align-items:center;gap:clamp(10px,1.4vw,20px);
+  padding:clamp(14px,2.4vh,22px) 2px;border:0;border-bottom:1px solid var(--line);background:none;font:inherit;color:var(--fg);text-align:left;cursor:pointer}
+.wi-list button::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--a1);transform:scaleX(0);transform-origin:left;transition:transform .7s var(--ease)}
+.wi-list b{font:500 11px/1 var(--mono);letter-spacing:.12em;color:var(--mut);transition:color .4s}
+.wi-list span{font:600 clamp(17px,1.45vw,23px)/1.2 'Manrope',sans-serif;letter-spacing:-.025em;transition:transform .6s var(--ease),color .4s}
+.wi-list em{font:500 10px/1 var(--mono);font-style:normal;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);white-space:nowrap}
+.wi-list i{width:16px;height:16px;color:var(--a1);opacity:0;transform:translateX(-8px);transition:opacity .4s,transform .6s var(--ease)}
+.wi-list i svg{display:block;width:100%;height:100%}
+.wi-list button:hover::after,.wi-list button:focus-visible::after{transform:scaleX(1)}
+.wi-list button:hover b,.wi-list button:focus-visible b{color:var(--a1)}
+.wi-list button:hover span,.wi-list button:focus-visible span{transform:translateX(8px)}
+.wi-list button:hover i,.wi-list button:focus-visible i{opacity:1;transform:none}
+.wi-list button:focus-visible{outline:none}
+/* a hairline progress rail along the floor of the section */
+.work-rail{position:absolute;left:var(--pad);right:var(--pad);bottom:clamp(26px,5vh,44px);height:1px;background:var(--line);z-index:2;pointer-events:none}
+.work-rail i{position:absolute;inset:0;background:var(--a1);transform-origin:left;transform:scaleX(0)}
 .wi-logo path{fill:var(--a1);fill-opacity:0;stroke:var(--a1);stroke-width:.7;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1}
 .wi-txt h2{font:700 clamp(30px,3.2vw,52px)/1.06 'Manrope',sans-serif;letter-spacing:-.04em}
 .wi-txt h2 span{color:var(--a1)}
@@ -446,9 +495,8 @@ html.on-space .nav .btn:not(:hover){background:rgba(255,255,255,.06)}
 /* each craft sits on its own panel: a navy-tinted card with a pattern that belongs to the craft,
    a soft colour glow, and a small technical tag in the corner. The pattern drifts as the rail runs. */
 .cr-art{--n:12,29,79;--glow:rgba(255,107,10,.22);position:relative;isolation:isolate;overflow:hidden;border-radius:26px;padding:16px 18px;
-  background:linear-gradient(155deg,#fff 0%,#f3f1ec 55%,#e9edf7 100%);
+  background:var(--bg);
   box-shadow:0 34px 60px -38px rgba(12,29,79,.45),0 2px 6px -2px rgba(12,29,79,.08),inset 0 0 0 1px rgba(12,29,79,.07)}
-.cr-art::before{content:'';position:absolute;z-index:-1;width:75%;aspect-ratio:1;right:-22%;bottom:-38%;border-radius:50%;background:radial-gradient(closest-side,var(--glow),transparent);filter:blur(6px)}
 .cr-art::after{content:var(--tag);position:absolute;right:16px;top:14px;font:500 9px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:rgba(12,29,79,.42)}
 .cr-art svg{position:relative;z-index:1}
 .cr-bg{position:absolute;inset:0 -30%;z-index:-2;pointer-events:none;will-change:transform}
@@ -459,7 +507,7 @@ html.on-space .nav .btn:not(:hover){background:rgba(255,255,255,.06)}
   linear-gradient(90deg,rgba(var(--n),.13) 0 12px,transparent 12px 24px) 0 calc(100% - 10px)/24px 7px repeat-x,
   repeating-linear-gradient(0deg,transparent 0 21px,rgba(var(--n),.06) 21px 22px)}
 /* 02 motion — isometric grid, cool blue light */
-.cr-motion .cr-art{--tag:'KEY 04 · EASE';--glow:rgba(63,107,255,.26);background:linear-gradient(155deg,#fbfcff 0%,#eef1fa 60%,#e2e8f8 100%)}
+.cr-motion .cr-art{--tag:'KEY 04 · EASE';--glow:rgba(63,107,255,.26)}
 .cr-motion .cr-bg{background:
   repeating-linear-gradient(30deg,transparent 0 23px,rgba(var(--n),.075) 23px 24px),
   repeating-linear-gradient(150deg,transparent 0 23px,rgba(var(--n),.075) 23px 24px);
@@ -477,7 +525,7 @@ html.on-space .nav .btn:not(:hover){background:rgba(255,255,255,.06)}
   linear-gradient(90deg,transparent calc(33.33% - .5px),rgba(var(--n),.1) calc(33.33% - .5px) calc(33.33% + .5px),transparent 0 calc(66.66% - .5px),rgba(var(--n),.1) 0 calc(66.66% + .5px),transparent 0),
   linear-gradient(0deg,transparent calc(33.33% - .5px),rgba(var(--n),.1) calc(33.33% - .5px) calc(33.33% + .5px),transparent 0 calc(66.66% - .5px),rgba(var(--n),.1) 0 calc(66.66% + .5px),transparent 0)}
 /* 05 drone — topographic contours over a sky-to-ground wash */
-.cr-drone .cr-art{--tag:'ALT 120M · N 12°';--glow:rgba(63,107,255,.22);background:linear-gradient(180deg,#eef2fb 0%,#f6f3ee 60%,#efe8dc 100%)}
+.cr-drone .cr-art{--tag:'ALT 120M · N 12°';--glow:rgba(63,107,255,.22)}
 .cr-drone .cr-bg{background:
   repeating-radial-gradient(ellipse 60% 40% at 62% 46%,transparent 0 13px,rgba(var(--n),.085) 13px 14px),
   repeating-radial-gradient(ellipse 40% 30% at 18% 88%,transparent 0 11px,rgba(var(--n),.06) 11px 12px)}
@@ -521,9 +569,13 @@ article.cr:last-of-type .cr-line{display:none}
 @media (max-width:760px){
   .work-top{top:84px}
   .work-track{--art:clamp(150px,26vh,220px)}
-  .wi{grid-template-columns:1fr;justify-items:start;gap:24px}
-  .wi-logo{width:96px}
-  .wi-txt p{font-size:14px}
+  .wi{grid-template-columns:1fr;gap:22px;padding:0}
+  .wi-logo{display:none}
+  .wi .wi-txt h2{font-size:clamp(34px,10vw,48px)}
+  .wi .wi-txt p{font-size:14px;margin-top:14px}
+  .wi-hint{display:none}
+  .wi-list em{display:none}
+  .wi-list button{padding:11px 2px}
   .cr{width:74vw}
 }
 
@@ -570,7 +622,7 @@ html.on-dark .nav,html.on-dark .logo{color:#fff}
 .foot a{transition:color .3s}
 .foot a:hover{color:var(--a1)}
 
-@media (prefers-reduced-motion:reduce){.grain,.blob{animation:none}}
+@media (prefers-reduced-motion:reduce){.grain{animation:none}}
 </style>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -613,7 +665,6 @@ html.on-dark .nav,html.on-dark .logo{color:#fff}
 })();
 </script>
 
-<div class="bg" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
 <canvas id="webgl" aria-hidden="true"></canvas>
 <div class="grain" aria-hidden="true"></div>
 <div class="progress" aria-hidden="true"></div>
@@ -683,17 +734,28 @@ html.on-dark .nav,html.on-dark .logo{color:#fff}
 
   <!-- ABOUT -->
   <section class="about" id="about">
+    <div class="crew-space" aria-hidden="true">
+      <div class="space-nebula"></div>
+      <canvas class="space-stars"></canvas>
+      <span class="cs-arc"></span><span class="cs-arc a2"></span>
+      <div class="cs-glow"></div>
+      <div class="space-vignette"></div>
+    </div>
     <div class="about-inner">
       <div class="about-left"></div>
-      <div class="ab-orbit" aria-hidden="true">
-        <span class="ab-tile" style="--x:18%;--y:25%"><span style="--d:6.4s;--dl:-1s"><svg viewBox="0 0 24 24" style="color:var(--fg)"><path d="M8 7 3 12l5 5M16 7l5 5-5 5M13.5 5l-3 14"/></svg></span></span>
-        <span class="ab-tile" style="--x:82%;--y:25%"><span style="--d:7s;--dl:-3s"><svg viewBox="0 0 24 24" style="color:var(--fg)"><path d="M3 8.5A1.5 1.5 0 0 1 4.5 7H7l1.6-2.2h6.8L17 7h2.5A1.5 1.5 0 0 1 21 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5z"/><circle cx="12" cy="12.6" r="3.6"/></svg></span></span>
-        <span class="ab-tile" style="--x:18%;--y:77%"><span style="--d:6.8s;--dl:-2s"><svg viewBox="0 0 24 24" style="color:var(--fg)"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor" stroke="none"/></svg></span></span>
-        <span class="ab-tile" style="--x:82%;--y:77%"><span style="--d:7.4s;--dl:-4s"><svg viewBox="0 0 24 24" style="color:var(--fg)"><circle cx="5" cy="6" r="2.6"/><circle cx="19" cy="6" r="2.6"/><circle cx="5" cy="18" r="2.6"/><circle cx="19" cy="18" r="2.6"/><path d="M7 8l3 3M17 8l-3 3M7 16l3-3M17 16l-3-3"/><rect x="9.5" y="10" width="5" height="4" rx="1.2"/></svg></span></span>
+      <div class="ab-stage" aria-hidden="true">
+        <div class="ab-prop">
+          <div class="ab-visual">
+            <div class="ab-float"><img src="images/about.png" alt="" width="1320" height="1192" decoding="async"></div>
+            <span class="ab-shadow"></span>
+          </div>
+          <span class="ab-fish"></span>
+        </div>
       </div>
       <div class="about-right">
         <div class="stage">
           <div class="statement">
+           <div class="ab-glass">
             <div class="ab-eyebrow"><span class="dot"></span>About DAW Media<span class="rule"></span></div>
             <h2 class="ab-title"><span class="ln"><span>More than a studio.</span></span><span class="ln"><span class="acc">A creative crew.</span></span></h2>
             <p class="ab-copy">We are a hybrid crew where code, cameras and creativity share one desk. We ship software that scales, capture the world from four hundred feet up, and turn attention into momentum.</p>
@@ -703,6 +765,7 @@ html.on-dark .nav,html.on-dark .logo{color:#fff}
               <div><b>1</b><span>Shared desk</span></div>
             </div>
             <a class="btn-line" href="#work" data-hover data-expr="happy">Our Journey <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h12M9 3l5 5-5 5"/></svg></a>
+           </div>
           </div>
         </div>
       </div>
@@ -820,19 +883,28 @@ html.on-dark .nav,html.on-dark .logo{color:#fff}
   <!-- WORK: a horizontal drawing board, each craft draws itself as it slides in -->
   <section class="work" id="work">
     <div class="work-top"><span>What we make</span><span class="work-count"><b>00</b> / 05</span></div>
+    <div class="work-rail" aria-hidden="true"><i></i></div>
     <div class="work-track">
       <div class="wi">
+        <div class="wi-txt">
         <svg class="wi-logo" viewBox="0 0 100 100" aria-hidden="true">
           <path pathLength="1" d="M0 0H33C22 7 11 16 0 26.3Z"/><path pathLength="1" d="M0 100H30.5C20 93 10 85 0 75.3Z"/>
           <path pathLength="1" fill-rule="evenodd" d="M0 40.4C18 24 38 4 54.7.5 82 3 100 22 100 50S82 97 52.8 99.8C38 95 18 76 0 60.3ZM9.9 50.8C25 66 45 85 60 84.6 76 84 88 72 88 50S76 16 60.7 15.2C45 15 25 36 9.9 50.8Z"/>
           <path pathLength="1" d="M27.5 50.6C40 38 50 28 59.4 28 68 28 76.6 35 76.6 50S68 71 59.4 71C50 71 40 62 27.5 50.6Z"/>
         </svg>
-        <div class="wi-txt">
           <div class="ab-eyebrow"><span class="dot"></span>What we make<span class="rule"></span></div>
-          <h2>Five crafts, <span>one crew.</span></h2>
+          <h2>Five crafts,<br><span>one crew.</span></h2>
           <p>From the first line of code to the final colour grade, every piece is designed, built and finished in-house.</p>
           <span class="wi-hint">Keep scrolling <svg viewBox="0 0 22 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 5h19M16 1l4 4-4 4"/></svg></span>
         </div>
+        <!-- an index of the five crafts: each row jumps the rail to its card -->
+        <ol class="wi-list">
+          <li><button type="button" data-hover><b>01</b><span>Video Editing</span><em>Cut · Colour · Sound</em><i aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h12M9 3l5 5-5 5"/></svg></i></button></li>
+          <li><button type="button" data-hover><b>02</b><span>3D Motion Graphics</span><em>Model · Animate · Render</em><i aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h12M9 3l5 5-5 5"/></svg></i></button></li>
+          <li><button type="button" data-hover><b>03</b><span>3D Websites</span><em>Design · WebGL · Code</em><i aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h12M9 3l5 5-5 5"/></svg></i></button></li>
+          <li><button type="button" data-hover><b>04</b><span>Videography</span><em>Brand · Event · Commercial</em><i aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h12M9 3l5 5-5 5"/></svg></i></button></li>
+          <li><button type="button" data-hover><b>05</b><span>Drone Cinematography</span><em>Aerial · FPV · Survey</em><i aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h12M9 3l5 5-5 5"/></svg></i></button></li>
+        </ol>
       </div>
       <article class="cr cr-edit">
         <div class="cr-art"><span class="cr-bg" aria-hidden="true"></span><i aria-hidden="true"></i><svg class="art" viewBox="0 0 260 220" aria-hidden="true">
@@ -952,9 +1024,8 @@ const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const root = document.documentElement;
 
 /* ================= hero starfield: a still sky with a slow, sparse twinkle ================= */
-(() => {
-  const cv = document.querySelector('.space-stars');
-  if (!cv) return;
+/* (also used by the crew's navy sky, so every .space-stars canvas gets its own field) */
+document.querySelectorAll('.space-stars').forEach((cv) => {
   const ctx = cv.getContext('2d');
   let stars = [], w = 0, h = 0, visible = true, raf = 0;
   const build = () => {
@@ -989,7 +1060,9 @@ const root = document.documentElement;
       }
     }
   };
-  const loop = (now) => { draw(now); raf = visible && !reduce ? requestAnimationFrame(loop) : 0; };
+  // a canvas whose sky is faded out (the crew's, until it arrives) skips drawing
+  const shown = () => getComputedStyle(cv.parentNode).visibility !== 'hidden';
+  const loop = (now) => { if (shown()) draw(now); raf = visible && !reduce ? requestAnimationFrame(loop) : 0; };
   build(); draw(0);
   if (!reduce) raf = requestAnimationFrame(loop);
   new IntersectionObserver(([e]) => {
@@ -997,7 +1070,7 @@ const root = document.documentElement;
     if (visible && !raf && !reduce) raf = requestAnimationFrame(loop);
   }).observe(cv);
   let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { build(); draw(performance.now()); }, 150); });
-})();
+});
 
 /* ================= smooth scroll ================= */
 let lenis = null;
@@ -1103,7 +1176,7 @@ $$('[data-magnetic]').forEach((el) => {
 /* ================= 3D scene ================= */
 // n: nav logo→hero centre, h: hero→about, b: about→beside the boy, o: about→outro (all scrubbed by scroll)
 const S = { n: 0, h: 0, b: 0, o: 0, ry: 0, spread: 0, introY: 2.6, introSpin: -Math.PI * 3 };
-const buddyEl = $('.boy-buddy'), aboutEl = $('#about');
+const buddyEl = $('.boy-buddy'), aboutEl = $('#about'), abFishEl = $('.ab-fish');
 const view = { w: 1, h: 1, base: 1, portrait: false };
 const CAMZ = 8, FOV = 35;
 function computeView() {
@@ -1131,9 +1204,13 @@ const layout = {
     const py = oy + (stacked ? (l1.offsetTop + l1.offsetHeight + l2.offsetTop) / 2 : l1.offsetTop + l1.offsetHeight * 0.53);
     return pxToWorld(px, py);
   },
-  aboutX: () => (view.portrait ? 0 : -view.w * 0.25),
-  aboutY: () => (view.portrait ? view.h * 0.27 : -0.05),
-  aboutS: () => (view.portrait ? 0.78 : 0.95),
+  // DAW's About spot: the .ab-fish anchor above the studio setup, read as if #about were pinned at the top
+  about() {
+    const r = abFishEl.getBoundingClientRect(), top = aboutEl.getBoundingClientRect().top;
+    const p = pxToWorld(r.left + r.width / 2, r.top + r.height / 2 - top);
+    p.s = ((r.width / 2) * view.h / innerHeight) / (1.2 * view.base);
+    return p;
+  },
   outroY: () => view.h * (view.portrait ? 0.22 : 0.19),
   outroS: () => (view.portrait ? 0.85 : 0.62),
   // DAW's spot beside the boy: the .boy-buddy anchor, read as if #about were still pinned at the top,
@@ -1152,7 +1229,8 @@ function fishPose() {
   // swoop out of the logo: sideways first, then down, growing late
   const n = S.n, ex = 1 - (1 - n) * (1 - n), ey = n * n * (3 - 2 * n);
   const hx = lerp(navA.x, anchor.x, ex), hy = lerp(navA.y, anchor.y, ey), hs = lerp(layout.navS(), 1, n * n);
-  let ax = layout.aboutX(), ay = layout.aboutY(), as = layout.aboutS();
+  const ab = layout.about();
+  let ax = ab.x, ay = ab.y, as = ab.s;
   if (S.b > 0.001) {
     // a little arc on the way over to the boy's shoulder
     const bd = layout.buddy(), b = S.b;
@@ -1360,21 +1438,6 @@ function init3D() {
   const shock = new THREE.Mesh(new THREE.RingGeometry(0.94, 1, 120), new THREE.MeshBasicMaterial({ color: 0xff7a1a, transparent: true, opacity: 0, depthWrite: false, toneMapped: false, side: THREE.DoubleSide }));
   shock.rotation.x = -1.2; scene.add(shock);
 
-  // orbit rings (appear in About)
-  const orbitG = new THREE.Group(); scene.add(orbitG);
-  const orbitMats = [], orbitBeads = [];
-  // two wide, flat orbits crossing behind and in front of DAW (fixed orientation, like a planet's rings)
-  [[2.7, 1.3, -0.2, 0xff7a1a, 0.42], [2.3, 1.22, 0.26, 0x1f2b74, -0.3]].forEach(([r, tx, tz, col, speed]) => {
-    const ring = new THREE.Group(); ring.rotation.order = 'ZXY'; ring.rotation.set(tx, 0, tz); orbitG.add(ring);
-    const pts = new THREE.EllipseCurve(0, 0, r, r, 0, Math.PI * 2).getPoints(180).map((p) => new THREE.Vector3(p.x, p.y, 0));
-    const m = new THREE.LineBasicMaterial({ color: col, transparent: true, opacity: 0 });
-    ring.add(new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(pts), m)); orbitMats.push(m);
-    // a bead travelling along the ring
-    const spin = new THREE.Group(); ring.add(spin);
-    const bm = new THREE.MeshBasicMaterial({ color: col, transparent: true, opacity: 0, toneMapped: false });
-    const bead = new THREE.Mesh(new THREE.SphereGeometry(0.08, 16, 12), bm); bead.position.x = r; spin.add(bead);
-    orbitBeads.push({ spin, bm, speed });
-  });
 
   /* ---------- discipline objects ---------- */
   const gloss = (c, flat = false) => new THREE.MeshPhysicalMaterial({ color: c, roughness: 0.18, metalness: 0.05, clearcoat: 1, clearcoatRoughness: 0.06, emissive: c, emissiveIntensity: 0.1, flatShading: flat });
@@ -1666,8 +1729,7 @@ function init3D() {
       p.s.scale.setScalar(p.size * (1 + p.grow * (1 - k)));
     });
 
-    // orbit rings + the hovered service's satellite
-    const m = THREE.MathUtils.smoothstep(clamp(S.spread, 0, 1), 0, 1);
+    // the hovered service's satellite
     const k = (sc / 0.76) * (1 + Math.max(0, S.spread - 1) * 0.6);
     objs.forEach((o, i) => {
       o.mesh.visible = o.hl > 0.01;
@@ -1682,11 +1744,6 @@ function init3D() {
       o.mesh.rotation.x += dt * 0.6;
       o.mesh.rotation.y += dt * 0.9;
     });
-
-    orbitG.position.copy(fish.position);
-    orbitG.scale.setScalar(k);
-    orbitMats.forEach((mt, i) => { mt.opacity = m * (i ? 0.26 : 0.45) * (1 - S.b); });
-    orbitBeads.forEach((b) => { b.spin.rotation.z = t * b.speed; b.bm.opacity = m * (1 - S.b); });
 
     // ambient bubbles rise; scroll adds parallax
     const pa = bGeo.attributes.position;
@@ -2105,19 +2162,24 @@ function setupScroll() {
 
   // about: a quiet, timed reveal when the section arrives
   gsap.timeline({ scrollTrigger: { trigger: '#about', start: 'top 60%', toggleActions: 'play none none reverse' } })
-    .fromTo('.ab-eyebrow', { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, 0)
+    .fromTo('.ab-glass', { opacity: 0, y: 40, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 1, ease: 'expo.out' }, 0)
+    .fromTo('.ab-eyebrow', { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, 0.1)
     .fromTo('.statement .rule', { scaleX: 0 }, { scaleX: 1, duration: 0.9, ease: 'power3.inOut' }, 0.1)
     .fromTo('.ab-title .ln > span', { yPercent: 105 }, { yPercent: 0, duration: 0.9, stagger: 0.1, ease: 'expo.out' }, 0.1)
     .fromTo(['.ab-copy', '.ab-meta', '.statement .btn-line'], { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.7, stagger: 0.08, ease: 'power3.out' }, 0.35)
     .fromTo($$('.ab-meta [data-n]'), { innerText: 0 }, { innerText: (i, el) => +el.dataset.n, duration: 1.2, ease: 'power2.out', snap: { innerText: 1 } }, 0.45)
-    .fromTo('.ab-tile', { scale: 0.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.8, stagger: 0.07, ease: 'back.out(1.8)' }, 0.25);
+    .fromTo('.ab-visual', { y: 70, opacity: 0, scale: 0.94 }, { y: 0, opacity: 1, scale: 1, duration: 1.1, ease: 'expo.out' }, 0.15);
 
   // then a pin hands the stage to the crew: the boy rises at the centre, DAW swims over to his shoulder,
   // and the five crafts float out around them
-  gsap.timeline({ scrollTrigger: { trigger: '#about', start: 'top top', end: () => '+=' + innerHeight * 1.5, pin: true, scrub: 0.8, invalidateOnRefresh: true, anticipatePin: 1 } })
+  const crewTl = gsap.timeline({ scrollTrigger: { trigger: '#about', start: 'top top', end: () => '+=' + innerHeight * 1.5, pin: true, scrub: 0.8, invalidateOnRefresh: true, anticipatePin: 1 } })
     .to({}, { duration: 0.3 })
     .fromTo('.statement', { yPercent: 0, opacity: 1 }, { yPercent: -16, opacity: 0, duration: 0.6, ease: 'power2.in' })
-    .to('.ab-orbit', { opacity: 0, scale: 0.92, duration: 0.5, ease: 'power2.in' }, '<')
+    .to('.ab-stage', { opacity: 0, yPercent: -8, duration: 0.5, ease: 'power2.in' }, '<')
+    // the navy sky rolls in as the statement leaves, so the crew arrives in space
+    .fromTo('.crew-space', { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.6, ease: 'power1.inOut' }, '<0.15')
+    .fromTo('.crew-space .space-stars', { scale: 1.08 }, { scale: 1, duration: 1.4, ease: 'power2.out' }, '<')
+    .addLabel('dark', '<0.3')
     .fromTo('.crew', { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.01 }, '>-0.15')
     .fromTo('.boy-aura', { scale: 0.3, opacity: 0, rotate: -90 }, { scale: 1, opacity: 1, rotate: 0, duration: 0.9, ease: 'back.out(1.4)' }, '<')
     .fromTo('.boy-float img', { yPercent: 45, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }, '<0.1')
@@ -2127,15 +2189,25 @@ function setupScroll() {
     .fromTo('.svc', { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.6, stagger: 0.09, ease: 'back.out(2)' }, '<')
     .fromTo(['.crew-head > *', '.crew-hint'], { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.07, ease: 'power3.out' }, '<0.2')
     .to({}, { duration: 0.4 });
+  // nav reads light while the navy sky is behind it (from mid-fade until About scrolls off the top)
+  ScrollTrigger.create({ trigger: '#about',
+    start: () => crewTl.scrollTrigger.start + (crewTl.labels.dark / crewTl.duration()) * innerHeight * 1.5,
+    end: () => crewTl.scrollTrigger.end + innerHeight - 40,
+    onToggle: (self) => root.classList.toggle('on-crew', self.isActive) });
+  // DAW swims in front of About for the whole section: over the studio setup, then the navy sky
+  ScrollTrigger.create({ trigger: '#about', start: 'top bottom',
+    end: () => crewTl.scrollTrigger.end + innerHeight,
+    onToggle: (self) => root.classList.toggle('fish-front', self.isActive) });
 
-  // work: the board slides sideways while pinned; every craft draws itself in as it arrives
+  // work:the board slides sideways while pinned; every craft draws itself in as it arrives
   const work = $('#work'), track = $('.work-track'), crs = $$('.cr'), wkCount = $('.work-count b');
   const railDist = () => Math.max(0, track.scrollWidth - innerWidth);
   const railTween = gsap.to(track, {
     x: () => -railDist(), ease: 'none',
     scrollTrigger: { trigger: work, start: 'top top', end: () => '+=' + railDist(), pin: true, scrub: 0.8, invalidateOnRefresh: true, anticipatePin: 1 },
   });
-  ScrollTrigger.create({ trigger: work, start: 'top bottom', end: () => '+=' + (railDist() + innerHeight * 2), onToggle: (self) => work.classList.toggle('live', self.isActive) });  const webglEl = $('#webgl');
+  ScrollTrigger.create({ trigger: work, start: 'top bottom', end: () => '+=' + (railDist() + innerHeight * 2), onToggle: (self) => work.classList.toggle('live', self.isActive) });
+  const webglEl = $('#webgl');
   ScrollTrigger.create({ trigger: work, start: 'top top', endTrigger: '#outro', end: 'top bottom',
     onToggle: (self) => { fishIdle = self.isActive; if (webglEl) webglEl.style.opacity = fishIdle ? 0 : ''; } });
 
@@ -2143,7 +2215,19 @@ function setupScroll() {
   gsap.timeline({ scrollTrigger: { trigger: work, start: 'top 80%', end: 'top top', scrub: 0.6 } })
     .to('.wi-logo path', { strokeDashoffset: 0, duration: 1, stagger: 0.12, ease: 'none' }, 0)
     .to('.wi-logo path', { fillOpacity: 1, strokeOpacity: 0, duration: 0.5, ease: 'none' }, 0.95)
-    .fromTo('.wi-txt > *', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.12, ease: 'power2.out' }, 0.3);
+    .fromTo('.wi-txt > *', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.12, ease: 'power2.out' }, 0.3)
+    .fromTo('.wi-list li', { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.4, stagger: 0.07, ease: 'power2.out' }, 0.45);
+
+  // the index rows jump the rail to their card (centred in view)
+  $$('.wi-list button').forEach((b, i) => b.addEventListener('click', () => {
+    const st = railTween.scrollTrigger, c = crs[i];
+    const y = st.start + clamp(c.offsetLeft + c.offsetWidth / 2 - innerWidth / 2, 0, railDist());
+    lenis ? lenis.scrollTo(y, { duration: 1.6 }) : scrollTo({ top: y, behavior: 'smooth' });
+  }));
+
+  // hairline progress rail
+  gsap.fromTo('.work-rail i', { scaleX: 0 }, { scaleX: 1, ease: 'none',
+    scrollTrigger: { trigger: work, start: 'top top', end: () => '+=' + railDist(), scrub: 0.3 } });
 
   // per craft: a short "arrive" timeline, plus a long one that keeps it moving while it is on screen
   const arrive = (el) => gsap.timeline({ defaults: { ease: 'none' },
