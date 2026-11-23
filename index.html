@@ -4,8 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DAW Media Lab — Code. Sky. Story.</title>
-<meta name="description" content="DAW Media Lab — software, digital marketing, drone cinematography and video editing.">
+<meta name="description" content="DAW Media Lab — video editing and post-production, motion graphics and brand animation, brand films and aerial content, and website design and development.">
 <meta name="theme-color" content="#FAEDE1">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -222,7 +224,7 @@ html.on-space .nav .btn:not(:hover){background:rgba(255,255,255,.06)}
 @property --ang{syntax:'<angle>';inherits:false;initial-value:0deg}
 @keyframes ang{to{--ang:360deg}}
 
-/* ---------- crew: the boy, DAW, and the five crafts ---------- */
+/* ---------- crew: the boy, DAW, and the crafts ---------- */
 /* navy deep-space backdrop, a cousin of the hero sky: starfield, blue nebulae, a warm glow under the boy */
 .crew-space{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;opacity:0;visibility:hidden;
   background:radial-gradient(120% 90% at 50% 108%,#1d2f86 0%,#10206a 30%,#0a1650 55%,#060e36 80%,#040a26 100%)}
@@ -285,7 +287,7 @@ html.on-crew .nav .btn:not(:hover){background:rgba(255,255,255,.06)}
 .fish-say::before{content:'';position:absolute;left:-3px;bottom:-3px;width:8px;height:8px;border-radius:50%;background:#fff}
 .fish-say.on{opacity:1;transform:none}
 
-/* the five crafts */
+/* the crafts */
 .svc{position:absolute;left:var(--x);top:var(--y);translate:-50% -50%;z-index:3;font:inherit;color:inherit;background:none;border:0;padding:0;text-align:left;outline:none;-webkit-tap-highlight-color:transparent}
 .svc:hover,.svc:focus-visible,.svc.is-on{z-index:6}
 .svc-float{display:block;position:relative;animation:svcFloat var(--d,6s) ease-in-out var(--dl,0s) infinite}
@@ -343,7 +345,7 @@ html.on-crew .nav .btn:not(:hover){background:rgba(255,255,255,.06)}
 .ed-head{position:absolute;left:44%;top:-5px;bottom:0;width:1.5px;background:#ff3d3d;box-shadow:0 0 8px #ff3d3d}
 .ed-head::before{content:'';position:absolute;left:-4px;top:0;border:4.5px solid transparent;border-top:6px solid #ff3d3d}
 
-/* 02 3d motion graphics: a bouncing wireframe cube with an orbiting key */
+/* 02 motion graphics: a bouncing wireframe cube with an orbiting key */
 .mo-stage{position:absolute;left:0;right:0;top:24px;bottom:26px;perspective:420px;display:grid!important;place-items:center}
 .mo-orbit{position:absolute;left:50%;top:50%;width:132px;height:132px;margin:-66px 0 0 -66px;border-radius:50%;border:1px dashed rgba(255,255,255,.25);transform:rotateX(74deg)}
 .mo-arm{position:absolute;inset:0;animation:spin 2.6s linear infinite}
@@ -364,7 +366,7 @@ html.on-crew .nav .btn:not(:hover){background:rgba(255,255,255,.06)}
 .mo-keys b{position:absolute;top:-8px;bottom:-2px;width:1.5px;background:#fff;animation:sweep 2.6s linear infinite}
 @keyframes sweep{from{left:0}to{left:100%}}
 
-/* 03 3d websites: an exploded, tilting page stack */
+/* 04 websites: an exploded, tilting page stack */
 .web-scene{position:absolute;left:0;right:0;top:24px;bottom:0;perspective:520px;display:grid!important;place-items:center}
 .web-stack{position:relative;width:128px;height:88px;transform-style:preserve-3d;animation:webTilt 6s ease-in-out infinite}
 .wl{position:absolute;border-radius:7px;animation:webLift 2.4s cubic-bezier(.5,0,.3,1) infinite alternate}
@@ -378,7 +380,7 @@ html.on-crew .nav .btn:not(:hover){background:rgba(255,255,255,.06)}
 .web-cursor{position:absolute;left:60%;top:62%;width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:13px solid #fff;transform:rotate(-28deg);filter:drop-shadow(0 2px 3px rgba(0,0,0,.4));animation:webCur 2.4s ease-in-out infinite alternate}
 @keyframes webCur{to{transform:translate(-26px,-18px) rotate(-28deg)}}
 
-/* 04 videography: a live viewfinder with focus lock */
+/* 03 brand films: a live viewfinder with focus lock */
 .fx-video{background:#140f30}
 .vf-scene{position:absolute;inset:-6%;background:radial-gradient(circle at 28% 52%,#fff2d6 0 5%,rgba(255,210,150,.6) 7%,transparent 16%),linear-gradient(#ffd09a,#ff8a3d 50%,#3a1a3a 50.5%,#1d1438);animation:handheld 4s ease-in-out infinite}
 @keyframes handheld{0%,100%{transform:translate(0,0) rotate(0)}30%{transform:translate(4px,-2px) rotate(.4deg)}65%{transform:translate(-3px,3px) rotate(-.3deg)}}
@@ -400,26 +402,6 @@ html.on-crew .nav .btn:not(:hover){background:rgba(255,255,255,.06)}
 .vf-meter i{position:absolute;top:-3px;left:50%;width:2px;height:14px;background:#ffa53d;animation:meter 2.2s ease-in-out infinite}
 @keyframes meter{0%,100%{transform:translateX(-22px)}50%{transform:translateX(16px)}}
 
-/* 05 drone cinematography: top-down flight over a topo map */
-.fx-drone{background:#0d1f5c}
-.dr-map{position:absolute;inset:-40px;background:repeating-radial-gradient(circle at 30% 40%,transparent 0 9px,rgba(255,255,255,.12) 9px 10px),repeating-radial-gradient(circle at 78% 72%,transparent 0 11px,rgba(255,165,61,.18) 11px 12px),linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px) 0 0/22px 22px,linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px) 0 0/22px 22px;animation:drFly 5s ease-in-out infinite alternate}
-.dr-map svg{position:absolute;left:40px;top:40px;width:252px;height:158px;fill:none;overflow:visible}
-.dr-river{stroke:#5f8bff;stroke-width:7;stroke-linecap:round;opacity:.55}
-@keyframes drFly{to{transform:translate(-34px,26px)}}
-.dr-path{position:absolute;inset:0;width:100%;height:100%;fill:none;stroke:#ffa53d;stroke-width:1.5;stroke-dasharray:4 5;animation:flow 1s linear infinite}
-.dr-craft{position:absolute;left:50%;top:54%;width:54px;height:54px;margin:-27px 0 0 -27px;animation:drHover 3s ease-in-out infinite}
-@keyframes drHover{0%,100%{transform:translate(0,0) rotate(-4deg)}50%{transform:translate(8px,-6px) rotate(5deg)}}
-.dr-craft::before,.dr-craft::after{content:'';position:absolute;left:50%;top:50%;width:64px;height:4px;margin:-2px 0 0 -32px;border-radius:2px;background:#e9edff;transform:rotate(45deg)}
-.dr-craft::after{transform:rotate(-45deg)}
-.dr-craft b{position:absolute;left:50%;top:50%;width:18px;height:18px;margin:-9px 0 0 -9px;border-radius:5px;background:var(--grad);z-index:2;box-shadow:0 0 0 2px #fff}
-.dr-craft i{position:absolute;width:22px;height:22px;border-radius:50%;background:conic-gradient(rgba(255,255,255,.75) 0 12%,rgba(255,255,255,.08) 0 50%,rgba(255,255,255,.75) 0 62%,rgba(255,255,255,.08) 0);animation:spin .18s linear infinite;z-index:1}
-.dr-craft i:nth-child(1){left:-6px;top:-6px}.dr-craft i:nth-child(2){right:-6px;top:-6px}.dr-craft i:nth-child(3){left:-6px;bottom:-6px}.dr-craft i:nth-child(4){right:-6px;bottom:-6px}
-.dr-shadow{position:absolute;left:50%;top:54%;width:48px;height:48px;margin:-6px 0 0 -14px;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.5),transparent);animation:drHover 3s ease-in-out infinite}
-.dr-hud{position:absolute;left:10px;right:10px;bottom:9px;display:flex!important;justify-content:space-between;font:500 8.5px/1 var(--mono);letter-spacing:.14em;color:rgba(255,255,255,.75)}
-.dr-hud b{color:#ffa53d;font-weight:500;display:inline!important}
-.dr-ret{position:absolute;left:50%;top:54%;width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:50%;border:1px solid rgba(255,255,255,.18)}
-.dr-ret::before{content:'';position:absolute;inset:-1px;border-radius:50%;background:conic-gradient(from 0deg,transparent 0 75%,rgba(255,165,61,.45));animation:spin 2.4s linear infinite}
-
 @media (max-width:900px){
   .about-inner{grid-template-columns:1fr;padding-top:84px}
   .about-left{position:absolute;inset:84px var(--pad) var(--pad);pointer-events:none}
@@ -439,13 +421,13 @@ html.on-crew .nav .btn:not(:hover){background:rgba(255,255,255,.06)}
   .crew-stage{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-content:center}
   .boy{position:relative;left:auto;top:auto;translate:none;grid-column:1/-1;justify-self:center;height:auto;width:min(50vw,42svh * 450 / 740,260px);margin:2vh 0 3vh}
   .boy-buddy{left:-36%;top:-2%;width:44%}
-  .svc{position:relative;left:auto;top:auto;translate:none}
-  .svc:last-of-type{grid-column:1/-1;justify-self:center}
+  .svc{position:relative;left:auto;top:auto;translate:none;width:100%}
+  .svc-float,.svc-card{height:100%}
   .svc-float{animation:none}
-  .svc-card{gap:9px;padding:6px 12px 6px 6px}
-  .svc-ico{width:34px;height:34px}
+  .svc-card{gap:8px;padding:7px 12px 7px 7px;border-radius:20px}
+  .svc-ico{width:30px;height:30px}
   .svc-ico svg{width:16px;height:16px}
-  .svc-txt b{font-size:12.5px;white-space:normal}
+  .svc-txt b{font-size:12px;line-height:1.2;white-space:normal}
   .svc-txt small{display:none}
 }
 
@@ -456,24 +438,54 @@ html.on-crew .nav .btn:not(:hover){background:rgba(255,255,255,.06)}
 .work-track{--gap:clamp(64px,8vw,140px);--art:clamp(170px,30vh,260px);position:absolute;left:0;top:0;bottom:0;display:flex;align-items:center;gap:var(--gap);padding:0 var(--pad);will-change:transform}
 .work:not(.live) *{animation-play-state:paused!important}
 
-/* intro spread: headline on the left, an index of the five crafts on the right */
-.wi{flex:none;width:calc(100vw - var(--pad) * 2 - var(--gap));display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);align-items:center;gap:clamp(40px,7vw,140px);padding:0 clamp(0px,3vw,56px)}
+/* intro spread: headline on the left, an index of the crafts on the right */
+.wi{flex:none;width:calc(100vw - var(--pad) * 2 - var(--gap));display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:clamp(40px,7vw,140px);padding:0 clamp(0px,3vw,56px)}
 .wi-logo{display:block;width:clamp(44px,3.8vw,60px);height:auto;overflow:visible;margin-bottom:clamp(22px,4vh,36px)}
 .wi .wi-txt h2{font-size:clamp(40px,5.4vw,92px);line-height:.98;letter-spacing:-.05em}
 .wi .wi-txt p{max-width:440px;margin-top:24px}
-.wi-list{list-style:none;border-top:1px solid var(--line)}
-.wi-list button{position:relative;width:100%;display:grid;grid-template-columns:clamp(34px,3vw,48px) minmax(0,1fr) auto 18px;align-items:center;gap:clamp(10px,1.4vw,20px);
-  padding:clamp(14px,2.4vh,22px) 2px;border:0;border-bottom:1px solid var(--line);background:none;font:inherit;color:var(--fg);text-align:left;cursor:pointer}
-.wi-list button::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--a1);transform:scaleX(0);transform-origin:left;transition:transform .7s var(--ease)}
-.wi-list b{font:500 11px/1 var(--mono);letter-spacing:.12em;color:var(--mut);transition:color .4s}
-.wi-list span{font:600 clamp(17px,1.45vw,23px)/1.2 'Manrope',sans-serif;letter-spacing:-.025em;transition:transform .6s var(--ease),color .4s}
-.wi-list em{font:500 10px/1 var(--mono);font-style:normal;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);white-space:nowrap}
-.wi-list i{width:16px;height:16px;color:var(--a1);opacity:0;transform:translateX(-8px);transition:opacity .4s,transform .6s var(--ease)}
-.wi-list i svg{display:block;width:100%;height:100%}
-.wi-list button:hover::after,.wi-list button:focus-visible::after{transform:scaleX(1)}
-.wi-list button:hover b,.wi-list button:focus-visible b{color:var(--a1)}
-.wi-list button:hover span,.wi-list button:focus-visible span{transform:translateX(8px)}
-.wi-list button:hover i,.wi-list button:focus-visible i{opacity:1;transform:none}
+/* the index: frosted rows; the first is lit until another row is hovered */
+.wi-list{list-style:none;display:flex;flex-direction:column;gap:clamp(10px,1.7vh,16px)}
+.wi-list button{position:relative;width:100%;display:grid;grid-template-columns:auto auto minmax(0,1fr);grid-template-rows:auto auto;align-items:center;column-gap:clamp(12px,1.3vw,20px);row-gap:7px;
+  padding:clamp(11px,1.7vh,15px) clamp(18px,1.8vw,28px) clamp(11px,1.7vh,15px) clamp(16px,1.5vw,24px);border:0;border-radius:20px;font:inherit;color:var(--fg);text-align:left;cursor:pointer;
+  background:linear-gradient(135deg,rgba(255,255,255,.66),rgba(255,255,255,.3));
+  -webkit-backdrop-filter:blur(14px) saturate(160%);backdrop-filter:blur(14px) saturate(160%);
+  box-shadow:0 18px 38px -28px rgba(12,29,79,.4),0 1px 3px -1px rgba(12,29,79,.06),inset 0 1px 0 rgba(255,255,255,.95),inset 0 0 0 1px rgba(255,255,255,.55);
+  transition:transform .6s var(--ease),box-shadow .6s var(--ease)}
+/* warm gradient edge, shown on the lit row */
+.wi-list button::before{content:'';position:absolute;inset:0;border-radius:inherit;padding:1.5px;pointer-events:none;opacity:0;transition:opacity .5s var(--ease);
+  background:linear-gradient(100deg,rgba(255,107,10,.95),rgba(255,165,61,.55) 35%,rgba(255,165,61,.12) 65%,rgba(255,107,10,.75));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude}
+/* a small four-point spark on the lit row's corner */
+.wi-list button::after{content:'';position:absolute;right:-7px;top:-9px;width:18px;height:18px;pointer-events:none;background:var(--grad);
+  clip-path:polygon(50% 0,60% 40%,100% 50%,60% 60%,50% 100%,40% 60%,0 50%,40% 40%);
+  filter:drop-shadow(0 0 6px rgba(255,107,10,.6));transform:scale(0) rotate(-90deg);transition:transform .6s var(--ease)}
+.wi-list b{font:500 13px/1 var(--mono);letter-spacing:.04em;color:var(--mut);font-variant-numeric:tabular-nums;transition:color .4s}
+.wi-ico{display:grid;place-items:center;width:clamp(38px,2.9vw,46px);aspect-ratio:1;border-radius:13px;
+  background:linear-gradient(145deg,#fff,rgba(255,255,255,.55));box-shadow:0 8px 16px -10px rgba(12,29,79,.35),inset 0 0 0 1px rgba(255,255,255,.9);transition:background .5s,box-shadow .5s}
+.wi-ico svg{width:50%;height:50%;fill:none;stroke:var(--a1);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;transition:stroke .4s}
+.wi-ico .fl{fill:var(--a1);stroke:none;transition:fill .4s}
+.wi-list b,.wi-ico{grid-row:1/3}
+.wi-name{grid-column:3;align-self:end;min-width:0;font:600 clamp(15px,1.25vw,20px)/1.2 'Manrope',sans-serif;letter-spacing:-.025em;transition:transform .6s var(--ease)}
+.wi-list em{grid-column:3;align-self:start;min-width:0;overflow:hidden;text-overflow:ellipsis;
+  font:500 9.5px/1.2 var(--mono);font-style:normal;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);white-space:nowrap;transition:color .4s,transform .6s var(--ease)}
+.wi-list :is(button:hover,button:focus-visible),
+.wi-list:not(:has(button:hover,button:focus-visible)) li:first-child button{transform:translateY(-2px);
+  box-shadow:0 26px 48px -26px rgba(255,107,10,.5),0 10px 24px -18px rgba(12,29,79,.3),inset 0 1px 0 #fff,inset 0 0 0 1px rgba(255,255,255,.6)}
+.wi-list :is(button:hover,button:focus-visible)::before,
+.wi-list:not(:has(button:hover,button:focus-visible)) li:first-child button::before{opacity:1}
+.wi-list :is(button:hover,button:focus-visible)::after,
+.wi-list:not(:has(button:hover,button:focus-visible)) li:first-child button::after{transform:scale(1) rotate(0)}
+.wi-list :is(button:hover,button:focus-visible) b,
+.wi-list:not(:has(button:hover,button:focus-visible)) li:first-child b{color:var(--a1)}
+.wi-list :is(button:hover,button:focus-visible) .wi-ico,
+.wi-list:not(:has(button:hover,button:focus-visible)) li:first-child .wi-ico{background:var(--grad);box-shadow:0 10px 20px -10px rgba(255,107,10,.7)}
+.wi-list :is(button:hover,button:focus-visible) .wi-ico svg,
+.wi-list:not(:has(button:hover,button:focus-visible)) li:first-child .wi-ico svg{stroke:#fff}
+.wi-list :is(button:hover,button:focus-visible) .wi-ico .fl,
+.wi-list:not(:has(button:hover,button:focus-visible)) li:first-child .wi-ico .fl{fill:#fff}
+.wi-list :is(button:hover,button:focus-visible) .wi-name{transform:translateX(4px)}
+.wi-list :is(button:hover,button:focus-visible) em{color:var(--fg)}
 .wi-list button:focus-visible{outline:none}
 /* a hairline progress rail along the floor of the section */
 .work-rail{position:absolute;left:var(--pad);right:var(--pad);bottom:clamp(26px,5vh,44px);height:1px;background:var(--line);z-index:2;pointer-events:none}
@@ -482,8 +494,23 @@ html.on-crew .nav .btn:not(:hover){background:rgba(255,255,255,.06)}
 .wi-txt h2{font:700 clamp(30px,3.2vw,52px)/1.06 'Manrope',sans-serif;letter-spacing:-.04em}
 .wi-txt h2 span{color:var(--a1)}
 .wi-txt p{max-width:420px;margin-top:18px;font-size:15px;line-height:1.7;color:var(--mut)}
-.wi-hint{display:inline-flex;align-items:center;gap:12px;margin-top:30px;font:500 10.5px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--fg)}
-.wi-hint svg{width:22px;height:10px;color:var(--a1);animation:nudge 1.6s ease-in-out infinite}
+.wi-hint{display:inline-flex;align-items:center;gap:14px;margin-top:34px;padding:15px 26px;border-radius:999px;
+  font:600 11px/1 'Manrope',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--fg);
+  border:1.5px solid rgba(255,107,10,.6);background:rgba(255,255,255,.4);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  box-shadow:0 16px 32px -18px rgba(255,107,10,.6),inset 0 1px 0 rgba(255,255,255,.9);transition:background .45s var(--ease),color .45s,box-shadow .45s}
+.wi-hint svg{width:22px;height:10px;color:var(--a1);animation:nudge 1.6s ease-in-out infinite;transition:color .45s}
+.wi-hint:hover{background:var(--a1);color:#fff;box-shadow:0 18px 34px -14px rgba(255,107,10,.75)}
+.wi-hint:hover svg{color:#fff}
+/* the intro sits on the same quiet sky as About; it fades as the rail moves on */
+.work-sky{position:absolute;inset:0;z-index:0;pointer-events:none;background:url(images/about-bg.png) center/cover no-repeat}
+.work-track{z-index:1}
+.wi-txt{position:relative}
+.wi-head{position:relative}
+.wi-head h2,.wi-txt > p{position:relative;z-index:1}
+.wi-orbit{position:absolute;left:-13%;width:120%;top:50%;translate:0 -60%;aspect-ratio:800/340;overflow:visible;pointer-events:none;z-index:0}
+.wi-orbit .orb-path{fill:none;stroke:url(#wiOrbit);stroke-width:1.4;stroke-dasharray:1;stroke-dashoffset:1}
+.wi-orbit .orb-dot{fill:var(--a1);filter:drop-shadow(0 0 5px rgba(255,107,10,.8))}
+.wi-orbit .orb-halo{fill:rgba(255,107,10,.16)}
 @keyframes nudge{50%{transform:translateX(6px)}}
 
 .cr{flex:none;width:clamp(260px,24vw,380px);height:calc(var(--art) + 240px);display:flex;flex-direction:column}
@@ -495,8 +522,8 @@ html.on-crew .nav .btn:not(:hover){background:rgba(255,255,255,.06)}
 /* each craft sits on its own panel: a navy-tinted card with a pattern that belongs to the craft,
    a soft colour glow, and a small technical tag in the corner. The pattern drifts as the rail runs. */
 .cr-art{--n:12,29,79;--glow:rgba(255,107,10,.22);position:relative;isolation:isolate;overflow:hidden;border-radius:26px;padding:16px 18px;
-  background:var(--bg);
-  box-shadow:0 34px 60px -38px rgba(12,29,79,.45),0 2px 6px -2px rgba(12,29,79,.08),inset 0 0 0 1px rgba(12,29,79,.07)}
+  background:radial-gradient(120% 70% at 50% 118%,var(--glow),transparent 70%),linear-gradient(170deg,#fff 0%,#fffaf5 100%);
+  box-shadow:0 34px 60px -38px rgba(12,29,79,.45),0 2px 6px -2px rgba(12,29,79,.08),inset 0 0 0 1px rgba(12,29,79,.07),inset 0 1px 0 #fff}
 .cr-art::after{content:var(--tag);position:absolute;right:16px;top:14px;font:500 9px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:rgba(12,29,79,.42)}
 .cr-art svg{position:relative;z-index:1}
 .cr-bg{position:absolute;inset:0 -30%;z-index:-2;pointer-events:none;will-change:transform}
@@ -512,23 +539,18 @@ html.on-crew .nav .btn:not(:hover){background:rgba(255,255,255,.06)}
   repeating-linear-gradient(30deg,transparent 0 23px,rgba(var(--n),.075) 23px 24px),
   repeating-linear-gradient(150deg,transparent 0 23px,rgba(var(--n),.075) 23px 24px);
   -webkit-mask:radial-gradient(70% 80% at 50% 55%,#000 35%,transparent 100%);mask:radial-gradient(70% 80% at 50% 55%,#000 35%,transparent 100%)}
-/* 03 websites — dot grid with a browser bar */
+/* 04 websites — dot grid with a browser bar */
 .cr-web .cr-art{--tag:'1440 × 900';--glow:rgba(63,107,255,.2);padding-top:34px}
 .cr-web .cr-bg{background:radial-gradient(rgba(var(--n),.2) 1px,transparent 1.6px) 0 0/16px 16px}
 .cr-web .cr-art > i{position:absolute;left:0;right:0;top:0;height:24px;z-index:0;border-bottom:1px solid rgba(12,29,79,.08);background:rgba(255,255,255,.7);
   background-image:radial-gradient(circle,#ff6b0a 3px,transparent 3.5px),radial-gradient(circle,rgba(12,29,79,.25) 3px,transparent 3.5px),radial-gradient(circle,rgba(12,29,79,.25) 3px,transparent 3.5px);
   background-size:12px 24px;background-repeat:no-repeat;background-position:14px 0,28px 0,42px 0}
-/* 04 videography — rule-of-thirds and focus rings, warm key light */
+/* 03 brand films — rule-of-thirds and focus rings, warm key light */
 .cr-video .cr-art{--tag:'ƒ/1.8 · 4K';--glow:rgba(255,165,61,.3)}
 .cr-video .cr-bg{background:repeating-radial-gradient(circle at 50% 50%,transparent 0 17px,rgba(var(--n),.07) 17px 18px)}
 .cr-video .cr-art > i{position:absolute;inset:0;z-index:-1;pointer-events:none;background:
   linear-gradient(90deg,transparent calc(33.33% - .5px),rgba(var(--n),.1) calc(33.33% - .5px) calc(33.33% + .5px),transparent 0 calc(66.66% - .5px),rgba(var(--n),.1) 0 calc(66.66% + .5px),transparent 0),
   linear-gradient(0deg,transparent calc(33.33% - .5px),rgba(var(--n),.1) calc(33.33% - .5px) calc(33.33% + .5px),transparent 0 calc(66.66% - .5px),rgba(var(--n),.1) 0 calc(66.66% + .5px),transparent 0)}
-/* 05 drone — topographic contours over a sky-to-ground wash */
-.cr-drone .cr-art{--tag:'ALT 120M · N 12°';--glow:rgba(63,107,255,.22)}
-.cr-drone .cr-bg{background:
-  repeating-radial-gradient(ellipse 60% 40% at 62% 46%,transparent 0 13px,rgba(var(--n),.085) 13px 14px),
-  repeating-radial-gradient(ellipse 40% 30% at 18% 88%,transparent 0 11px,rgba(var(--n),.06) 11px 12px)}
 .cr-line{position:absolute;left:11px;top:5px;width:calc(100% + var(--gap) - 11px);height:1px;background:var(--line)}
 .cr-line i{position:absolute;inset:0;background:var(--a1);transform-origin:left;transform:scaleX(0)}
 article.cr:last-of-type .cr-line{display:none}
@@ -561,21 +583,22 @@ article.cr:last-of-type .cr-line{display:none}
 .art .rec-t{font:500 9px var(--mono);letter-spacing:.14em;fill:var(--fg)}
 .art .fp{fill:none;stroke:var(--a1);stroke-width:1.8;stroke-linecap:round}
 .art .fp-end{fill:var(--a1)}
-.art .ar-drone .bd{fill:var(--fg)}
-.art .ar-drone .arm{stroke:var(--fg);stroke-width:2.2;stroke-linecap:round}
-.art .ar-drone .ring{fill:rgba(255,255,255,.75);stroke:rgba(12,29,79,.35);stroke-width:1}
-.art .ar-drone .blade{stroke:var(--a1);stroke-width:2;stroke-linecap:round;transform-box:fill-box;transform-origin:center;animation:spin .28s linear infinite}
-
 @media (max-width:760px){
   .work-top{top:84px}
+  .work-top > span:first-child{display:none}
+  .work-count{margin-left:auto;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .work-track{--art:clamp(150px,26vh,220px)}
   .wi{grid-template-columns:1fr;gap:22px;padding:0}
   .wi-logo{display:none}
   .wi .wi-txt h2{font-size:clamp(34px,10vw,48px)}
   .wi .wi-txt p{font-size:14px;margin-top:14px}
-  .wi-hint{display:none}
-  .wi-list em{display:none}
-  .wi-list button{padding:11px 2px}
+  .wi-hint,.wi-orbit{display:none}
+  .wi-list{gap:8px}
+  .wi-list em{font-size:8.5px;line-height:1.5;letter-spacing:.1em;white-space:normal}
+  .wi-list button{padding:10px 14px;border-radius:16px;row-gap:5px}
+  .wi-name{font-size:14.5px}
+  .wi-list button::after{display:none}
+  .wi-ico{width:34px;border-radius:10px}
   .cr{width:74vw}
 }
 
@@ -621,6 +644,26 @@ html.on-dark .nav,html.on-dark .logo{color:#fff}
 .foot{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;padding:22px 0;border-top:1px solid var(--line);font:500 11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--mut)}
 .foot a{transition:color .3s}
 .foot a:hover{color:var(--a1)}
+.outro-inner,.foot{position:relative;z-index:1}
+/* the space strip: drawn shapes in the warm neutrals of the About backdrop, never an image */
+.outro-space{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.os-side{position:absolute;bottom:0;width:clamp(200px,34vw,560px);height:auto;aspect-ratio:520/380;overflow:visible}
+.os-l{left:0}.os-r{right:0}
+.os-orbit{fill:none;stroke:#e4cfb7;stroke-width:1.6}
+.os-body{fill:#efdfcd}
+.os-shade{fill:#e6d1ba;opacity:.75}
+.os-band{fill:none;stroke:#e2cbb1;stroke-width:5;stroke-linecap:round}
+.os-crater{fill:#e3ccb3}
+.os-cloud .c1{fill:#f0e0cf}.os-cloud .c2{fill:#f4e7d9}
+.os-dots circle{fill:#e6c9a8}
+.os-star{fill:#e8b97f;transform-box:fill-box;transform-origin:center;animation:osTwinkle 4.8s ease-in-out infinite}
+.os-star.s2{animation-delay:-1.6s;fill:#e9c9a3}.os-star.s3{animation-delay:-3.1s}
+.os-moon{animation:osFloat 12s ease-in-out infinite}
+.os-planet{animation:osFloat 9s ease-in-out -4s infinite}
+.os-bob{animation:osFloat 8s ease-in-out -2s infinite}
+@keyframes osTwinkle{50%{transform:scale(.72);opacity:.55}}
+@keyframes osFloat{50%{translate:0 -6px}}
+@media (prefers-reduced-motion:reduce){.os-star,.os-moon,.os-planet,.os-bob{animation:none}}
 
 @media (prefers-reduced-motion:reduce){.grain{animation:none}}
 </style>
@@ -714,13 +757,13 @@ html.on-dark .nav,html.on-dark .logo{color:#fff}
       <div class="hud-side r">GPS LOCK · 12 SAT · BAT <b>87%</b></div>
     </div>
 
-    <div class="hero-kicker"><span>Software</span><span>Digital Marketing</span><span>Drone</span><span>Post-production</span></div>
+    <div class="hero-kicker"><span>Video Editing</span><span>Motion Graphics</span><span>Brand Films</span><span>Websites</span></div>
     <h1 class="hero-title masked" aria-label="DAWMEDIA">
       <span class="line l1">DAW</span><span class="line l2 outline">MEDIA</span>
     </h1>
 
     <div class="hero-bottom">
-      <p class="hero-copy">We engineer, fly, cut and amplify — <em>one studio where every frame is in motion.</em></p>
+      <p class="hero-copy">We cut, animate, film and build — <em>one studio where every frame is in motion.</em></p>
       <div class="hero-cta">
         <a class="btn btn-primary" href="#outro" data-magnetic data-hover data-expr="happy" data-c="#ff7a1a"><span class="btn-fill"></span><span class="btn-txt">Start a project <span class="ico"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 10 10 2M4 2h6v6"/></svg></span></span></a>
         <a class="btn" href="#about" data-magnetic data-hover data-expr="star" data-c="#ffa53d"><span class="btn-fill"></span><span class="btn-txt">Play reel <span class="ico"><svg viewBox="0 0 12 12" fill="currentColor"><path d="M3 1.8v8.4L10 6z"/></svg></span></span></a>
@@ -758,9 +801,9 @@ html.on-dark .nav,html.on-dark .logo{color:#fff}
            <div class="ab-glass">
             <div class="ab-eyebrow"><span class="dot"></span>About DAW Media<span class="rule"></span></div>
             <h2 class="ab-title"><span class="ln"><span>More than a studio.</span></span><span class="ln"><span class="acc">A creative crew.</span></span></h2>
-            <p class="ab-copy">We are a hybrid crew where code, cameras and creativity share one desk. We ship software that scales, capture the world from four hundred feet up, and turn attention into momentum.</p>
+            <p class="ab-copy">We are a hybrid crew where editors, animators, filmmakers and developers share one desk. We cut stories that hold attention, give brands motion, film from the ground to four hundred feet up, and build websites that do the work.</p>
             <div class="ab-meta">
-              <div><b data-n="5">5</b><span>Crafts</span></div>
+              <div><b>4K</b><span>Delivery</span></div>
               <div><b><em data-n="400" style="font-style:normal">400</em><small>ft</small></b><span>Flight ceiling</span></div>
               <div><b>1</b><span>Shared desk</span></div>
             </div>
@@ -769,7 +812,7 @@ html.on-dark .nav,html.on-dark .logo{color:#fff}
           </div>
         </div>
       </div>
-      <!-- the crew: the boy at the centre, DAW at his shoulder, five crafts floating around them -->
+      <!-- the crew: the boy at the centre, DAW at his shoulder, the crafts floating around them -->
       <div class="crew">
         <div class="crew-stage">
           <svg class="crew-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"></svg>
@@ -787,7 +830,7 @@ html.on-dark .nav,html.on-dark .logo{color:#fff}
             <span class="svc-float">
               <span class="svc-card">
                 <span class="svc-ico"><svg viewBox="0 0 24 24"><circle cx="6" cy="7" r="2.6"/><circle cx="6" cy="17" r="2.6"/><path d="M8.2 8.5 20 16M8.2 15.5 20 8"/></svg></span>
-                <span class="svc-txt"><b>Video Editing</b><small>01 · Cut · Colour · Sound</small></span>
+                <span class="svc-txt"><b>Video Editing &amp; Post-production</b><small>01 · Reels · Colour · Captions</small></span>
               </span>
               <span class="svc-fx fx-edit" aria-hidden="true">
                 <span class="fx-bar"><i></i><i></i><i></i><em>edit_v3 · timeline</em></span>
@@ -806,7 +849,7 @@ html.on-dark .nav,html.on-dark .logo{color:#fff}
             <span class="svc-float">
               <span class="svc-card">
                 <span class="svc-ico"><svg viewBox="0 0 24 24"><path d="M12 2.8 20 7.4v9.2L12 21.2l-8-4.6V7.4z"/><path d="M4 7.4 12 12l8-4.6M12 12v9.2"/></svg></span>
-                <span class="svc-txt"><b>3D Motion Graphics</b><small>02 · Animate · Render · Loop</small></span>
+                <span class="svc-txt"><b>Motion Graphics &amp; Brand Animation</b><small>02 · Logos · Titles · Explainers</small></span>
               </span>
               <span class="svc-fx fx-motion" aria-hidden="true">
                 <span class="fx-bar"><i></i><i></i><i></i><em>scene_01 · 60fps</em></span>
@@ -820,25 +863,11 @@ html.on-dark .nav,html.on-dark .logo{color:#fff}
             </span>
           </button>
 
-          <button class="svc up r" type="button" style="--x:77%;--y:77%;--c:#3f6bff;--d:7s;--dl:-.5s" data-expr="happy" data-c="#3f6bff" data-say="Whoa, depth!" data-hover>
-            <span class="svc-float">
-              <span class="svc-card">
-                <span class="svc-ico"><svg viewBox="0 0 24 24"><rect x="2.5" y="4" width="19" height="16" rx="2.4"/><path d="M2.5 8.5h19"/><path d="m12 11.5 3.5 2-3.5 2-3.5-2z"/><path d="M8.5 13.5v2.2l3.5 2 3.5-2v-2.2"/></svg></span>
-                <span class="svc-txt"><b>3D Websites</b><small>03 · WebGL · Interactive</small></span>
-              </span>
-              <span class="svc-fx fx-web" aria-hidden="true">
-                <span class="fx-bar"><i></i><i></i><i></i><em>dawmedia.com</em></span>
-                <span class="web-scene"><span class="web-stack"><span class="wl l1"></span><span class="wl l2"></span><span class="wl l4"></span><span class="wl l5"></span><span class="wl l3"></span></span></span>
-                <span class="web-cursor"></span>
-              </span>
-            </span>
-          </button>
-
-          <button class="svc r" type="button" style="--x:85%;--y:48%;--c:#ff7a1a;--d:5.8s;--dl:-4s" data-expr="wink" data-c="#ff7a1a" data-say="Say cheese!" data-hover>
+          <button class="svc r" type="button" style="--x:84%;--y:38%;--c:#ff7a1a;--d:5.8s;--dl:-4s" data-expr="wink" data-c="#ff7a1a" data-say="Lights, camera, lift-off!" data-hover>
             <span class="svc-float">
               <span class="svc-card">
                 <span class="svc-ico"><svg viewBox="0 0 24 24"><rect x="2.5" y="7" width="13" height="10" rx="2.2"/><path d="m15.5 10.8 6-3.3v9l-6-3.3"/><circle cx="7" cy="12" r="1.6"/></svg></span>
-                <span class="svc-txt"><b>Videography</b><small>04 · Brand · Events · Docs</small></span>
+                <span class="svc-txt"><b>Brand Films &amp; Aerial Content</b><small>03 · Business · Events · Aerial</small></span>
               </span>
               <span class="svc-fx fx-video" aria-hidden="true">
                 <span class="vf-scene"></span>
@@ -852,27 +881,25 @@ html.on-dark .nav,html.on-dark .logo{color:#fff}
             </span>
           </button>
 
-          <button class="svc r" type="button" style="--x:79%;--y:20%;--c:#1f2b74;--d:6.8s;--dl:-2s" data-expr="wide" data-c="#3f6bff" data-say="Up, up &amp; away!" data-hover>
+          <button class="svc up r" type="button" style="--x:75%;--y:64%;--c:#3f6bff;--d:7s;--dl:-.5s" data-expr="happy" data-c="#3f6bff" data-say="Whoa, depth!" data-hover>
             <span class="svc-float">
               <span class="svc-card">
-                <span class="svc-ico"><svg viewBox="0 0 24 24"><circle cx="5" cy="5" r="2.5"/><circle cx="19" cy="5" r="2.5"/><circle cx="5" cy="19" r="2.5"/><circle cx="19" cy="19" r="2.5"/><path d="M7 7l3 3M17 7l-3 3M7 17l3-3M17 17l-3-3"/><rect x="10" y="10" width="4" height="4" rx="1"/></svg></span>
-                <span class="svc-txt"><b>Drone Cinematography</b><small>05 · Aerial · FPV · Survey</small></span>
+                <span class="svc-ico"><svg viewBox="0 0 24 24"><rect x="2.5" y="4" width="19" height="16" rx="2.4"/><path d="M2.5 8.5h19"/><path d="m12 11.5 3.5 2-3.5 2-3.5-2z"/><path d="M8.5 13.5v2.2l3.5 2 3.5-2v-2.2"/></svg></span>
+                <span class="svc-txt"><b>Website Design &amp; Development</b><small>04 · Business · Portfolio · UI</small></span>
               </span>
-              <span class="svc-fx fx-drone" aria-hidden="true">
-                <span class="dr-map"><svg viewBox="0 0 252 158"><path class="dr-river" d="M-30 130C40 96 80 150 140 110S230 30 290 52"/></svg></span>
-                <svg class="dr-path" viewBox="0 0 252 158" preserveAspectRatio="none"><path d="M10 140C70 140 80 86 126 85S200 30 246 22"/></svg>
-                <span class="dr-ret"></span>
-                <span class="dr-shadow"></span>
-                <span class="dr-craft"><i></i><i></i><i></i><i></i><b></b></span>
-                <span class="dr-hud"><span>ALT <b>120</b>M</span><span>GPS · 14 SAT</span><span>4K <b>●</b></span></span>
+              <span class="svc-fx fx-web" aria-hidden="true">
+                <span class="fx-bar"><i></i><i></i><i></i><em>dawmedia.com</em></span>
+                <span class="web-scene"><span class="web-stack"><span class="wl l1"></span><span class="wl l2"></span><span class="wl l4"></span><span class="wl l5"></span><span class="wl l3"></span></span></span>
+                <span class="web-cursor"></span>
               </span>
             </span>
           </button>
+
         </div>
 
         <div class="crew-head">
           <div class="eyebrow"><span class="dot"></span>What we make</div>
-          <h2 class="crew-title">Five crafts.<br><span class="g">One crew.</span></h2>
+          <h2 class="crew-title">Every craft.<br><span class="g">One crew.</span></h2>
           <p>Hover a craft to see it in motion. DAW has opinions about every one of them.</p>
         </div>
         <div class="crew-hint" aria-hidden="true"><i></i>Hover to preview</div>
@@ -882,7 +909,8 @@ html.on-dark .nav,html.on-dark .logo{color:#fff}
 
   <!-- WORK: a horizontal drawing board, each craft draws itself as it slides in -->
   <section class="work" id="work">
-    <div class="work-top"><span>What we make</span><span class="work-count"><b>00</b> / 05</span></div>
+    <div class="work-sky" aria-hidden="true"></div>
+    <div class="work-top"><span>What we make</span><span class="work-count" aria-live="polite"></span></div>
     <div class="work-rail" aria-hidden="true"><i></i></div>
     <div class="work-track">
       <div class="wi">
@@ -893,17 +921,28 @@ html.on-dark .nav,html.on-dark .logo{color:#fff}
           <path pathLength="1" d="M27.5 50.6C40 38 50 28 59.4 28 68 28 76.6 35 76.6 50S68 71 59.4 71C50 71 40 62 27.5 50.6Z"/>
         </svg>
           <div class="ab-eyebrow"><span class="dot"></span>What we make<span class="rule"></span></div>
-          <h2>Five crafts,<br><span>one crew.</span></h2>
+          <div class="wi-head">
+            <svg class="wi-orbit" viewBox="0 0 800 340" aria-hidden="true">
+              <defs><linearGradient id="wiOrbit" x1="0" y1="0" x2="800" y2="0" gradientUnits="userSpaceOnUse">
+                <stop offset="0" stop-color="#ff6b0a" stop-opacity=".1"/><stop offset=".55" stop-color="#ff6b0a" stop-opacity=".32"/><stop offset="1" stop-color="#ff6b0a" stop-opacity=".7"/>
+              </linearGradient></defs>
+              <g transform="rotate(-13 400 170)">
+                <ellipse class="orb-path" pathLength="1" cx="400" cy="170" rx="382" ry="96"/>
+                <circle class="orb-halo" cx="782" cy="170" r="13"/>
+                <circle class="orb-dot" cx="782" cy="170" r="6"/>
+              </g>
+            </svg>
+            <h2>Every craft,<br><span>one crew.</span></h2>
+          </div>
           <p>From the first line of code to the final colour grade, every piece is designed, built and finished in-house.</p>
-          <span class="wi-hint">Keep scrolling <svg viewBox="0 0 22 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 5h19M16 1l4 4-4 4"/></svg></span>
+          <a class="wi-hint" href="#work" data-hover>Keep scrolling <svg viewBox="0 0 22 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 5h19M16 1l4 4-4 4"/></svg></a>
         </div>
-        <!-- an index of the five crafts: each row jumps the rail to its card -->
+        <!-- an index of the crafts: each row jumps the rail to its card -->
         <ol class="wi-list">
-          <li><button type="button" data-hover><b>01</b><span>Video Editing</span><em>Cut · Colour · Sound</em><i aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h12M9 3l5 5-5 5"/></svg></i></button></li>
-          <li><button type="button" data-hover><b>02</b><span>3D Motion Graphics</span><em>Model · Animate · Render</em><i aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h12M9 3l5 5-5 5"/></svg></i></button></li>
-          <li><button type="button" data-hover><b>03</b><span>3D Websites</span><em>Design · WebGL · Code</em><i aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h12M9 3l5 5-5 5"/></svg></i></button></li>
-          <li><button type="button" data-hover><b>04</b><span>Videography</span><em>Brand · Event · Commercial</em><i aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h12M9 3l5 5-5 5"/></svg></i></button></li>
-          <li><button type="button" data-hover><b>05</b><span>Drone Cinematography</span><em>Aerial · FPV · Survey</em><i aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h12M9 3l5 5-5 5"/></svg></i></button></li>
+          <li><button type="button" data-hover><b>01</b><span class="wi-ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><path class="fl" d="M10 8.6v6.8l5.6-3.4z"/></svg></span><span class="wi-name">Video Editing &amp; Post-production</span><em>Reels · YouTube · Colour · Captions · Audio</em></button></li>
+          <li><button type="button" data-hover><b>02</b><span class="wi-ico"><svg viewBox="0 0 24 24"><path d="M12 2.8 20 7.4v9.2L12 21.2l-8-4.6V7.4z"/><path d="M4 7.4 12 12l8-4.6M12 12v9.2"/></svg></span><span class="wi-name">Motion Graphics &amp; Brand Animation</span><em>Logos · Titles · Explainers · Lower thirds</em></button></li>
+          <li><button type="button" data-hover><b>03</b><span class="wi-ico"><svg viewBox="0 0 24 24"><path d="M3 8.5A2 2 0 0 1 5 6.5h2.3l1.5-2h6.4l1.5 2H19a2 2 0 0 1 2 2V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/><circle cx="12" cy="13" r="3.6"/></svg></span><span class="wi-name">Brand Films &amp; Aerial Content</span><em>Business films · Events · Products · Aerial</em></button></li>
+          <li><button type="button" data-hover><b>04</b><span class="wi-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9c-2.6-2.6-3.8-5.6-3.8-9S9.4 5.6 12 3Z"/></svg></span><span class="wi-name">Website Design &amp; Development</span><em>Business sites · Portfolios · Landing pages · UI</em></button></li>
         </ol>
       </div>
       <article class="cr cr-edit">
@@ -917,7 +956,7 @@ html.on-dark .nav,html.on-dark .logo{color:#fff}
             <g class="ar-head"><path d="M34 122v76"/><path d="M28 118h12l-6 7z"/></g>
         </svg></div>
         <div class="cr-meta"><span class="cr-node"></span><span class="cr-line"><i></i></span></div>
-        <div class="cr-txt"><small><b>01</b> &nbsp;/&nbsp; Cut · Colour · Sound</small><h3>Video Editing</h3><p>Story-first edits, graded and mixed so every frame earns its place.</p></div>
+        <div class="cr-txt"><small><b>01</b> &nbsp;/&nbsp; Reels · YouTube · Interviews</small><h3>Video Editing &amp; Post-production</h3><p>Reels, YouTube edits, interviews and promotional films, finished with colour correction, captions and clean audio.</p></div>
       </article>
       <article class="cr cr-motion">
         <div class="cr-art"><span class="cr-bg" aria-hidden="true"></span><i aria-hidden="true"></i><svg class="art" viewBox="0 0 260 220" aria-hidden="true">
@@ -929,18 +968,7 @@ html.on-dark .nav,html.on-dark .logo{color:#fff}
             <g transform="translate(56 196)"><path class="mk" d="M0-7 7 0 0 7-7 0Z"/></g><g transform="translate(104 196)"><path class="mk" d="M0-7 7 0 0 7-7 0Z"/></g><g transform="translate(156 196)"><path class="mk" d="M0-7 7 0 0 7-7 0Z"/></g><g transform="translate(204 196)"><path class="mk" d="M0-7 7 0 0 7-7 0Z"/></g>
         </svg></div>
         <div class="cr-meta"><span class="cr-node"></span><span class="cr-line"><i></i></span></div>
-        <div class="cr-txt"><small><b>02</b> &nbsp;/&nbsp; Model · Animate · Render</small><h3>3D Motion Graphics</h3><p>Logos, products and characters that move with weight and intent.</p></div>
-      </article>
-      <article class="cr cr-web">
-        <div class="cr-art"><span class="cr-bg" aria-hidden="true"></span><i aria-hidden="true"></i><svg class="art" viewBox="0 0 260 220" aria-hidden="true">
-            <g class="ar-layer" data-lift="0"><polygon class="dr ar-base" pathLength="1" points="121.3,73.0 225.3,133.0 138.7,183.0 34.7,123.0"/></g>
-            <g class="ar-layer" data-lift="-16"><polygon class="k3" points="81.5,106.0 131.7,135.0 123.9,139.5 73.7,110.5"/><polygon class="k3" points="67.6,114.0 100.6,133.0 92.8,137.5 59.9,118.5"/></g>
-            <g class="ar-layer" data-lift="-30"><polygon class="k1" points="121.3,83.0 207.9,133.0 176.8,151.0 90.2,101.0"/></g>
-            <g class="ar-layer" data-lift="-46"><polygon class="k2" points="140.4,142.0 166.4,157.0 140.4,172.0 114.4,157.0"/></g>
-            <path class="cur" d="M0 0V17L4.6 12.6 8 20 10.8 18.8 7.5 11.6H13.6Z" transform="translate(206 186)"/>
-        </svg></div>
-        <div class="cr-meta"><span class="cr-node"></span><span class="cr-line"><i></i></span></div>
-        <div class="cr-txt"><small><b>03</b> &nbsp;/&nbsp; Design · WebGL · Code</small><h3>3D Websites</h3><p>Fast, interactive sites people remember, built to scale.</p></div>
+        <div class="cr-txt"><small><b>02</b> &nbsp;/&nbsp; Logos · Titles · Explainers</small><h3>Motion Graphics &amp; Brand Animation</h3><p>Logo animation, titles, explainers, product motion, lyric visuals and lower thirds that move with intent.</p></div>
       </article>
       <article class="cr cr-video">
         <div class="cr-art"><span class="cr-bg" aria-hidden="true"></span><i aria-hidden="true"></i><svg class="art" viewBox="0 0 260 220" aria-hidden="true">
@@ -951,23 +979,18 @@ html.on-dark .nav,html.on-dark .logo{color:#fff}
             <g class="iris"><polygon class="iris-open"/><line class="ib"/><line class="ib"/><line class="ib"/><line class="ib"/><line class="ib"/><line class="ib"/></g>
         </svg></div>
         <div class="cr-meta"><span class="cr-node"></span><span class="cr-line"><i></i></span></div>
-        <div class="cr-txt"><small><b>04</b> &nbsp;/&nbsp; Brand · Event · Commercial</small><h3>Videography</h3><p>Brand films and commercials, lit and shot with care.</p></div>
+        <div class="cr-txt"><small><b>03</b> &nbsp;/&nbsp; Business · Events · Aerial</small><h3>Brand Films &amp; Aerial Content</h3><p>Business films, event highlights, product and location shoots, with aerial footage when the story needs height.</p></div>
       </article>
-      <article class="cr cr-drone">
+      <article class="cr cr-web">
         <div class="cr-art"><span class="cr-bg" aria-hidden="true"></span><i aria-hidden="true"></i><svg class="art" viewBox="0 0 260 220" aria-hidden="true">
-            <ellipse class="dr faint" pathLength="1" cx="146" cy="118" rx="98" ry="58" transform="rotate(-8 146 118)"/>
-            <ellipse class="dr faint" pathLength="1" cx="152" cy="112" rx="64" ry="36" transform="rotate(-14 152 112)"/>
-            <ellipse class="dr faint" pathLength="1" cx="158" cy="106" rx="32" ry="17" transform="rotate(-18 158 106)"/>
-            <path class="fp" d="M18 180C60 122 100 198 140 140S214 60 242 66"/>
-            <circle class="fp-end" cx="242" cy="66" r="4.5"/>
-            <g class="ar-drone" transform="translate(18 180)">
-              <path class="arm" d="M-14-14 14 14M14-14-14 14"/>
-              <g transform="translate(-14 -14)"><circle class="ring" r="9"/><path class="blade" d="M-8 0H8"/></g><g transform="translate(14 -14)"><circle class="ring" r="9"/><path class="blade" d="M-8 0H8"/></g><g transform="translate(-14 14)"><circle class="ring" r="9"/><path class="blade" d="M-8 0H8"/></g><g transform="translate(14 14)"><circle class="ring" r="9"/><path class="blade" d="M-8 0H8"/></g>
-              <rect class="bd" x="-8" y="-6" width="16" height="12" rx="3.5"/>
-            </g>
+            <g class="ar-layer" data-lift="0"><polygon class="dr ar-base" pathLength="1" points="121.3,73.0 225.3,133.0 138.7,183.0 34.7,123.0"/></g>
+            <g class="ar-layer" data-lift="-16"><polygon class="k3" points="81.5,106.0 131.7,135.0 123.9,139.5 73.7,110.5"/><polygon class="k3" points="67.6,114.0 100.6,133.0 92.8,137.5 59.9,118.5"/></g>
+            <g class="ar-layer" data-lift="-30"><polygon class="k1" points="121.3,83.0 207.9,133.0 176.8,151.0 90.2,101.0"/></g>
+            <g class="ar-layer" data-lift="-46"><polygon class="k2" points="140.4,142.0 166.4,157.0 140.4,172.0 114.4,157.0"/></g>
+            <path class="cur" d="M0 0V17L4.6 12.6 8 20 10.8 18.8 7.5 11.6H13.6Z" transform="translate(206 186)"/>
         </svg></div>
         <div class="cr-meta"><span class="cr-node"></span><span class="cr-line"><i></i></span></div>
-        <div class="cr-txt"><small><b>05</b> &nbsp;/&nbsp; Aerial · FPV · Survey</small><h3>Drone Cinematography</h3><p>Licensed aerials and FPV flythroughs, planned to the metre.</p></div>
+        <div class="cr-txt"><small><b>04</b> &nbsp;/&nbsp; Business · Portfolio · UI</small><h3>Website Design &amp; Development</h3><p>Business websites, portfolios and landing pages, with UI design and selected interactive experiences.</p></div>
       </article>
       <div class="wk-end">
         <b>Have a story <span>worth moving?</span></b>
@@ -998,12 +1021,48 @@ html.on-dark .nav,html.on-dark .logo{color:#fff}
 
   <!-- OUTRO -->
   <section class="outro" id="outro">
+    <!-- a quiet strip of space along the floor of the page: clouds and a small moon on the left,
+         a cratered moon and a striped planet on the right -->
+    <div class="outro-space" aria-hidden="true">
+      <svg class="os-side os-l" viewBox="0 0 520 380">
+        <defs><path id="osStar" d="M0-1C.12-.12.12-.12 1 0 .12.12.12.12 0 1-.12.12-.12.12-1 0-.12-.12-.12-.12 0-1Z"/></defs>
+        <path class="os-orbit" d="M-6 6C80 50 150 110 163 181S170 300 160 380"/>
+        <g class="os-bob"><circle class="os-body" cx="163" cy="181" r="18"/><path class="os-shade" d="M175 168a18 18 0 0 1-22 30 18 18 0 0 0 22-30Z"/></g>
+        <g class="os-cloud">
+          <circle class="c1" cx="-10" cy="300" r="86"/><circle class="c1" cx="62" cy="240" r="72"/><circle class="c1" cx="176" cy="318" r="78"/>
+          <circle class="c1" cx="300" cy="346" r="62"/><circle class="c1" cx="392" cy="384" r="46"/>
+          <circle class="c2" cx="40" cy="372" r="70"/><circle class="c2" cx="150" cy="392" r="64"/><circle class="c2" cx="262" cy="398" r="54"/>
+        </g>
+        <g transform="translate(343 204) scale(15)"><use class="os-star" href="#osStar"/></g>
+        <g transform="translate(40 101) scale(8)"><use class="os-star s2" href="#osStar"/></g>
+        <g class="os-dots"><circle cx="140" cy="31" r="3"/><circle cx="215" cy="112" r="2.5"/><circle cx="296" cy="269" r="3"/><circle cx="427" cy="297" r="3.5"/><circle cx="507" cy="289" r="2.5"/><circle cx="222" cy="216" r="2"/><circle cx="470" cy="150" r="2"/></g>
+      </svg>
+      <svg class="os-side os-r" viewBox="0 0 520 380">
+        <ellipse class="os-orbit" cx="372" cy="236" rx="290" ry="62" transform="rotate(-17 372 236)"/>
+        <g class="os-planet">
+          <circle class="os-body" cx="298" cy="111" r="42"/>
+          <path class="os-band" d="M262 96c14-8 30 4 44-2s22-6 30-2M258 114c16-6 26 6 42 0s26-8 38-2M266 132c14-4 24 4 38-1s20-4 26 0"/>
+          <path class="os-shade" d="M326 80a42 42 0 0 1-52 66 42 42 0 0 0 52-66Z"/>
+        </g>
+        <g class="os-moon">
+          <circle class="os-body" cx="440" cy="322" r="140"/>
+          <path class="os-shade" d="M520 214a140 140 0 0 1-182 204h182Z"/>
+          <ellipse class="os-crater" cx="474" cy="236" rx="13" ry="8" transform="rotate(-20 474 236)"/>
+          <ellipse class="os-crater" cx="378" cy="300" rx="20" ry="27" transform="rotate(20 378 300)"/>
+          <circle class="os-crater" cx="444" cy="270" r="8"/><circle class="os-crater" cx="414" cy="342" r="9"/>
+          <circle class="os-crater" cx="490" cy="286" r="7"/><circle class="os-crater" cx="350" cy="360" r="6"/><circle class="os-crater" cx="470" cy="372" r="11"/>
+        </g>
+        <g transform="translate(10 266) scale(15)"><use class="os-star s3" href="#osStar"/></g>
+        <g transform="translate(436 36) scale(10)"><use class="os-star s2" href="#osStar"/></g>
+        <g class="os-dots"><circle cx="120" cy="198" r="3"/><circle cx="273" cy="269" r="3"/><circle cx="229" cy="318" r="2.5"/><circle cx="432" cy="120" r="2.5"/><circle cx="60" cy="140" r="2"/></g>
+      </svg>
+    </div>
     <div class="outro-inner">
       <div class="eyebrow"><span class="dot"></span>03 / Next chapter</div>
       <h2 class="outro-title"><span class="row">Let's make</span><span class="row ol">it move.</span></h2>
       <a class="btn btn-primary btn-lg" href="#hero" data-magnetic data-hover data-expr="happy" data-c="#ff7a1a"><span class="btn-fill"></span><span class="btn-txt">Start a project <span class="ico"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 10 10 2M4 2h6v6"/></svg></span></span></a>
     </div>
-    <footer class="foot"><span>© 2026 DAW Media Lab</span><span>Software · Marketing · Aerial · Post</span><a href="#hero" data-hover>Back to top ↑</a></footer>
+    <footer class="foot"><span>© 2026 DAW Media Lab</span><span>Editing · Motion · Films · Web</span><a href="#hero" data-hover>Back to top ↑</a></footer>
   </section>
 </main>
 
@@ -1092,18 +1151,26 @@ $$('a[href^="#"]').forEach((a) => a.addEventListener('click', (e) => {
 
 /* ================= text splitting ================= */
 function splitChars(el, cls = 'char', inner = 'ci') {
-  const text = el.textContent;
+  // letters of a word stay together in an unbreakable group; a real space between groups keeps the
+  // word gap and is the only place a line can wrap
+  const words = el.textContent.split(' ');
   el.textContent = '';
-  [...text].forEach((ch) => {
-    const c = document.createElement('span');
-    c.className = cls;
-    if (inner) {
-      const i = document.createElement('span');
-      i.className = inner;
-      i.textContent = ch === ' ' ? ' ' : ch;
-      c.appendChild(i);
-    } else c.textContent = ch === ' ' ? ' ' : ch;
-    el.appendChild(c);
+  words.forEach((word, wi) => {
+    if (wi) el.appendChild(document.createTextNode(' '));
+    const w = document.createElement('span');
+    w.style.cssText = 'display:inline-block;white-space:nowrap';
+    [...word].forEach((ch) => {
+      const c = document.createElement('span');
+      c.className = cls;
+      if (inner) {
+        const i = document.createElement('span');
+        i.className = inner;
+        i.textContent = ch;
+        c.appendChild(i);
+      } else c.textContent = ch;
+      w.appendChild(c);
+    });
+    el.appendChild(w);
   });
 }
 function splitWords(el) {
@@ -1974,7 +2041,7 @@ function initCine() {
 }
 const cine = initCine();
 
-/* ================= crew: the boy, DAW and the five crafts ================= */
+/* ================= crew: the boy, DAW and the crafts ================= */
 const crewEl = $('.crew'), boyEl = $('.boy'), leanEl = $('.boy-lean'), sayEl = $('.fish-say'), linesEl = $('.crew-lines');
 const svcs = $$('.svc');
 const pct = (el, prop) => parseFloat(el.style.getPropertyValue(prop));
@@ -2171,7 +2238,7 @@ function setupScroll() {
     .fromTo('.ab-visual', { y: 70, opacity: 0, scale: 0.94 }, { y: 0, opacity: 1, scale: 1, duration: 1.1, ease: 'expo.out' }, 0.15);
 
   // then a pin hands the stage to the crew: the boy rises at the centre, DAW swims over to his shoulder,
-  // and the five crafts float out around them
+  // and the crafts float out around them
   const crewTl = gsap.timeline({ scrollTrigger: { trigger: '#about', start: 'top top', end: () => '+=' + innerHeight * 1.5, pin: true, scrub: 0.8, invalidateOnRefresh: true, anticipatePin: 1 } })
     .to({}, { duration: 0.3 })
     .fromTo('.statement', { yPercent: 0, opacity: 1 }, { yPercent: -16, opacity: 0, duration: 0.6, ease: 'power2.in' })
@@ -2200,7 +2267,7 @@ function setupScroll() {
     onToggle: (self) => root.classList.toggle('fish-front', self.isActive) });
 
   // work:the board slides sideways while pinned; every craft draws itself in as it arrives
-  const work = $('#work'), track = $('.work-track'), crs = $$('.cr'), wkCount = $('.work-count b');
+  const work = $('#work'), track = $('.work-track'), crs = $$('.cr'), wkCount = $('.work-count');
   const railDist = () => Math.max(0, track.scrollWidth - innerWidth);
   const railTween = gsap.to(track, {
     x: () => -railDist(), ease: 'none',
@@ -2216,24 +2283,47 @@ function setupScroll() {
     .to('.wi-logo path', { strokeDashoffset: 0, duration: 1, stagger: 0.12, ease: 'none' }, 0)
     .to('.wi-logo path', { fillOpacity: 1, strokeOpacity: 0, duration: 0.5, ease: 'none' }, 0.95)
     .fromTo('.wi-txt > *', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.12, ease: 'power2.out' }, 0.3)
-    .fromTo('.wi-list li', { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.4, stagger: 0.07, ease: 'power2.out' }, 0.45);
+    .fromTo('.wi-list li', { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.4, stagger: 0.07, ease: 'power2.out' }, 0.45)
+    .to('.wi-orbit .orb-path', { strokeDashoffset: 0, duration: 0.9, ease: 'power1.inOut' }, 0.35);
 
-  // the index rows jump the rail to their card (centred in view)
-  $$('.wi-list button').forEach((b, i) => b.addEventListener('click', () => {
+  // a single moon travels the orbit around the headline, only while the section is on screen
+  { const dot = $('.wi-orbit .orb-dot'), halo = $('.wi-orbit .orb-halo'), o = { a: 0 };
+    if (dot) {
+      const orbit = gsap.to(o, { a: Math.PI * 2, duration: 18, ease: 'none', repeat: -1, paused: true, onUpdate: () => {
+        const x = (400 + 382 * Math.cos(o.a)).toFixed(2), y = (170 + 96 * Math.sin(o.a)).toFixed(2);
+        dot.setAttribute('cx', x); dot.setAttribute('cy', y); halo.setAttribute('cx', x); halo.setAttribute('cy', y);
+      } });
+      ScrollTrigger.create({ trigger: work, start: 'top bottom', end: () => '+=' + (innerHeight + innerWidth), onToggle: (self) => self.isActive ? orbit.play() : orbit.pause() });
+    } }
+
+  // the sky behind the intro gives way to the plain drawing board as the crafts arrive
+  gsap.to('.work-sky', { opacity: 0, ease: 'none', scrollTrigger: { trigger: work, start: 'top top', end: () => '+=' + innerWidth * 0.7, scrub: 0.4 } });
+
+  // the index rows jump the rail to their card (centred in view); "keep scrolling" goes to the first
+  const jumpTo = (i) => {
     const st = railTween.scrollTrigger, c = crs[i];
     const y = st.start + clamp(c.offsetLeft + c.offsetWidth / 2 - innerWidth / 2, 0, railDist());
     lenis ? lenis.scrollTo(y, { duration: 1.6 }) : scrollTo({ top: y, behavior: 'smooth' });
-  }));
+  };
+  $$('.wi-list button').forEach((b, i) => b.addEventListener('click', () => jumpTo(i)));
+  $('.wi-hint')?.addEventListener('click', (e) => { e.preventDefault(); jumpTo(0); });
 
   // hairline progress rail
   gsap.fromTo('.work-rail i', { scaleX: 0 }, { scaleX: 1, ease: 'none',
     scrollTrigger: { trigger: work, start: 'top top', end: () => '+=' + railDist(), scrub: 0.3 } });
 
   // per craft: a short "arrive" timeline, plus a long one that keeps it moving while it is on screen
+  // the rail stops when the last block is in view, so the closing cards never travel as far left as the
+  // earlier ones. reach() keeps a "left 30%"-style position, but pulls it back to wherever the card
+  // actually comes to rest, so every card still finishes its animation.
+  const reach = (el, pos) => () => {
+    const [edge, pct] = pos.split(' '), x = el.offsetLeft + (edge === 'right' ? el.offsetWidth : 0) - railDist();
+    return `${edge} ${Math.max(parseFloat(pct), (x / innerWidth) * 100 + 1).toFixed(2)}%`;
+  };
   const arrive = (el) => gsap.timeline({ defaults: { ease: 'none' },
-    scrollTrigger: { trigger: el, containerAnimation: railTween, start: 'left 96%', end: 'left 30%', scrub: 0.5 } });
+    scrollTrigger: { trigger: el, containerAnimation: railTween, start: 'left 96%', end: reach(el, 'left 30%'), scrub: 0.5 } });
   const along = (el, tween) => gsap.to(tween.target, { ...tween.vars, ease: 'none',
-    scrollTrigger: { trigger: el, containerAnimation: railTween, start: tween.start || 'left 75%', end: tween.end || 'right 10%', scrub: 0.5 } });
+    scrollTrigger: { trigger: el, containerAnimation: railTween, start: tween.start || 'left 75%', end: reach(el, tween.end || 'right 10%'), scrub: 0.5 } });
   crs.forEach((el, i) => {
     // the panel pattern drifts against the rail, so each card reads with a little depth
     gsap.fromTo($('.cr-bg', el), { xPercent: 9 }, { xPercent: -9, ease: 'none',
@@ -2245,9 +2335,9 @@ function setupScroll() {
     gsap.fromTo($('.cr-line i', el), { scaleX: 0 }, { scaleX: 1, ease: 'none',
       scrollTrigger: { trigger: el, containerAnimation: railTween, start: 'left 50%', end: () => `right+=${parseFloat(getComputedStyle(track).columnGap) || 0} 96%`, scrub: 0.5 } });
     ScrollTrigger.create({ trigger: el, containerAnimation: railTween, start: 'left 60%', end: 'right 40%',
-      onToggle: (self) => { if (self.isActive) wkCount.textContent = String(i + 1).padStart(2, '0'); } });
+      onToggle: (self) => { if (self.isActive) wkCount.textContent = $('h3', el).textContent; } });
   });
-  ScrollTrigger.create({ trigger: crs[0], containerAnimation: railTween, start: 'left 60%', onLeaveBack: () => { wkCount.textContent = '00'; } });
+  ScrollTrigger.create({ trigger: crs[0], containerAnimation: railTween, start: 'left 60%', onLeaveBack: () => { wkCount.textContent = ''; } });
 
   // 01 editing: clips slide onto the timeline, the viewer lights up, the playhead runs
   { const el = $('.cr-edit');
@@ -2275,9 +2365,9 @@ function setupScroll() {
     arrive(el).to($('.ar-base', el), { fillOpacity: 1, duration: 0.2 }, 0.35)
       .fromTo($$('.ar-layer', el).slice(1), { opacity: 0 }, { opacity: 1, duration: 0.15, stagger: 0.06 }, 0.35);
     $$('.ar-layer', el).forEach((g) => along(el, { target: g, vars: { y: +g.dataset.lift }, start: 'left 70%', end: 'left 5%' }));
-    along(el, { target: $('.cur', el), vars: { x: '-=42', y: '-=78' }, start: 'left 55%', end: 'right 20%' }); }
+    along(el, { target: $('.cur', el), vars: { x: '-=42', y: '-=78' }, start: 'left 75%', end: 'right 20%' }); }
 
-  // 04 videography: the aperture opens as you scroll
+  // 03 brand films: the aperture opens as you scroll
   { const el = $('.cr-video'), lines = $$('.ib', el), poly = $('.iris-open', el), iris = { r: 6, rot: 0 };
     const drawIris = () => {
       const cx = 130, cy = 110, R = 73, pts = [];
@@ -2294,18 +2384,6 @@ function setupScroll() {
     drawIris();
     arrive(el).fromTo($('.iris', el), { opacity: 0 }, { opacity: 1, duration: 0.2 }, 0.3);
     along(el, { target: iris, vars: { r: 54, rot: -0.85, onUpdate: drawIris }, start: 'left 70%', end: 'right 25%' }); }
-
-  // 05 drone: the flight path draws itself and the drone follows it
-  { const el = $('.cr-drone'), fp = $('.fp', el), drone = $('.ar-drone', el), len = fp.getTotalLength(), fl = { p: 0 };
-    fp.style.strokeDasharray = len; fp.style.strokeDashoffset = len;
-    const fly = () => {
-      const d = Math.max(0.5, fl.p * len), a = fp.getPointAtLength(d), b = fp.getPointAtLength(Math.min(len, d + 2));
-      drone.setAttribute('transform', `translate(${a.x.toFixed(2)} ${a.y.toFixed(2)}) rotate(${(Math.atan2(b.y - a.y, b.x - a.x) * 57.3 * 0.3).toFixed(2)})`);
-      fp.style.strokeDashoffset = len * (1 - fl.p);
-    };
-    fly();
-    arrive(el).fromTo($('.fp-end', el), { scale: 0, transformOrigin: '50% 50%' }, { scale: 1, duration: 0.2, ease: 'back.out(3)' }, 0.5);
-    along(el, { target: fl, vars: { p: 1, onUpdate: fly }, start: 'left 80%', end: 'right 15%' }); }
 
   gsap.fromTo('.wk-end > *', { opacity: 0, y: 30 }, { opacity: 1, y: 0, stagger: 0.1, ease: 'power2.out',
     scrollTrigger: { trigger: '.wk-end', containerAnimation: railTween, start: 'left 95%', end: 'left 60%', scrub: 0.5 } });
@@ -2369,6 +2447,10 @@ function setupScroll() {
     .fromTo(...lineIn('.l3'), 17.0)
     .to(...lineOut('.l3'), 18.5)
     .to('.cine-frame', { opacity: 0, duration: 0.7 }, 18.8);
+
+  // outro: the space strip settles up from the floor as the last screen arrives
+  gsap.fromTo('.os-side', { yPercent: 18, opacity: 0 }, { yPercent: 0, opacity: 1, ease: 'none', stagger: 0.1,
+    scrollTrigger: { trigger: '#outro', start: 'top 85%', end: 'top 15%', scrub: 0.6 } });
 
   // outro: DAW glides back to centre stage
   gsap.fromTo(S,
